@@ -1,0 +1,20 @@
+{
+  "Header": "GPI Narwastu Jayapura",
+  "Data": [
+	"Custom|[div class=\"w3-block\"]\n",
+	"Custom|	[div class=\"w3-bar w3-border-bottom w3-border-dark-grey w3-block w3-theme-d1 w3-padding backdropBlur\" style=\"position:absolute; top:calc (0 + 32px);\"]\n",
+	"Custom|		[a href=\"https://gpinarwastujayapura.org \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Kunjungi Website\" target=\"_blank\"][i class=\"la la-external-link\"][/i][/a]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div class=\"w3-content w3-container\" style=\"max-width:700px; margin-top:53px;\"]\n",
+    "Header|Deskripsi",
+	"Paragraf|Website ini merupakan proyek pertama yang dibuat dan dipublikasikan untuk organisasi non-profit (Gereja). Dibuat dengan menggunakan kombinasi aplikasi web untuk membuat konten dan aplikasi desktop (konsol) untuk secara otomatis mengelola konten-konten yang sudah dibuat.",
+	"Header|Tangkapan Gambar",
+	"Gambar|/Works/1/1.png|Halaman utama website",
+	"Custom|[br /]\n",
+	"Gambar|/Works/1/2.png|Halaman dokumentasi",
+	"Custom|[br /]\n",
+	"Gambar|/Works/1/3.png|Halaman jadwal Ibadah",
+	"Custom|[/div]"
+  ]
+}

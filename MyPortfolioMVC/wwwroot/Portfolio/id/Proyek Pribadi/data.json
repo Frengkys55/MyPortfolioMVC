@@ -1,0 +1,32 @@
+{
+  "Header": "Proyek Pribadi",
+  "Data": [
+    "Custom|[div style=\"max-width:700px\"]\n",
+    "Header|Resume > Proyek Pribadi",
+	"Custom|[ul class=\"w3-ul\"]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large\"][b]Media Player[/b][/div]\n",
+	"Custom|		[div][a href=\"https://frengkysinaga.com/MediaPlayer/ \" target=\"_blank\" style=\"text-decoration:none;\" title=\"Klik untuk mengunjungi\"]https://frengkysinaga.com/MediaPlayer [i class=\"la la-external-link-alt\"][/i][/a][/div]\n",
+	"Custom|		[div style=\"margin-top:8px;\"]",
+	"Custom|			[div class=\"w3-container w3-dark-grey w3-cell w3-cell-middle\"]2019[/div]",
+	"Custom|			[div class=\"w3-container w3-cell\"][span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]ASP.NET WebForm[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]C#[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]Windows Console Application[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]SQL Server[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]FFMPEG[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]JavaScript[/span]&nbsp[span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]W3.CSS[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]HTML[/span][/div]",
+	"Custom|		[/div]",
+	"Custom|		[div style=\"margin-top:8px;\"]\n",
+	"Custom|			[div]Aplikasi web yang dapat memutar berbagai jenis format video baik yang dapat diputar langsung oleh browser seperti MP4 maupun yang tidak seperti MKV.[/div]\n",
+	"Custom|		[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large w3-text-blue\"][b]this[/b][/div]\n",
+	"Custom|		[div][a href=\"#\" target=\"_blank\" style=\"text-decoration:none;\" title=\"Klik untuk mengunjungi\"]https://frengkysinaga.com/ [i class=\"la la-external-link-alt\"][/i][/a][/div]\n",
+	"Custom|		[div style=\"margin-top:8px;\"]",
+	"Custom|			[div class=\"w3-container w3-dark-grey w3-cell w3-cell-middle\"]2022[/div]",
+	"Custom|			[div class=\"w3-container w3-cell\"][span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]ASP.NET WebForm[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]C#[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]JavaScript[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]W3.CSS[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]HTML[/span][/div]",
+	"Custom|		[/div]",
+	"Custom|		[div style=\"margin-top:8px;\"]\n",
+	"Custom|			[div]Website pribadi...[/div]\n",
+	"Custom|		[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|[/ul]\n",
+	"Custom|[/div]\n"
+  ]
+}

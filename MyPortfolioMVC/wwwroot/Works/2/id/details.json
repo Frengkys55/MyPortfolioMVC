@@ -1,0 +1,21 @@
+{
+  "Header": "MediaPlayer",
+  "Data": [
+	"Custom|[div class=\"w3-block\"]\n",
+	"Custom|	[div class=\"w3-bar w3-border-bottom w3-border-dark-grey w3-block w3-theme-d1 w3-padding backdropBlur\" style=\"position:absolute; top:calc (0 + 32px);\"]\n",
+	"Custom|		[a href=\"/MediaPlayer \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Lihat demo\" target=\"_blank\"][i class=\"la la-external-link\"][/i][/a]\n",
+	"Custom|		[a href=\"/MediaPlayerSource.zip \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Unduh aplikasi\" style=\"margin-left:8px;\" target=\"_blank\"][i class=\"la la-download\"][/i][/a]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+	"Custom|[div class=\"w3-content w3-container\" style=\"max-width:700px; margin-top:53px;\"]\n",
+    "Header|Deskripsi",
+	"Paragraf|Aplikasi berbasis web yang dibuat agar dapat memutar sebanyak mungkin format video yang ada pada browser. Konsep kerja aplikasi dapat dibilang sederhanya karena pada dasarnya video yang dimainkan pada website dimainkan sebagai gambar (seperti layaknya flipbook).",
+	"Header|Tangkapan Gambar",
+	"Gambar|/Works/2/1.png|Halaman depan aplikasi",
+	"Custom|[br /]\n",
+	"Gambar|/Works/2/2.png|Tampilan aplikasi sedang memutar video",
+	"Custom|[br /]\n",
+	"Gambar|/Works/2/VideoProcessor.png|Aplikasi konsol pemroses video",
+	"Custom|[/div]\n"
+  ]
+}

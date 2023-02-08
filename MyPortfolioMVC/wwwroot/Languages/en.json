@@ -1,0 +1,114 @@
+{
+  "LanguageName": "English",
+
+  // #region Initialization Panel
+  "pnlText1_a": "\u0048\u0069\u0021\u0020\u0028\u0020\u00b4\u0020\u25bd\u0020\u0060\u0020\u0029\uff89",
+  "pnlText2_a": "\u03c3\u0028\uffe3\u3001\uffe3\u3003\u0029",
+  "pnlText2_b": "Before continuing, there is something you need to know...",
+  "pnlText3_a": "\u0028\uffe3\u25bd\uffe3\u002a\u0029\u309e",
+  "pnlText3_b": "It is not really an issue, but it is still inconvenient. The problem is that this website requires a usable display resolution of at least 800x600 in order to function properly...",
+  "pnlText3_c": "Why? Well, you'll know later...",
+  "pnlText4_a": "\u0028\u300d\u00b0\u30ed\u00b0\u0029\u300d",
+  "pnlText4_b": "Ok. Let's go!",
+  // #endregion Initialization Panel
+
+  // #region Panel StartMenu
+  "pnlStartMenu_Item_Header_P": "Pinned",
+  "pnlStartMenu_Item_pnlMenuAboutMe": "About Me",
+  "pnlStartMenu_Item_pnlMenuMyWork": "Works",
+  "pnlStartMenu_Item_pnlMenuMyPortfolio": "Resume",
+  "pnlStartMenu_Item_pnlMenuMyEducations": "Educations",
+  "pnlStartMenu_Item_pnlMenuSettings": "Settings",
+  "pnlStartMenu_Item_pnlMenuSetvices": "Services",
+  "pnlStartMenu_Item_pnlMenuChangelog": "Changelog",
+  // #endregion Panel StartMenu
+
+  // #region Wallpaper information
+  "lblWallpaperSeriesTitle": "From:",
+  "lblWallpaperArtistTitle": "Artist:",
+  // #endregion Wallpaper information
+
+  // #region Portfolio
+  "pnlWindowPortfolioTitle": "Resume",
+  // #endregion Portfolio
+
+  // #region Settings
+
+  // #region Settings sidebar
+  "btnSettingsItemResolution": "Resolution",
+  "btnSettingsItemWallpaper": "Background",
+  "btnSettingsItemAbout": "Tentang",
+  // #endregion Settings sidebar
+
+  // #region Settings panels
+
+  // #region Settings panels wallpaper column
+  "pnlSettingsWallpaperColumn_Header": "Backkground",
+  "pnlSettingsWallpaperColumn_btnApplySettingsWallpaper": "Apply",
+  // #endregion Settings panels wallpaper column
+
+  // #region Settings panels resolution column
+  "pnlSettingsResolutionColumn_Header": "Resolution",
+  "pnlSettingsResolutionColumn_Resolution_Title": "Display Resolution",
+  "pnlSettingsResolutionColumn_Resolution_DetectResolution": "Detect Resolution",
+  "pnlSettingsResolutionColumn_Scaling_Title": "Scale",
+  "pnlSettingsResolutionColumn_btnApplyResolution": "Apply",
+  // #endregion Settings panels resolution column
+
+  // #region Settings panels about column
+  "pnlSettingsAboutColumn_Header": "About",
+
+  // #region Desktop specification
+  "pnlSettingsAboutColumn_Header_DesktopSpecification": "Desktop Specification",
+  "pnlSettingsAboutColumn_DesignInspiration": "Design Inspiration",
+  "pnlSettingsAboutColumn_Version": "Version",
+  "pnlSettingsAboutColumn_InstalledOn": "Installed on",
+  "pnlSettingsAboutColumn_CreatedUsing": "Created with",
+  "pnlSettingsAboutColumn_DotNetFrameworkVersion": ".NET Framework Version",
+  "pnlSettingsAboutColumn_DesignedOn": "Designed on",
+  "pnlSettingsAboutColumn_CssFramework": "CSS Framework",
+
+  "pnlSettingsAboutColumn_DesignInspiration_Value": "Windows 11",
+  "pnlSettingsAboutColumn_Version_Value": "1.0",
+  "pnlSettingsAboutColumn_InstalledOn_Value": "January 5th, 2023",
+  "pnlSettingsAboutColumn_CreatedUsing_Value": "ASP.NET WebForm",
+  "pnlSettingsAboutColumn_DotNetFrameworkVersion_Value": ".NET Framework 4.8",
+  "pnlSettingsAboutColumn_DesignedOn_Value": "Lenovo IdeaPad D330",
+  "pnlSettingsAboutColumn_CssFramework_Value": "W3.CSS",
+  // #endregion Desktop specification
+
+  // #region Browser specification
+  "pnlSettingsAboutColumn_Header_BrowserSpecification": "Browser Specification",
+  "pnlSettingsAboutColumn_Browser": "Browser",
+  "pnlSettingsAboutColumn_BrowserVersion": "Browser Version",
+  "pnlSettingsAboutColumn_BrowserType": "Browser Type",
+  // #endregion Browser specification
+
+  // #endregion Settings panels about column
+
+  // #endregion Settings panels
+
+  // #endregion Settings
+
+  // #region About Me
+  "pnlWindowAboutMe_Title": "About Me",
+  "pnlWindowAboutMe_JobQualification_Value": "Backend Developer (A bit Frontend)",
+  "pnlWindowAboutMe_Address_Value": "Jayapura, Papua",
+  "pnlWindowAboutMe_Email_Value": "frengkys5@gmail.com",
+  "pnlWindowAboutMe_UsedTechnologies_Header": "Used Technologies",
+  // #endregion About Me
+
+  // #region Works
+  "pnlWindowWorks_Title": "Works",
+  "pnlWindowWorks_ListExplanation": "Some of my works...",
+  "pnlWindowWorks_MoreWorks": "And more is coming... ",
+  // #endregion Works
+
+  // #region First-Time Setup
+  "pnlWindowFirstTimeSetup_Title": "Hello....",
+  // #endregion First-Time Setup
+
+  // #region Windows
+  "pnlNotYetImplementedWindow_P": "This feature is not yet implemented. Either because I still don't know how to implement it or because I'm just lazy..."
+  // #endregion Windows
+}

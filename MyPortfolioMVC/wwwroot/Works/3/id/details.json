@@ -1,0 +1,16 @@
+{
+  "Header": "Website Personal",
+  "Data": [
+	"Custom|[div class=\"w3-block\"]\n",
+	"Custom|	[div class=\"w3-bar w3-border-bottom w3-border-dark-grey w3-block w3-theme-d1 w3-padding backdropBlur\" style=\"position:absolute; top:calc (0 + 32px);\"]\n",
+	"Custom|		[a href=\"#\" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Kunjungi website\"][i class=\"la la-external-link\" target=\"_blank\"][/i][/a]\n",
+	"Custom|		[a href=\"/Website.zip \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Unduh website\" style=\"margin-left:8px;\" target=\"_blank\"][i class=\"la la-file-code\"][/i][/a]\n",
+	"Custom|		[a href=\"/WebsiteSource.zip \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Unduh kode\" style=\"margin-left:8px;\" target=\"_blank\"][i class=\"la la-code\"][/i][/a]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+	"Custom|[div class=\"w3-content w3-container\" style=\"max-width:700px; margin-top:53px;\"]\n",
+    "Header|Deskripsi",
+	"Paragraf|Website pribadi yang digunakan untuk menampilkan karya-karya yang pernah dibuat.",
+	"Custom|[/div]\n"
+  ]
+}

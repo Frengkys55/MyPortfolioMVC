@@ -1,0 +1,120 @@
+{
+  "LanguageName": "Indonesia",
+
+  // #region Initialization Panel
+  "pnlText1_a": "\u0048\u0061\u0069\u0021\u0020\u0028\u0020\u00b4\u0020\u25bd\u0020\u0060\u0020\u0029\uff89",
+  "pnlText2_a": "\u03c3\u0028\uffe3\u3001\uffe3\u3003\u0029",
+  "pnlText2_b": "Sebelum melanjutkan, ada yang berlu diberitahukan terlbih dahulu...",
+  "pnlText3_a": "\u0028\uffe3\u25bd\uffe3\u002a\u0029\u309e",
+  "pnlText3_b": "Bukan masalah serius sih, tapi website ini perlu resolusi minimal yang bisa dipakai adalah 800x600.",
+  "pnlText3_c": "Mengapa harus seperti itu? Ya, nanti juga akan tahu sendiri...",
+  "pnlText4_a": "\u0028\u300d\u00b0\u30ed\u00b0\u0029\u300d",
+  "pnlText4_b": "Ok. Lanjut!",
+  // #endregion Initialization Panel
+
+  // #region Panel StartMenu
+  "pnlStartMenu_Item_Header_P": "Disematkan",
+  "pnlStartMenu_Item_pnlMenuAboutMe": "Tentang Saya",
+  "pnlStartMenu_Item_pnlMenuMyWork": "Karya",
+  "pnlStartMenu_Item_pnlMenuMyPortfolio": "Resume",
+  "pnlStartMenu_Item_pnlMenuMyEducations": "Pendidikan",
+  "pnlStartMenu_Item_pnlMenuSettings": "Pengaturan",
+  "pnlStartMenu_Item_pnlMenuSetvices": "Layanan",
+  "pnlStartMenu_Item_pnlMenuChangelog": "Riwayat Perubahan",
+  // #endregion Panel StartMenu
+
+  // #region Wallpaper information
+  "lblWallpaperSeriesTitle": "Dari:",
+  "lblWallpaperArtistTitle": "Artis:",
+  // #endregion Wallpaper information
+
+  // #region Portfolio
+  "pnlWindowPortfolioTitle": "Resume",
+  // #endregion Portfolio
+
+  // #region Settings
+
+  // #region Settings sidebar
+  "btnSettingsItemResolution": "Resolusi",
+  "btnSettingsItemWallpaper": "Latar Belakang",
+  "btnSettingsItemAbout": "Tentang",
+  // #endregion Settings sidebar
+
+  // #region Settings panels
+
+  // #region Settings panels wallpaper column
+  "pnlSettingsWallpaperColumn_Header": "Latar Belakang",
+  "pnlSettingsWallpaperColumn_btnApplySettingsWallpaper": "Terapkan",
+  // #endregion Settings panels wallpaper column
+
+  // #region Settings panels resolution column
+  "pnlSettingsResolutionColumn_Header": "Resolusi",
+  "pnlSettingsResolutionColumn_Resolution_Title": "Resolusi tampilan",
+  "pnlSettingsResolutionColumn_Resolution_DetectResolution": "Deteksi Resolusi",
+  "pnlSettingsResolutionColumn_Scaling_Title": "Penskalaan",
+  "pnlSettingsResolutionColumn_btnApplyResolution": "Terapkan",
+  // #endregion Settings panels resolution column
+
+  // #region Settings panels about column
+  "pnlSettingsAboutColumn_Header": "Tentang",
+
+  // #region Desktop specification
+  "pnlSettingsAboutColumn_Header_DesktopSpecification": "Spesifikasi Desktop",
+  "pnlSettingsAboutColumn_DesignInspiration": "Inspirasi Desain",
+  "pnlSettingsAboutColumn_Version": "Versi",
+  "pnlSettingsAboutColumn_InstalledOn": "Dipasang Pada",
+  "pnlSettingsAboutColumn_CreatedUsing": "Dibuat Dengan",
+  "pnlSettingsAboutColumn_DotNetFrameworkVersion": "Versi .NET Framework",
+  "pnlSettingsAboutColumn_DesignedOn": "Didesain Pada",
+  "pnlSettingsAboutColumn_CssFramework": "Framework CSS",
+
+  "pnlSettingsAboutColumn_DesignInspiration_Value": "Windows 11",
+  "pnlSettingsAboutColumn_Version_Value": "2.0",
+  "pnlSettingsAboutColumn_InstalledOn_Value": "01-01-2023",
+  "pnlSettingsAboutColumn_CreatedUsing_Value": "ASP.NET Core MVC",
+  "pnlSettingsAboutColumn_DotNetFrameworkVersion_Value": ".NET Core 7",
+  "pnlSettingsAboutColumn_DesignedOn_Value": "Lenovo IdeaPad D330",
+  "pnlSettingsAboutColumn_CssFramework_Value": "W3.CSS",
+  // #endregion Desktop specification
+
+  // #region Browser specification
+  "pnlSettingsAboutColumn_Header_BrowserSpecification": "Spesifikasi Browser",
+  "pnlSettingsAboutColumn_Browser": "Browser",
+  "pnlSettingsAboutColumn_BrowserVersion": "Versi Browser",
+  "pnlSettingsAboutColumn_BrowserType": "Tipe Browser",
+  // #endregion Browser specification
+
+  // #endregion Settings panels about column
+
+  // #endregion Settings panels
+
+  // #endregion Settings
+
+  // #region About Me
+  "pnlWindowAboutMe_Title": "Tentang Saya",
+  "pnlWindowAboutMe_JobQualification_Value": "Backend Developer (Sedikit Frontend)",
+  "pnlWindowAboutMe_Address_Value": "Jayapura, Papua",
+  "pnlWindowAboutMe_Email_Value": "frengkys5@gmail.com",
+  "pnlWindowAboutMe_UsedTechnologies_Header": "Teknologi Digunakan",
+  // #endregion About Me
+
+  // #region Works
+  "pnlWindowWorks_Title": "Karya",
+  "pnlWindowWorks_ListExplanation": "Beberapa karya yang saya buat...",
+  "pnlWindowWorks_MoreWorks": "Dan lainnya akan datang... ",
+  // #endregion Works
+
+  // #region First-Time Setup
+  "pnlWindowFirstTimeSetup_Title": "Halo....",
+  // #endregion First-Time Setup
+
+  // #region Windows
+  "pnlNotYetImplementedWindow_P": "Fitur ini masih belum diimplementasikan. Entah karena masih belum tahu bagaimana melakukan atau hanya lagi malas...",
+  // #endregion Windows
+
+  // #region Notifications
+  "pnlNotifications_Header": "Notifikasi",
+  "pnlNotifications_btnNotificationClearNotificationseader": "Bersihkan",
+  "pnlNotifications_pnlNoNotification_NoNotification": "Tidak ada notifikasi"
+  // #endregion Notifications
+}

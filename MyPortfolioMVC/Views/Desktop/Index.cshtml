@@ -1,0 +1,1530 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+    @*
+        //TODO: Convert from old WebForm to the new MVC (Done)
+        //TODO: Implement Window Management feature (0% done)
+    *@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="@ViewBag.selectedLanguage">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0, " />
+        <meta name="application-name" content="My Profile" />
+        <meta name="copyright" content="2023" />
+        <meta name="language" content="ID" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <meta charset="UTF-8" />
+        <link href="/css/w3.css" rel="stylesheet" />
+        @*<link rel="stylesheet" href="/sources/css/line-awesome.min.css" />*@
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+        <style>
+            .w3-theme-l5 {color:#000 !important; background-color:#f0f0f0c0 !important}
+            .w3-theme-l4 {color:#000 !important; background-color:#ccccccc0 !important}
+            .w3-theme-l3 {color:#fff !important; background-color:#999999c0 !important}
+            .w3-theme-l2 {color:#fff !important; background-color:#666666c0 !important}
+            .w3-theme-l1 {color:#fff !important; background-color:#333333c0 !important}
+            .w3-theme-d1 {color:#fff !important; background-color:#000000c0 !important}
+            .w3-theme-d2 {color:#fff !important; background-color:#000000c0 !important}
+            .w3-theme-d3 {color:#fff !important; background-color:#000000c0 !important}
+            .w3-theme-d4 {color:#fff !important; background-color:#000000c0 !important}
+            .w3-theme-d5 {color:#fff !important; background-color:#000000c0 !important}
+            .w3-hover-theme-dark {color:#fff !important; background-color:#000000c0 !important}
+
+            .w3-theme-light {color:#000 !important; background-color:#f0f0f0 !important}
+            .w3-theme-dark {color:#fff !important; background-color:#000000 !important}
+            .w3-theme-action {color:#fff !important; background-color:#000000 !important}
+
+            .w3-theme {color:#fff !important; background-color:#000000 !important}
+            .w3-text-theme {color:#000000 !important}
+            .w3-border-theme {border-color:#1a1a1a !important}
+
+
+            .desktopEnvironment{
+                position:relative;
+            }
+
+            body::-webkit-scrollbar{
+                width:8px;
+            }
+            body::-webkit-scrollbar-track{
+
+            }
+            body::-webkit-scrollbar-thumb{
+                background-color:#000000c0;
+                border-radius:4px;
+            }
+
+            .desktopBackgroundImage{
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .textOverflow{
+                overflow:hidden!important;
+                text-overflow:ellipsis!important;
+                white-space:nowrap!important;
+            }
+
+            /*#pnlDesktop{
+                width:100%;
+                height:100%;
+            }*/
+
+            .backdropBlur{
+                backdrop-filter:blur(30px);
+            }
+
+            .profilePicture{
+                background-image:url('Sources/Images/Logo.jpg');
+                background-repeat:no-repeat;
+                background-position:center;
+            }
+
+            .profilePictureContain{
+                background-size:contain;
+            }
+
+            .profilePictureCover{
+                background-size:cover;
+            }
+
+            .blockTextSelection {
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+            .material-symbols-sharp {
+                font-variation-settings:
+                'FILL' 0,
+                'wght' 100,
+                'GRAD' -25,
+                'opsz' 48
+            }
+        </style>
+
+        <script src="/js/ContentWorker.js"></script>
+        @*<script type="module" src="/js/Desktop_CodeBehind.js"></script>*@
+
+        <title>My Desktop</title>
+    </head>
+    <body class="w3-small">
+        <div id="pnlInitialization" class="w3-display-container w3-theme" style="display:block;">
+            <div id="pnlLanguageSelection" class="w3-display-middle w3-center w3-block" style="display:block;">
+                <div>
+                    <label id="lblSelectedLanguage">Select your language / Pilih bahasa</label>
+                </div>
+                <div id="pnlAvailableLanguage" class="w3-bar w3-block">
+                    @*Placeholder for availabel languages*@
+                </div>
+            </div>
+            <div id="pnlTextGroup" style="display:none; width:100%; height:100%;">
+                <div id="pnlText1" class="w3-display-middle w3-center" style="display:block;">
+                    <h1 class="">@ViewBag.pnlText1_a</h1>
+                </div>
+                <div id="pnlText2" class="w3-display-middle" style="display:none;">
+                    <div class="w3-display-container w3-block" style="height: 70px;">
+                        <div class="w3-display-middle w3-center">
+                            @ViewBag.pnlText2_a
+                        </div>
+                    </div>
+                    @ViewBag.pnlText2_b
+                </div>
+                <div id="pnlText3" class="w3-display-middle w3-center" style="display:none;">
+                    <div class="w3-display-container w3-block" style="height: 70px;">
+                        <div class="w3-display-middle">
+                            @ViewBag.pnlText3_a
+                        </div>
+                    </div>
+                    @ViewBag.pnlText3_b<br />
+                    @ViewBag.pnlText3_c
+                </div>
+                <div id="pnlText4" class="w3-display-middle w3-center" style="display:none;">
+                    <div class="w3-displaya-container" style="height: 70px; width:150px;">
+                        <div class="w3-display-middle">
+                            @ViewBag.pnlText4_a
+                        </div>
+                    </div>
+                    @ViewBag.pnlText4_b
+                </div>
+            </div>
+
+            <button id="btnInitializationNext" class="w3-display-bottomright w3-button w3-hover-dark-grey w3-xlarge w3-round w3-margin" onclick="btnInitializationNext_Click()" style="display:none;">
+                <i class="la la-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="pnlDesktopContainer" class="w3-block" style="min-width:800px; min-height:600px; display:none;">
+            <div id="pnlDesktop" class="w3-display-container w3-block desktopBackgroundImage profilePictureCover" style="background-image:url('Sources/Background/Barbara.png'); height:100%; width:100%">
+                <div id="pnlTaskbar" class="w3-display-bottomleft w3-theme-d5 w3-block backdropBlur" style="z-index:99;">
+                    <div class="w3-bar">
+                        <div id="pnlTaskbarItemGroup" class="w3-left">
+                        <button id="btnTaskbarStar" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="StartMenuToggle()"><span class="material-symbols-sharp w3-small">apps</span></button>
+                        </div>
+                        <div id="pnlTaskbarNotificationGroup" class="w3-right">
+                            <label id="lblClock" class="w3-bar-item">69:69</label>
+                            <button id="btnExpandNotification" class="w3-bar-item w3-button w3-transparent w3-hover-daryk-grey" onclick="btnExpandNotification_Click()"><span class="material-symbols-sharp w3-small">chat</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="pnlStartMenu" class="w3-display-bottomleft w3-theme-d5 w3-round w3-border-theme w3-animate-fade w3-card-4 backdropBlur blockTextSelection" style="margin-left:8px; margin-bottom:44px;z-index:97; width: 50%; height:70%;max-width:500px; min-height:400px; max-height:500px; display:none;">
+                    <div id="pnlMenuStartItemGroup" class="w3-display-container w3-block" style="height:100%;">
+                        <div id="pnlMenuItems" class="w3-display-topmiddle w3-block">
+                            <div class="w3-row w3-container w3-margin-top">
+                                <header>
+                                    <p>@ViewBag.pnlStartMenu_Item_Header_P</p>
+                                </header>
+                                <div id="pnlMenuAboutMe" class="w3-col s3">
+                                    <button id="pnlMenuItemAboutMeDisplayContainer" data-window="pnlWindowAboutMe" class="w3-display-container w3-button w3-transparent w3-block w3-hover-dark-grey w3-round w3-ripple" style="height:100px" onclick="pnlMenuItemAboutMeDisplayContainer_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">person</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuAboutMe</p>
+                                    </button>
+                                </div>
+                                <div id="pnlMenuMyWork" class="w3-col s3">
+                                    <button id="btnMenuItemMyWorkDisplayContainer" data-window="pnlWindowWorks" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" onclick="btnMenuItemMyWorkDisplayContainer_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">work</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuMyWork</p>
+                                    </button>
+                                </div>
+                                <div id="pnlMenuMyPortfolio" class="w3-col s3">
+                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="btnMenuItemMyPortfolio_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">badge</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuMyPortfolio</p>
+                                    </button>
+                                </div>
+                                <div id="pnlMenuSettings" class="w3-col s3">
+                                    <button id="pnleMenuItemSettingsDisplayContainer" data-window="pnlWindowSettings" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnleMenuItemSettingsDisplayContainer_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">settings</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuSettings</p>
+                                    </button>
+                                </div>
+                                @*<div id="pnlMenuServices" class="w3-col s3">
+                            <button id="pnleMenuItemServicesDisplayContainer" data-window="pnlWindowServices" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnleMenuItemServicesDisplayContainer_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">developer_mode</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuSetvices</p>
+                                    </button>
+                                </div>*@
+                                <div id="pnlMenuChangelog" class="w3-col s3">
+                                    <button id="pnleMenuItemChangelogDisplayContainer" data-window="pnlWindowChangelog" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnleMenuItemChangelogDisplayContainer_Click()">
+                                        <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">list_alt</span>
+                                        <p class="w3-display-bottomleft w3-block textOverflow w3-container">@ViewBag.pnlStartMenu_Item_pnlMenuChangelog</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="pnlUserInfo" class="w3-display-bottomleft w3-block" style="border-radius:0px 0px 4px 4px;">
+                                <div class="w3-bar w3-theme-d5 w3-padding w3-container" style="border-radius:inherit;">
+                                    <button id="pnlUserInfoGroup" data-window="pnlWindowAboutMe" class="w3-button w3-round w3-transparent w3-hover-dark-grey w3-ripple" onclick="pnlUserInfoGroup_Click()">
+                                        <div id="pnlUserPicture" class="w3-bar-item profilePicture profilePictureCover" style="border-radius: 50%; height:36px; width:36px;"></div>
+                                        <span id="lblUserName" class="w3-bar-item">Frengky Sinaga</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pnlDesktopWorkArea" class="w3-display-container w3-block" style="height: calc(100% - 34px);">
+                    <div id="pnlDesktopWallpaperInfo" class="w3-display-bottomright w3-margin-right w3-margin-bottom w3-theme-d5 backdropBlur w3-container w3-padding w3-round" style="z-index:0; min-width:250px;">
+                        <div class="w3-row">
+                            <div class="w3-col w3-center" style="width:40px;">
+                                @ViewBag.desktopWallpaperTypeIcon
+                            </div>
+                            <div class="w3-rest">
+                                <div>
+                                    <label id="lblWallpaperSeriesTitle">@ViewBag.lblWallpaperSeriesTitle</label>
+                                    <label id="lblWallpaperSeriesName">@ViewBag.lblWallpaperSeriesName</label>
+                                </div>
+                                <div>
+                                    <label id="lblWallpaperArtistTitle" Text="Artis:">@ViewBag.lblWallpaperArtistTitle</label>
+                                    <a id="lnkWallpaperLink" href="#" target="_blank" style="text-decoration:none;">Not Available</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowPortfolio" class="w3-display-middle w3-round backdropBlur w3-theme-d5"  style="width:600px; height: 500px; display:none;">
+                        <header class="w3-bar w3-theme-d5 backdropBlur" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowMyPortfolioTitle" class="w3-bar-item blockTextSelection">@ViewBag.pnlWindowPortfolioTitle</label>
+                            <div id="pnlControlGroupWindowMyPortfolio" class="w3-right">
+                                <button id="btnWindowMyPortfolioMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowPortfolio')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowMyPortfolioMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowPortfolio')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowMyPortfolioClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowPortfolio')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlPortfolioWindow" class="w3-block" style="border-radius: 0px 0px 4px 4px">
+                            <div id="pnlPortfolioRow" class="w3-row" style="height:100%">
+                                <div id="pnlPortfolioListColumn" class="w3-col s4 w3-left" style="max-width:250px">
+                                    <div id="pnlPortfolioMenuItems" class="w3-bar-block">
+                                        @*Placeholder for portfolio menu items*@
+
+                                    </div>
+                                </div>
+                                <div id="pnlPortfolioListDetailColumn"class="w3-rest w3-container" style="overflow-y:scroll; display:block;">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowSettings" class="w3-display-middle w3-round backdropBlur w3-theme-d5" style="display:none; width:600px; height:500px;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowSettingsTitle" class="w3-bar-item blockTextSelection" Text="Settings">@ViewBag.lblWindowSettingsTitle</label>
+                            <div id="pnlControlGroupWindowSettings" class="w3-right">
+                                <button id="btnWindowSettingsMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowSettings')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowSettingsMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowSettings')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowSettingsClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowSettings')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlSettingsWindow" style="border-radius: 0px 0px 4px 4px; width:100%;">
+                            <div id="pnlSettingsRow" class="w3-row">
+                                <div id="pnlSettingListColumn" class="w3-col s4" style="max-width:300px;">
+                                    <div class="w3-bar-block">
+                                        @*<button id="btnSettingsItemResolution" class="w3-bar-item w3-button w3-hover-dark-grey" onclick="btnSettingsItemResolution_ServerClick" style="display:none;">
+                                            <i class="la la-tv"></i> @ViewBag.pnlSettings_SettingsRow_btnSettingsItemResolution
+                                        </button>*@
+                                        <button id="btnSettingsItemWallpaper" class="w3-bar-item w3-button w3-hover-dark-grey w3-ripple" onclick="btnSettingsItemWallpaper_Click()">
+                                            <i class="la la-image"></i> @ViewBag.btnSettingsItemWallpaper
+                                        </button>
+                                        <button id="btnSettingsItemAbout" class="w3-bar-item w3-button w3-hover-dark-grey w3-ripple" onclick="btnSettingsItemAbout_Click()">
+                                            <i class="la la-info-circle"></i> @ViewBag.btnSettingsItemAbout
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="pnlSettingsWallpaperColumn" class="w3-rest w3-container" style="display:block;">
+                                    <header>
+                                        <h3>@ViewBag.pnlSettingsWallpaperColumn_Header</h3>
+                                    </header>
+                                    <div style="max-width:600px;">
+                                        <div id="pnlSettingsWallpaperPreview" class="w3-border w3-round" style="width:100%; height:200px; background-position: center; background-repeat: no-repeat; background-size: cover; background-image:url('/Sources/Background/Barbara.png');">
+                                        </div>
+                                        <div id="pnlWallpaperList" style="overflow-y: scroll; height:100px;" class="w3-margin-top w3-bar-block">
+                                        </div>
+                                    </div>
+                                    <footer class="w3-bar w3-margin-bottom" style="position: absolute; bottom: 0px;">
+                                        <button id="btnApplySettingsWallpaper" class="w3-button w3-transparent w3-hover-dark-grey w3-round w3-border w3-ripple" onclick="btnApplySettingsWallpaper_Click()">
+                                            <i class="la la-save"></i> @ViewBag.pnlSettingsWallpaperColumn_btnApplySettingsWallpaper
+                                        </button>
+                                    </footer>
+                                </div>
+                                @*<div id="pnlSettingsResolutionColumn" class="w3-col s8 w3-container" style="display:none;">
+                                    <header>
+                                        <h3>@ViewBag.pnlSettigs_SettingsRow_Resolution_Header</h3>
+                                    </header>
+                                    <div class="">
+                                        <p>@ViewBag.pnlSettigs_SettingsRow_Resolution_DisplayResolution</p>
+                                        <asp:DropDownList id="lstAvailableResolution"
+                                                      
+                                                          class="w3-theme-d5 w3-border w3-input w3-round w3-transparent">
+                                            <asp:ListItem Text="1920x1080" Value="1920x1080"></asp:ListItem>
+                                            <asp:ListItem Text="1366x768" Value="1366x768"></asp:ListItem>
+                                            <asp:ListItem Text="800x600" Value="800x600"></asp:ListItem>
+                                        </asp:DropDownList>
+                                        <button id="btnDetectResolution"
+                                            
+                                                class="w3-button w3-transparent w3-hover-dark-grey w3-round w3-margin-top w3-border">
+                                            <i class="la la-search"></i>Detect
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <p>@ViewBag.pnlSettigs_SettingsRow_Resolution_Scaling</p>
+                                        <asp:DropDownList id="lstAvalableScaling"
+                                                      
+                                                          class="w3-theme-d5 w3-border w3-input w3-round w3-transparent">
+                                            <asp:ListItem Text="120%" Value="1.2"></asp:ListItem>
+                                            <asp:ListItem Text="100%" Value="1.0" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="50%" Value="0.5"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <footer class="w3-bar" style="position: absolute; bottom: 0px; margin-bottom: 8px;">
+                                        <button id="btnApplyResolution"
+                                            
+                                                class="w3-bar-item w3-button w3-hover-dark-grey w3-round"
+                                                onclick="btnApplyResolution_ServerClick">
+                                            <i class="la la-save"></i>@ViewBag.pnlSettigs_SettingsRow_Resolution_Apply
+                                        </button>
+                                    </footer>
+                                </div>*@
+                                <div id="pnlSettingsAboutColumn" class="w3-col s8 w3-container" style="display:none;">
+                                    <header>
+                                        <h3>@ViewBag.btnSettingsItemAbout</h3>
+                                    </header>
+                                    <div class="">
+                                        <div class="w3-round w3-theme-d5 w3-block" style="padding-top:8px; padding-bottom: 8px;">
+                                            <header class="w3-container w3-padding">
+                                                <div>
+                                                    <i class="la la-windows"></i> @ViewBag.pnlSettingsAboutColumn_Header_DesktopSpecification
+                                                </div>
+                                            </header>
+                                            <div class="w3-container">
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_DesignInspiration</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_DesignInspiration_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_Version</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_Version_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_InstalledOn</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_InstalledOn_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_CreatedUsing</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_CreatedUsing_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_DotNetFrameworkVersion</div>
+                                                <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_DotNetFrameworkVersion_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_DesignedOn</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_DesignedOn_Value</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_CssFramework</div>
+                                                <div class="w3-rest w3-text-grey">@ViewBag.pnlSettingsAboutColumn_CssFramework_Value</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w3-round w3-theme-d5 w3-block w3-margin-top" style="padding-top:8px; padding-bottom: 8px;">
+                                            <header class="w3-container w3-padding">
+                                                <div> <i class="la la-windows"></i> @ViewBag.pnlSettingsAboutColumn_Header_BrowserSpecification</div>
+                                            </header>
+                                            <div class="w3-container">
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_Browser</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.browser</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                    <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_BrowserVersion</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.browserVersion</div>
+                                                </div>
+                                                <div class="w3-row">
+                                                <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_BrowserType</div>
+                                                    <div class="w3-rest w3-text-grey">@ViewBag.browserType</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowAboutMe" class="w3-display-topleft backdropBlur w3-theme-d5 w3-round" style="z-index: 0; width:500px; display:none;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowAboutMeTitle" class="w3-bar-item blockTextSelection" Text="About Me">@ViewBag.pnlWindowAboutMe_Title</label>
+                            <div id="pnlControlGroupWindowAboutMe" class="w3-right">
+                                <button id="btnWindowAboutMeMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowAboutMe')" style="display:none;">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                            <button id="btnWindowAboutMeClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowAboutMe')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlAboutMeWindow" class="w3-margin-top" style="border-radius: 0px 0px 4px 4px; width:500px;">
+                            <div class="w3-bar w3-block w3-container" style="padding: 0px 0px 16px 0px">
+                                <div class="w3-container">
+                                    <div id="pnlAboutMePicture" class="w3-bar-item w3-center profilePicture desktopBackgroundImage" style="width:80px; height:80px;"></div>
+                                    <label id="lblAboutMeName" class="w3-bar-item" style="font-size:40px;">Frengky Sinaga</label>
+                                </div>
+                            </div>
+                            <div class="w3-container">
+                                <div><i class="la la-briefcase"></i> @ViewBag.pnlWindowAboutMe_JobQualification_Value</div>
+                                <div><i class="la la-home"></i> @ViewBag.pnlWindowAboutMe_Address_Value</div>
+                                <div><i class="la la-envelope"></i> @ViewBag.pnlWindowAboutMe_Email_Value</div>
+                            </div>
+                            <div class="">
+                                <header class="w3-container">
+                                    <p>@ViewBag.pnlAboutMeWindow_UsedTechnologies</p>
+                                </header>
+                                <div class="w3-row w3-margin-bottom">
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    ASP.NET WebForm
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    ASP.NET MVC
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    C#
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    W3.CSS
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    JavaScript
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-col s4">
+                                        <div class="w3-padding">
+                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
+                                                <div class="w3-display-middle w3-center">
+                                                    HTML
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowWorks" class="w3-display-middle backdropBlur w3-theme-d5 w3-round" style="width:500px; display:none;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowWorksTitle" class="w3-bar-item blockTextSelection">@ViewBag.pnlWindowWorks_Title</label>
+                            <div id="pnlControlGroupWindowWorks" class="w3-right">
+                                <button id="btnWindowWorksMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowWorks')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowWorksMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowWorks')" style="display:none;">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowWorksClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowWorks')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlWorksWindow" class="w3-block" style="border-radius: 0px 0px 4px 4px;">
+                            <div class="w3-container w3-margin-top">
+                                @ViewBag.pnlWindowWorks_ListExplanation
+                            </div>
+                            <div class="w3-row">
+                                <div id="pnlWorkItemGroup" class="w3-bar-block">
+                                    @*Placeholder for dinamic work list*@
+                                </div>
+
+                                <div id="pnlWorkMoreWorks" class="w3-container blockTextSelection w3-center">
+                                    <p>(๑˃ᴗ˂)ﻭ</p>
+                                    <p>@ViewBag.pnlWindowWorks_MoreWorks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowWorkDetails" class="w3-display-middle backdropBlur w3-theme-d5 w3-round" style="width:700px; height: 560px; display:none;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowWorkDetailTitle" class="w3-bar-item blockTextSelection">@ViewBag.lblWindowWorkDetailTitle</label>
+                            <div id="pnlControlGroupWindowWorkDetail" class="w3-right">
+                                <button id="btnWindowWorkDetailMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowWorkDetails')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowWorkDetailMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowWorkDetails')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowWorkDetailClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowWorkDetails')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlWorkDetailWindow" class="w3-block" style="border-radius: 0px 0px 4px 4px; overflow-y:scroll; height: calc(100% - 40px)">
+                            @*Placeholder for work details*@
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowFirstTimeSetup" class="w3-display-middle w3-round backdropBlur w3-theme-d5" style="width: 80%; height: 70%; min-height: calc(500px + 84.5px); display:block;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowFirstTimeSetupTitle" class="w3-bar-item blockTextSelection" Text="Welcome">@ViewBag.pnlWindowFirstTimeSetup_Title</label>
+                            <div id="pnlControlGroupWindowFirstTimeSetup" class="w3-right">
+                                <button id="btnWindowFirstTimeSetupMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowFirstTimeSetup')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowFirstTimeSetupMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowFirstTimeSetup')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowFirstTimeSetupClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowFirstTimeSetup')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlFirstTimeSetupWelcomePage" style="width: 100%; height: 100%; border-radius:0px 0px 4px 4px;">
+                            <div class="w3-block" style="height: calc(100% - 38.5px); border-radius:0px 0px 4px 4px; min-width: 500px; min-height:500px;">
+                                <div class="w3-row" style="height: calc(100% - 38.5px);">
+                                    <div class="w3-col s5 w3-display-container w3-block" style="height:100%;">
+                                        <div class="w3-display-middle desktopBackgroundImage profilePicture" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 16px; margin-bottom: 16px;"></div>
+                                    </div>
+                                    <div class="w3-col s7" style="height: 100%;">
+                                        <div id="pnlIntroduction" style="position:absolute; max-width:600px;" class="w3-container">
+                                            <header>
+                                                <h1>Hi!</h1>
+                                            </header>
+                                            <p>Perkenalkan, nama saya Frengky Sinaga dan saya merupakan back-end developer (sedikit frontend) yang menggunakan Visual Studio sebagai IDE (Integrated Development Environment) dan menggunakan C# sebagai bahasa pemrograman untuk ASP.NET WebForm, target platform.</p>
+                                            <p>Saya sebenarnya ingin menggunakan ASP.NET MVC tapi memilih tidak karena masih belum dipahami.</p>
+                                            <p>Silakan menjelajahi "desktop" ini dan lihat-lihatlah keahlianku (setidaknya untuk front-end)</p>
+                                            <p>Catatan: "Desktop" ini masih dalam tahap pengembangan dan masih banyak yang mungkin tidak berfungsi dengan baik</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowServices" class="w3-display-middle w3-round backdropBlur w3-theme-d5" style="width: 80%; display:none;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowServicesTitle" class="w3-bar-item blockTextSelection" Text="Services">@ViewBag.lblWindowServicesTitle</label>
+                            <div id="pnlControlGroupWindowServices" class="w3-right">
+                                <button id="btnWindowServicesMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowServices')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowServicesMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowServices')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowServicesClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="MinimizeWindow_Click('pnlWindowServices')">
+                                    <i class="la la-window-close"></i>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlServicesWindow" style="width: 100%;border-radius:0px 0px 4px 4px;">
+                            <div id="pnlServicesRow" class="w3-row">
+                                <div id="ServicesListColumn" class="w3-col s4" style="max-width: 300px;">
+                                    <div class="w3-bar-block">
+                                        <button id="btnServices1" class="w3-bar-item w3-button w3-hover-dark-grey w3-ripple" onclick="btnServices1_ServerClick">
+                                            Website Development
+                                        </button>
+                                        <button id="btnServices" class="w3-bar-item w3-button w3-hover-dark-grey w3-ripple" onclick="btnServices2_ServerClick">
+                                            Networking
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="pnlService1DetailColumn" class="w3-rest w3-container" style="display:block;">
+                                    <h3>Website Development</h3>
+                                    <p>Hey, If you want to build a website, I can build one for you. Well, if you are fine if I use W3.CSS CSS framework instead of the popular frameworks like Bootstrap and ASP.NET as the platform instead of the more general one like PHP though.</p>
+                                    <p>The </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pnlWindowChangelog" class="w3-display-middle w3-round backdropBlur w3-theme-d5" style="min-width: 600px; min-height:400px; display:none;">
+                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
+                            <label id="lblWindowChangelogTitle" class="w3-bar-item blockTextSelection">@ViewBag.lblWindowChangelogTitle</label>
+                            <div id="pnlControlGroupWindowChangelog" class="w3-right">
+                                <button id="btnWindowChangelogMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowChangelog')">
+                                    <span class="material-symbols-sharp w3-small">minimize</span>
+                                </button>
+                                <button id="btnWindowChangelogMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowChangelog')">
+                                    <span class="material-symbols-sharp w3-small">expand_content</span>
+                                </button>
+                                <button id="btnWindowChangelogClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowChangelog')">
+                                    <span class="material-symbols-sharp w3-small">close</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div id="pnlChangelogWindow" class="w3-bar-block" style="width: 100%;border-radius:0px 0px 4px 4px;">
+                            <div class"w3-row">
+                                <div class="w3-col s4" style="max-width:300px;">
+                                    <div id="pnlChangelogListColumn" class="w3-bar-block">
+                                        @*Placeholder for changelog version list*@
+                                    </div>
+                                </div>
+                                <div id="pnlChangelogDetails" class="w3-col s8 w3-container">
+                                    @*Placeholder for changelog details*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pnlNotYetImplementedWindow" class="w3-display-middle backdropBlur w3-theme-d5 w3-round blockTextSelection" style="width:500px; display:none">
+                    <div class="w3-block w3-display-container" style="height: 200px;">
+                        <div class="w3-display-middle">
+                            (〃＞＿＜;〃)
+                        </div>
+                    </div>
+                    <div class="w3-container">
+                        <p>@ViewBag.pnlNotYetImplementedWindow_P</p>
+                    </div>
+                    <footer class="w3-container w3-margin-bottom w3-bar">
+                        <button id="btnNotYetImplementedWindowClose" class="w3-bar-item w3-button w3-centered w3-border w3-round w3-ripple" onclick="btnNotYetImplementedWindowClose_Click">OK</button>
+                    </footer>
+                </div>
+
+                <div id="pnlNotifications" class="w3-display-bottomright w3-theme-d5 w3-round backdropBlur blockTextSelection" style="margin-bottom:56px; margin-right:16px; z-index:98; width:300px; display:block">
+                    <div class="w3-bar">
+                    <label id="lblNotificationTitle" class="w3-bar-item blockTextSelection">@ViewBag.pnlNotifications_Header</label>
+                        <button id="btnNotificationClearNotifications" class="w3-bar-item w3-button w3-hover-dark-grey w3-right" style="border-radius:0px 4px 0px 0px;" onclick="btnNotificationClearNotifications_Click()">
+                            @ViewBag.pnlNotifications_btnNotificationClearNotificationseader
+                        </button>
+                    </div>
+                    <div id="pnlNotificationList" class="w3-bar-block" style="margin-bottom: 16px;">
+                        <div id="pnlNotificationItem1" class="w3-bar-item w3-border-bottom" style="border-radius: 0px 0px 4px 4px;">
+                            <header class="">
+                                <div class=""><i class="la la-info"></i>From me</div>
+                            </header>
+                            <div class="">
+                                This page is still under development. Some function might not work correctly.
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pnlNoNotification" class="w3-container" style="border-radius: 0px 0px 4px 4px; display:none;">
+                        <div class="">
+                            <div class="w3-display-container w3-block" style="height:70px;">
+                                <div class="w3-display-middle">
+                                    (o´∀`o)
+                                </div>
+                            </div>
+                            <div class="w3-margin-bottom w3-center">
+                                @ViewBag.pnlNotifications_pnlNoNotification_NoNotification
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Desktop manager script
+            // Global variables
+            var height;
+            var desktopID = "pnlDesktop";
+
+            // #region Desktop background worker
+            function DesktopBackgroundWorker(){
+            }
+            // #endregion Desktop background worker
+
+            // #region Screen height monitoring and adjuster
+
+            function ScreenHeightAdjuster(){
+                height = document.documentElement.clientHeight;
+
+                document.getElementById(desktopID).style.height = (height) + "px";
+            }
+
+            // Adjust screen height 
+            ScreenHeightAdjuster();
+
+            // Add event listerer
+            window.addEventListener("resize", ScreenHeightAdjuster);
+
+            // #endregion Screen height monitoring and adjuster
+
+            // #region Clock worker
+            // Animation script for clock
+            setInterval(localClockTimeAnimation, 1000);
+
+            function localClockTimeAnimation() {
+                var hour = new Date().getHours();
+                var minutes = new Date().getMinutes();
+                hour = ((hour.toString().length < 2) ? "0" + hour.toString() : hour.toString());
+                minutes = ((minutes.toString().length < 2) ? "0" + minutes.toString() : minutes.toString());
+                document.getElementById("lblClock").innerHTML = hour.toString() + ":" + minutes.toString();
+            }
+            // #endregion Clock worker
+
+            // #region Actions
+
+            // #region Start menu
+            function StartMenuToggle(){
+                if (document.getElementById("pnlStartMenu").style.display === "none"){
+                    document.getElementById("pnlStartMenu").style.display = "block";
+                }
+                else{
+                    document.getElementById("pnlStartMenu").style.display = "none";
+                }
+            }
+            // #endregion Start menu
+
+            // #endregion Actions
+        </script>
+
+        <script>
+            // CodeBehind event listener (still need to fix, for now just call the function)
+        </script>
+
+        <script>
+            // A code behind for this page
+            // I wanted to separate this section into a separate file but damn it! import/export thing is anoying...
+
+            var selectedLanguage = "@ViewBag.selectedLanguage";
+
+            // #region For initialization panel
+
+            function InitializationPanelHeightAdjuster() {
+                var height = document.documentElement.clientHeight;
+                document.getElementById("pnlInitialization").style.height = (height) + "px";
+            }
+
+            function LanugageListWorker(){
+                // Get list
+                var languageList = ConvertJSON(XHRDownloader("/Language/LoadLanguages"));
+
+                // Clean old list (if available)
+                ClearInnerHTML("pnlAvailableLanguage");
+
+                // Create list
+
+                for(var i = 0; i < languageList.length; i++){
+                    // Button
+                    var button = document.createElement("button");
+                    button.id = "btnLanguage" + languageList[i].languageID;
+                    button.type = "button";
+                    button.classList.add("w3-bar-item");
+                    button.classList.add("w3-button");
+                    button.classList.add("w3-round");
+                    button.classList.add("w3-border");
+                    button.classList.add("w3-border-white");
+                    button.classList.add("w3-margin");
+                    button.innerText = languageList[i].languageName;
+                    button.style.minWidth = "200px";
+                    button.setAttribute("onclick", "btnSetLanguage_Click('" + languageList[i].languageID + "')");
+
+                    document.getElementById("pnlAvailableLanguage").appendChild(button);
+                }
+            }
+
+            function btnSetLanguage_Click(languageID){
+                window.location.href = "/" + languageID;
+            }
+
+            var currentActiveTextPanel = 1;
+
+            function btnInitializationNext_Click(){
+                // Go to the next panel
+                var panelToCheck = "pnlText" + (currentActiveTextPanel + 1).toString();
+                if(document.getElementById(panelToCheck) != null){
+                    document.getElementById("pnlText" + currentActiveTextPanel.toString()).style.display = "none";
+                    document.getElementById("pnlText" + (currentActiveTextPanel + 1).toString()).style.display = "block";
+                    currentActiveTextPanel++;
+                }
+                else{
+                    // If the next pnlText returned null then hide the window and display the desktop
+                    document.getElementById("pnlInitialization").style.display = "none";
+                    document.getElementById("pnlDesktopContainer").style.display = "block";
+                }
+            }
+            // #endregion For initialization panel
+
+            // #region For desktop
+            
+            // #region Global functions (Reusable functions for desktops windows)
+
+            function GetWindowToFront(windowID){
+                var zIndex = GetHighestZIndex();
+                
+                document.getElementById(windowID).style.zIndex = ++zIndex;
+            }
+
+            function GetHighestZIndex(){
+                var zIndex = 0;
+                var activeWindows = GetActiveWindows();
+
+                for(var i = 0; i < activeWindows.length; i++){
+                    var currentZIndex = document.getElementById(activeWindows[i]).style.zIndex;
+                    console.log(currentZIndex);
+                    if(zIndex < currentZIndex) zIndex = currentZIndex;
+                }
+                return zIndex;
+            }
+
+            function GetActiveWindows(){
+                var windowIDs = getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
+                var activeWindowIDs = [];
+
+                for(var i = 0; i < windowIDs.length; i++){
+                    if(document.getElementById(windowIDs[i].id).style.display == "block"){
+                        activeWindowIDs.push(windowIDs[i].id);
+                    }
+                }
+
+                return activeWindowIDs;
+            }
+
+            function getElementsByIdStartsWith(container, selectorTag, prefix) {
+
+                // Function from stacoverflow....
+                var items = [];
+                var myPosts = document.getElementById(container).getElementsByTagName(selectorTag);
+                for (var i = 0; i < myPosts.length; i++) {
+                    //omitting undefined null check for brevity
+                    if (myPosts[i].id.lastIndexOf(prefix, 0) === 0) {
+                        items.push(myPosts[i]);
+                    }
+                }
+                return items;
+            }
+
+            function MinimizeWindow_Click(windowID) {
+                document.getElementById(windowID).style.display = "none";
+            }
+
+            function MaximizeWindow_Click(windowID) {
+
+                var window = document.getElementById(windowID);
+
+                // Toggle
+                if(document.getElementById(windowID).style.width != "100%" && document.getElementById(windowID).style.height != "100%"){
+                    // Get the necessary data
+                    var width = document.getElementById(windowID).style.width;
+                    var height = document.getElementById(windowID).style.height;
+                    var originalClass = "w3-display-middle";
+
+                    if(!document.getElementById(windowID).classList.contains("w3-display-topleft")){
+                        // Replace w3-display-middle to w3-display-topleft
+                        document.getElementById(windowID).classList.replace("w3-display-middle", "w3-display-topleft");
+                    }
+
+                    // Set attribute for original data
+                    document.getElementById(windowID).setAttribute("data-originalheight", height);
+                    document.getElementById(windowID).setAttribute("data-originalwidth", width);
+                    document.getElementById(windowID).setAttribute("data-originalclass", originalClass);
+
+                    // Change window width and height
+                    document.getElementById(windowID).style.width = "100%";
+                    document.getElementById(windowID).style.height = "100%";
+                }
+                else{
+
+                    // Get original data from dataset
+                    var width = document.getElementById(windowID).dataset.originalwidth;
+                    var height = document.getElementById(windowID).dataset.originalheight;
+                    var originalClass = document.getElementById(windowID).dataset.originalclass;
+
+                    // Restore data
+                    document.getElementById(windowID).classList.replace("w3-display-topleft", originalClass);
+                    document.getElementById(windowID).style.width = width;
+                    document.getElementById(windowID).style.height = height;
+
+                    // Remove dataset (No longer needed)
+                    delete document.getElementById(windowID).dataset.originalwidth;
+                    delete document.getElementById(windowID).dataset.originalheight;
+                    delete document.getElementById(windowID).dataset.originalclass;
+                }
+
+                // Adjust window content height
+                ElementResize();
+            }
+
+            function CloseWindow_Click(windowID) {
+                document.getElementById(windowID).style.display = "none";
+                RemoveFromTaskbar(windowID);
+            }
+
+            function ClearInnerHTML(id) {
+                document.getElementById(id).innerHTML = "";
+            }
+
+            function ElementResize(){
+                // Put function for elements that has to change its data here
+                pnlPortfolioListDetailColumnHeightAdjuster();
+            }
+
+            // #endregion Global functions (Reusable functions for desktop windows)
+
+            // #endregion For desktop
+
+            // #region Taskbar
+
+            function AddToTaskbar(windowID, iconName, ignoreMinimize = false){
+                
+                // Check if a window has been opened before by checking the icon on the taskbar. If found then don't make a new icon.
+                if(document.getElementById("btnTaskbar_" + windowID) != null){
+                    return;
+                }
+
+                // If not found, then make a new icon
+                var button = document.createElement("button");
+
+                button.id = "btnTaskbar_" + windowID;
+                button.type = "button";
+                button.classList.add("w3-bar-item");
+                button.classList.add("w3-button");
+                button.classList.add("w3-transparent");
+                button.classList.add("w3-hover-dark-grey");
+                button.classList.add("w3-ripple");
+                if(!ignoreMinimize){
+                    button.setAttribute("onclick", ("TaskbarItem_CLick('" + windowID + "')"));
+                }
+                button.innerHTML = "<i class=\"la " + iconName + "\"></i>";
+
+                document.getElementById("pnlTaskbarItemGroup").appendChild(button);
+            }
+
+            function RemoveFromTaskbar(windowID){
+                document.getElementById("btnTaskbar_" + windowID).remove();
+            }
+
+            function TaskbarItem_CLick(windowID){
+                var window = document.getElementById(windowID);
+                console.log(windowID);
+                if(window.style.display == "none"){
+                    OpenWindow(windowID);
+                }
+                else{
+                    HideWindow(windowID);
+                }
+            }
+
+            function btnExpandNotification_Click(){
+                var window = document.getElementById("pnlNotifications");
+                if(window.style.display == "none"){
+                    OpenWindow("pnlNotifications");
+                }
+                else{
+                    HideWindow("pnlNotifications");
+                }
+            }
+
+            // #endregion Taskbar
+
+            // #region Start Menu
+
+            // #region Old function (the previous function uses delegation but it's not working properly, especially if the button contains a different elements)
+            function OpenWindow(windowID) {
+                document.getElementById(windowID).style.display = "block";
+            }
+
+            function HideWindow(windowID){
+                document.getElementById(windowID).style.display = "none";
+            }
+
+            function pnlMenuItemAboutMeDisplayContainer_Click() {
+                StartMenuToggle();
+                OpenWindow("pnlWindowAboutMe");
+                AddToTaskbar("pnlWindowAboutMe", "la-user", true);
+                GetWindowToFront("pnlWindowAboutMe");
+            }
+
+            function btnMenuItemMyWorkDisplayContainer_Click() {
+                StartMenuToggle();
+                OpenWindow("pnlWindowWorks");
+                AddToTaskbar("pnlWindowWorks", "la-briefcase");
+                pnlWorksMenuWorker();
+            GetWindowToFront("pnlWindowWorks");
+            }
+
+            function btnMenuItemMyPortfolio_Click() {
+                StartMenuToggle();
+                OpenWindow("pnlWindowPortfolio");
+                AddToTaskbar("pnlWindowPortfolio", "la-address-card");
+                // Load side menu
+                pnlResumeMenuWorker();
+
+                GetWindowToFront("pnlWindowPortfolio");
+            }
+
+            function pnleMenuItemSettingsDisplayContainer_Click() {
+                StartMenuToggle();
+                OpenWindow("pnlWindowSettings");
+                AddToTaskbar("pnlWindowSettings", "la-gear");
+                SettingsWorker();
+                GetWindowToFront("pnlWindowSettings");
+            }
+
+            function pnleMenuItemChangelogDisplayContainer_Click() {
+                StartMenuToggle();
+                OpenWindow("pnlWindowChangelog");
+                AddToTaskbar("pnlWindowChangelog", "la-file-alt");
+                pnlChangelogMenuWorker();
+                GetWindowToFront("pnlWindowChangelog");
+            }
+
+            function pnlUserInfoGroup_Click() {
+                StartMenuToggle();
+                pnlMenuItemAboutMeDisplayContainer_Click();
+            }
+
+            // #endregion Old function
+
+            // #endregion Start Menu
+
+            // #region Windows
+
+            function DragWindow_Start(windowID){
+
+            }
+
+            function DragWindow_End(windowID){
+
+            }
+
+            // #region First-Time Setup
+            function pnlWindowFirstTimeSetupWorker(){
+            if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                // Clear panel
+                document.getElementById("pnlIntroduction").innerHTML = XHRDownloader("/" + selectedLanguage + "/Welcome/LoadData");
+            }
+            // #endregion First-Time Setup
+
+            // #region Settings
+            function btnSettingsItemWallpaper_Click() {
+                document.getElementById("pnlSettingsWallpaperColumn").style.display = "block";
+                document.getElementById("pnlSettingsAboutColumn").style.display = "none";
+            }
+
+            function btnSettingsItemAbout_Click() {
+                document.getElementById("pnlSettingsWallpaperColumn").style.display = "none";
+                document.getElementById("pnlSettingsAboutColumn").style.display = "block";
+            }
+
+            function SettingsWallpaperWorker(){
+                
+                // Get a list of wallpapers
+                var wallpapers = ConvertJSON(XHRDownloader("/Settings/LoadWallpapers"));
+
+                // Clear old list
+                ClearInnerHTML("pnlWallpaperList");
+
+                // Create new list
+                for(var i = 0;i < wallpapers.length; i++){
+
+                    var file = wallpapers[i].imageName;
+                    file = file.substring(0, file.lastIndexOf("."));
+                    var wallpaperButton = document.createElement("button");
+                    wallpaperButton.type = "button";
+                    wallpaperButton.id = "btnSetPreview" + file;
+                    wallpaperButton.classList.add("w3-bar-item");
+                    wallpaperButton.classList.add("w3-button");
+                    wallpaperButton.classList.add("w3-round");
+                    wallpaperButton.classList.add("w3-ripple");
+
+                    wallpaperButton.setAttribute("onclick", "btnSetPreview_Click('" + wallpapers[i].imageName + "')");
+                    wallpaperButton.innerText = file;
+
+                    document.getElementById("pnlWallpaperList").appendChild(wallpaperButton);
+                }
+            }
+
+            function btnSetPreview_Click(wallpaper){
+                // Preview wallpaper
+                document.getElementById("pnlSettingsWallpaperPreview").style.backgroundImage = "url('/Sources/Background/" + wallpaper + "')";
+            }
+
+            function btnApplySettingsWallpaper_Click(){
+                // Apply desktop background from wallpaper preview
+                document.getElementById("pnlDesktop").style.backgroundImage = document.getElementById("pnlSettingsWallpaperPreview").style.backgroundImage;
+
+                // Get wallpaper name
+                var wallpaperName = document.getElementById("pnlSettingsWallpaperPreview").style.backgroundImage.replace("url(\"/Sources/Background/", "");
+                wallpaperName = wallpaperName.replace("\")", "");
+
+                // Get wallpaper information
+                SetWallpaperInformation(wallpaperName);
+            }
+
+            function SetWallpaperInformation(wallpaper) {
+                var wallpaperInfo = ConvertJSON(XHRDownloader("/Settings/Wallpaper/LoadInfo/" + wallpaper));
+
+                console.log(wallpaperInfo);
+
+                document.getElementById("lblWallpaperSeriesName").innerText = wallpaperInfo.series;
+                document.getElementById("lnkWallpaperLink").innerText = wallpaperInfo.author;
+                document.getElementById("lnkWallpaperLink").href = wallpaperInfo.imageURL;
+            }
+
+            function SettingsWorker(){
+                SettingsWallpaperWorker();
+            }
+
+            // #endregion Settings
+
+            // #region Resume
+
+            function pnlResumeMenuWorker() {
+                if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                // Get menu list
+                var menuJsonObject = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Portfolio/SideMenuLoader"));
+
+                // Clear panel content
+                document.getElementById("pnlPortfolioMenuItems").innerHTML = "";
+
+                // Generate button based on list received above
+                for(let i = 0; i < menuJsonObject.value.length; i++){
+                    // Create button
+                    var button = document.createElement("button");
+                    var icon = document.createElement("i");
+                    icon.classList.add(menuJsonObject.value[i].icon.iconName.split(" ")[0]);
+                    icon.classList.add(menuJsonObject.value[i].icon.iconName.split(" ")[1]);
+                    button.id = "btnResume" + i.toString();
+                    button.appendChild(icon);
+                    button.classList.add("w3-bar-item");
+                    button.classList.add("w3-button");
+                    button.classList.add("w3-transparent");
+                    button.classList.add("w3-hover-dark-grey");
+                    button.classList.add("w3-ripple");
+                    button.setAttribute("data-menuname", menuJsonObject.value[i].menuName);
+
+                    document.getElementById("pnlPortfolioMenuItems").appendChild(button);
+                    
+                    document.getElementById("btnResume" + i.toString()).innerHTML += (" " + menuJsonObject.value[i].menuName);
+
+                    // Load the first content
+                if (i == 0) pnlResumeContentWorker(menuJsonObject.value[i].menuName);
+                }
+            }
+
+            function pnlResumeContentWorker(menuName){
+                if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                document.getElementById("pnlPortfolioListDetailColumn").innerHTML = ""; // Clear panel
+
+                // Download content
+                document.getElementById("pnlPortfolioListDetailColumn").innerHTML += XHRDownloader("/"+ selectedLanguage + "/Portfolio/LoadResumeItem/" + menuName);
+            }
+
+            function pnlPortfolioListDetailColumnHeightAdjuster() {
+                var windowHeight = parseInt(document.getElementById('pnlWindowPortfolio').style.height);
+                // Set the pnlPortfolioListDetailColumn to be the height of the window - the height of the title bar
+                if(windowHeight == 500){
+                    document.getElementById("pnlPortfolioListDetailColumn").style.height = (windowHeight - 34) + "px";
+                }
+                else{
+                    var height = parseInt(document.documentElement.clientHeight);
+                    console.log(height);
+                    var windowDetailHeight = (height - 34) - 34;
+                    document.getElementById("pnlPortfolioListDetailColumn").style.setProperty("height", windowDetailHeight + "px");
+                }
+            }
+
+            function pnlPortfolioMenuItem_Click(e){
+                const target = e.target;
+                
+                var textData = target.getAttribute("data-menuname");
+                pnlResumeContentWorker(textData);
+            }
+
+            // #endregion Resume
+
+            // #region Works
+
+            // Get list of works done
+            function pnlWorksMenuWorker(){
+                if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                // Get the work list
+                var works = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Work/GetWorks"));
+                
+                // Clear old list
+                document.getElementById("pnlWorkItemGroup").innerHTML = "";
+
+                // Make the list
+                for(var i = 0; i < works.length; i++){
+                    var name = works[i].name; // string
+                    var role = works[i].role; // string
+                    var technologiesUsed = works[i].technologiesUsed; // string[]
+                    var imageData = works[i].imageData; // string
+                    var imageType = works[i].imageType; // string
+
+                    // Button
+                    var button = document.createElement("button");
+
+                    button.id = "btnWork" + i.toString();
+                    button.classList.add("w3-bar-item");
+                    button.classList.add("w3-transparent");
+                    button.classList.add("w3-button");
+                    button.classList.add("w3-ripple");
+                    button.setAttribute("onclick", ("btnWork_Click(" + (i + 1).toString() + ", '" + name + "')"));
+
+                    // Panel work row
+                    var pnlWorkRow = document.createElement("div");
+
+                    pnlWorkRow.id = "pnlWorkRow" + i.toString();
+                    pnlWorkRow.classList.add("w3-row");
+                    button.appendChild(pnlWorkRow);
+
+                    
+                    // Panel work image
+                    var pnlWorkImageCol = document.createElement("div");
+                    pnlWorkImageCol.id = "pnlWorkImageCol" + i.toString();
+                    pnlWorkImageCol.classList.add("w3-col");
+                    pnlWorkImageCol.classList.add("m3");
+
+                    if(imageType === "Image"){
+                        pnlWorkImageCol.classList.add("desktopBackgroundImage");
+                        pnlWorkImageCol.setAttribute("style", ("height:100px; background-image:url('" + imageData + "') !important;"));
+                    }
+                    else{
+                        pnlWorkImageCol.classList.add("w3-display-container");
+                        pnlWorkImageCol.setAttribute("style", "height:100px;");
+                        var span = document.createElement("span");
+                        span.classList.add("w3-display-middle");
+                        span.classList.add("w3-block");
+                        span.classList.add("w3-center");
+                        span.innerText = imageData;
+                        pnlWorkImageCol.appendChild(span);
+                    }
+                    pnlWorkRow.appendChild(pnlWorkImageCol);
+                    
+                    // Panel work detail
+                    var pnlWorkDetailCol = document.createElement("div");
+                    
+                    pnlWorkDetailCol.id = "pnlWorkDetailCol" + i.toString();
+                    pnlWorkDetailCol.classList.add("w3-col");
+                    pnlWorkDetailCol.classList.add("m9");
+                    pnlWorkDetailCol.classList.add("w3-container");
+                    pnlWorkDetailCol.classList.add("w3-padding");
+                    
+                    pnlWorkRow.appendChild(pnlWorkDetailCol);
+
+                    // Header
+                    var header = document.createElement("header");
+
+                    pnlWorkDetailCol.appendChild(header);
+                    
+                    // Header span
+                    var headerSpan = document.createElement("span");
+                    headerSpan.innerText = name;
+                    
+                    header.appendChild(headerSpan);
+
+                    // Panel role
+                    var pnlWorkRole = document.createElement("div");
+                    pnlWorkRole.id = "pnlWorkRole" + i.toString();
+
+                    pnlWorkDetailCol.appendChild(pnlWorkRole);
+                    
+                    // Work role icon
+                    var workRoleIcon = document.createElement("i");
+                    workRoleIcon.classList.add("la");
+                    workRoleIcon.classList.add("la-briefcase");
+
+                    pnlWorkRole.appendChild(workRoleIcon);
+
+                    // Work role text
+                    var workRoleLabel = document.createElement("label");
+                    workRoleLabel.innerText = (" " + role);
+                    pnlWorkRole.appendChild(workRoleLabel);
+
+                    // Panel technologies used
+                    var pnlTechnologiesUsed = document.createElement("div");
+
+                    pnlWorkDetailCol.appendChild(pnlTechnologiesUsed);
+                    for(var j = 0; j < technologiesUsed.length; j++){
+                        if(j != 0){
+                            pnlTechnologiesUsed.innerHTML += "&nbsp";
+                        }
+
+                        var span = document.createElement("span");
+                        span.classList.add("w3-tag");
+                        span.classList.add("w3-tiny");
+                        span.classList.add("w3-round");
+                        span.classList.add("w3-dark-grey");
+                        span.innerText = technologiesUsed[j];
+                        pnlTechnologiesUsed.appendChild(span);
+                    }
+
+                    // Append button
+                    document.getElementById("pnlWorkItemGroup").appendChild(button);
+                }
+            }
+
+            function pnlWorkDetailWorker(id, workName = ""){
+                // Set window title
+                document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - @ViewBag.pnlWindowWorks_Title";
+
+                // Get work details
+                document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/" + selectedLanguage + "/Work/GetWorkDetail/" + id));
+            }
+
+            function btnWork_Click(id, workName){
+                OpenWindow("pnlWindowWorkDetails");
+                GetWindowToFront("pnlWindowWorkDetails");
+
+                // Get details
+                pnlWorkDetailWorker(id, workName);
+            }
+
+            // #endregion Works
+
+            // #region Changelog
+
+            function pnlChangelogMenuWorker(){
+            if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                // Get list
+                var changelogList = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Changelog/LoadMenu/"));
+                
+                // Clear old list
+                ClearInnerHTML("pnlChangelogListColumn");
+
+                // Create new list (Invert the order of display)
+                for(var i = changelogList.length - 1; i >= 0; i--){
+                    // Load the first content loaded
+                    if(i === changelogList.length - 1){
+                        btnChangelog_Click(changelogList[i].id);
+                    }
+
+                    // Button
+                    var button = document.createElement("button");
+                    button.type = "button";
+                    button.id = "btnChangelog" + changelogList[i].id;
+                    button.classList.add("w3-bar-item");
+                    button.classList.add("w3-button");
+                    button.classList.add("w3-transparent");
+                    button.classList.add("w3-hover-dark-grey");
+                    button.classList.add("w3-ripple");
+                    button.innerText = "Version " + changelogList[i].version;
+                    button.setAttribute("onclick", ("btnChangelog_Click('" + changelogList[i].id + "')"));
+
+                    document.getElementById("pnlChangelogListColumn").appendChild(button);
+                }
+            }
+
+            function btnChangelog_Click(id){
+                if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+
+                document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/Changelog/LoadData/" + id);
+            }
+
+            // #endregion Changelog
+
+            // #region Not Implemented Window
+            function btnNotYetImplementedWindowClose_Click() {
+                document.getElementById("pnlNotYetImplementedWindow").style.display = "none";
+            }
+            // #endregion Not Implemented Window
+
+            // #region Notifications
+
+            function btnNotificationClearNotifications_Click(){
+                // Clear notifications
+                document.getElementById("pnlNotificationList").innerHTML = "";
+
+                // Hide panel
+                document.getElementById("pnlNotificationList").style.display = "none";
+
+                // Show no notification panel
+                document.getElementById("pnlNoNotification").style.display = "block";
+
+                // Close notifications panel
+                HideWindow("pnlNotifications");
+
+            }
+
+            // #endregion Notifications
+
+            // #endregion Windows
+
+            const pnlPortfolioMenuItems = document.getElementById("pnlPortfolioMenuItems");
+
+            function Page_Load() {
+
+                // Add custom icon for the welcome window
+                var welcomeButtonIcon = document.createElement("button");
+                welcomeButtonIcon.type = "button";
+                welcomeButtonIcon.id = "btnTaskbar_pnlWindowFirstTimeSetup";
+                welcomeButtonIcon.classList.add("w3-bar-item");
+                welcomeButtonIcon.classList.add("w3-button");
+                welcomeButtonIcon.classList.add("w3-transparent");
+                welcomeButtonIcon.classList.add("w3-hover-dark-grey");
+                welcomeButtonIcon.classList.add("profilePicture");
+                welcomeButtonIcon.classList.add("profilePictureCover");
+                welcomeButtonIcon.classList.add("w3-ripple");
+                welcomeButtonIcon.style.height = "34px";
+                welcomeButtonIcon.setAttribute("onclick", ("TaskbarItem_CLick('pnlWindowFirstTimeSetup')"));
+
+                 document.getElementById("pnlTaskbarItemGroup").appendChild(welcomeButtonIcon);
+
+                // # region Event handler
+
+                pnlPortfolioMenuItems.addEventListener("click", function(e){
+                    pnlPortfolioMenuItem_Click(e); // Pass the event;
+                });
+
+                window.addEventListener("resize", InitializationPanelHeightAdjuster);
+
+                // #endregion Event handler
+
+                // #region Worker
+                
+                pnlPortfolioListDetailColumnHeightAdjuster();
+                pnlWindowFirstTimeSetupWorker();
+                LanugageListWorker();
+                InitializationPanelHeightAdjuster();
+
+                // Try loading wallpaper if fail, skip
+                try{
+                    // Get wallpaper url
+                    var wallpaperName = document.getElementById("pnlDesktop").style.backgroundImage;
+
+                    // Extract wallpaper name from path
+                    var start = wallpaperName.lastIndexOf("/") + 1;
+                    var end = wallpaperName.indexOf("\")");
+                    wallpaperName = wallpaperName.substring(start, end);
+                    console.log(wallpaperName);
+                    console.log(start);
+                    console.log(end);
+                    SetWallpaperInformation(wallpaperName);
+                }
+                catch(exception){
+                    console.log(exception)
+                }
+                
+
+                // #endregion Worker
+
+                // Check language
+                if(selectedLanguage == "" || selectedLanguage == null){
+                    // Just in case
+                    document.getElementById("pnlInitialization").style.display = "block";
+
+                    // Hide desktop (well, it's currently broken so...)
+                    var desktop = document.getElementById("pnlDesktopContainer");
+                    desktop.style.display = "none";
+                }
+                else{
+                    document.getElementById("pnlLanguageSelection").style.display = "none";
+                    document.getElementById("pnlTextGroup").style.display = "block";
+                    document.getElementById("btnInitializationNext").style.display = "block";
+                }
+            }
+
+            // Page Lifecycle
+            Page_Load();
+        </script>
+    </body>
+</html>
