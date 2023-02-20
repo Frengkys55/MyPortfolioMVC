@@ -1424,8 +1424,7 @@
             function btnChangelog_Click(id){
                 if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
-                //document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/api/Changelog/LoadData/" + id);
-                document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/api/Changelog/LoadData/" + id + "/" + selectedLanguage);
+                document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/api/Changelog/LoadData/" + id);
             }
 
             // #endregion Changelog

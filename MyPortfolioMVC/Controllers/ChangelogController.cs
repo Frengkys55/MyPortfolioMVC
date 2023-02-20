@@ -33,7 +33,7 @@ namespace MyPortfolioMVC.Controllers
         /// <param name="language">Language of the changelog to be loaded</param>
         /// <param name="id">The ID of the changelog</param>
         /// <returns></returns>
-        [HttpGet("/api/[controller]/[action]/{id}/{language}")]
+        [HttpGet("/{language}/api/[controller]/[action]/{id}")]
         public IActionResult LoadData(string language, int id)
         {
             string loadPath = (environment.WebRootPath.EndsWith("\\") ? environment.WebRootPath + "Changelogs": environment.WebRootPath + "\\Changelogs");
