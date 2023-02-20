@@ -6,19 +6,27 @@ using System.Collections.Generic;
 
 namespace MyPortfolioMVC.Controllers
 {
+    /// <summary>
+    /// Controller for the language selection window
+    /// </summary>
     public class LanguageController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
+
+        /// <summary>
+        /// Used to get environment variables from IWebHostEnvironment
+        /// </summary>
+        /// <param name="environment"></param>
         public LanguageController(IWebHostEnvironment environment)
         {
             this.environment = environment;
         }
 
+        /// <summary>
+        /// Load languages available to use
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("Language/LoadLanguages")]
         public IActionResult LoadAvailableLanguage()
         {

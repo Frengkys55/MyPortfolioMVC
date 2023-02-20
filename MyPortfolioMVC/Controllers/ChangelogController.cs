@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace MyPortfolioMVC.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/api/[controller]")]
     public class ChangelogController : ControllerBase
     {
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
@@ -16,14 +16,24 @@ namespace MyPortfolioMVC.Controllers
             this.environment = environment;
         }
 
-        [HttpGet(Name = "Load changelog menu")]
+        /// <summary>
+        /// Load list of changelogs available
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/api/[controller]/LoadMenu/")]
         public IEnumerable<ChangelogProperties> LoadMenu()
         {
             string changelogPath = (environment.WebRootPath.EndsWith("\\") ? environment.WebRootPath + "Changelogs" : environment.WebRootPath + "\\Changelogs");
             return new Classes.ChangelogLoader(changelogPath).LoadChangelogList().ToArray();
         }
 
-        [HttpGet("/api/[controller]/{id}/{language}")]
+        /// <summary>
+        /// Load selected changelog HTML data
+        /// </summary>
+        /// <param name="language">Language of the changelog to be loaded</param>
+        /// <param name="id">The ID of the changelog</param>
+        /// <returns></returns>
+        [HttpGet("/api/[controller]/[action]/{id}/{language}")]
         public IActionResult LoadData(string language, int id)
         {
             string loadPath = (environment.WebRootPath.EndsWith("\\") ? environment.WebRootPath + "Changelogs": environment.WebRootPath + "\\Changelogs");

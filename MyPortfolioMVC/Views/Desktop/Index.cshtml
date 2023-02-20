@@ -1393,7 +1393,7 @@
             if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
                 // Get list
-                var changelogList = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Changelog/LoadMenu/"));
+                var changelogList = ConvertJSON(XHRDownloader("/api/Changelog/LoadMenu/"));
                 
                 // Clear old list
                 ClearInnerHTML("pnlChangelogListColumn");
@@ -1424,7 +1424,8 @@
             function btnChangelog_Click(id){
                 if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
-                document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/Changelog/LoadData/" + id);
+                //document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/api/Changelog/LoadData/" + id);
+                document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/api/Changelog/LoadData/" + id + "/" + selectedLanguage);
             }
 
             // #endregion Changelog

@@ -7,19 +7,27 @@ using System.Collections.Generic;
 
 namespace MyPortfolioMVC.Controllers
 {
+    /// <summary>
+    /// The main controller of the application
+    /// </summary>
     public class DesktopController : Controller
     {
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
+
+        /// <summary>
+        /// Used to get environment variables from IWebHostEnvironment
+        /// </summary>
+        /// <param name="environment"></param>
         public DesktopController(IWebHostEnvironment environment)
         {
             this.environment = environment;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View("LanguageSelect");
-        //}
-
+        /// <summary>
+        /// The main page
+        /// </summary>
+        /// <param name="language">Language of the page to be loaded</param>
+        /// <returns></returns>
         public IActionResult Index(string language)
         {
 

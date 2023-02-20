@@ -6,17 +6,20 @@ using System.Collections.Generic;
 
 namespace MyPortfolioMVC.Controllers
 {
+    /// <summary>
+    /// Controler for the welcome window
+    /// </summary>
     public class WelcomeController : Controller
     {
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
+
+        /// <summary>
+        /// Used to get environment variables from IWebHostEnvironmen
+        /// </summary>
+        /// <param name="environment"></param>
         public WelcomeController(IWebHostEnvironment environment)
         {
             this.environment = environment;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         /// <summary>
