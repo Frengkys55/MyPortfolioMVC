@@ -1,0 +1,17 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Tanggal install: 06 Februari 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]Apa yang Baru[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Perbaikan panel Resume dan Riwayat Perubahan untuk dapat menampilkan detail konten dari daftar menu teratas dari yang sebelumnya hanya menampilkan konten kosong[/li]",
+    "Custom|    [li]Perbaikan bagian Informasi Wallpaper yang tidak dapat menampilkan informasi wallpaper pada saat pertama kali dimuat[/li]",
+    "Custom|    [li]Perbaikan jendela Detail Karya yang menampilkan jendela di bagian belakang jendela Daftar Karya[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

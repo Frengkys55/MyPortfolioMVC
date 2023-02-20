@@ -113,7 +113,8 @@
         </style>
 
         <script src="/js/ContentWorker.js"></script>
-        @*<script type="module" src="/js/Desktop_CodeBehind.js"></script>*@
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
         <title>My Desktop</title>
     </head>
@@ -798,30 +799,36 @@
             }
 
             function LanugageListWorker(){
+
                 // Get list
-                var languageList = ConvertJSON(XHRDownloader("/Language/LoadLanguages"));
+                try{
+                    var languageList = ConvertJSON(XHRDownloader("/Language/LoadLanguages"));
 
-                // Clean old list (if available)
-                ClearInnerHTML("pnlAvailableLanguage");
+                    // Clean old list (if available)
+                    ClearInnerHTML("pnlAvailableLanguage");
 
-                // Create list
+                    // Create list
 
-                for(var i = 0; i < languageList.length; i++){
-                    // Button
-                    var button = document.createElement("button");
-                    button.id = "btnLanguage" + languageList[i].languageID;
-                    button.type = "button";
-                    button.classList.add("w3-bar-item");
-                    button.classList.add("w3-button");
-                    button.classList.add("w3-round");
-                    button.classList.add("w3-border");
-                    button.classList.add("w3-border-white");
-                    button.classList.add("w3-margin");
-                    button.innerText = languageList[i].languageName;
-                    button.style.minWidth = "200px";
-                    button.setAttribute("onclick", "btnSetLanguage_Click('" + languageList[i].languageID + "')");
+                    for(var i = 0; i < languageList.length; i++){
+                        // Button
+                        var button = document.createElement("button");
+                        button.id = "btnLanguage" + languageList[i].languageID;
+                        button.type = "button";
+                        button.classList.add("w3-bar-item");
+                        button.classList.add("w3-button");
+                        button.classList.add("w3-round");
+                        button.classList.add("w3-border");
+                        button.classList.add("w3-border-white");
+                        button.classList.add("w3-margin");
+                        button.innerText = languageList[i].languageName;
+                        button.style.minWidth = "200px";
+                        button.setAttribute("onclick", "btnSetLanguage_Click('" + languageList[i].languageID + "')");
 
-                    document.getElementById("pnlAvailableLanguage").appendChild(button);
+                        document.getElementById("pnlAvailableLanguage").appendChild(button);
+                    }
+                }
+                catch(exception){
+                    console.error(exception);
                 }
             }
 
@@ -863,7 +870,6 @@
 
                 for(var i = 0; i < activeWindows.length; i++){
                     var currentZIndex = document.getElementById(activeWindows[i]).style.zIndex;
-                    console.log(currentZIndex);
                     if(zIndex < currentZIndex) zIndex = currentZIndex;
                 }
                 return zIndex;
@@ -1246,7 +1252,7 @@
                 if(selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
                 // Get the work list
-                var works = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Work/GetWorks"));
+                var works = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/api/Work/GetWorks"));
                 
                 // Clear old list
                 document.getElementById("pnlWorkItemGroup").innerHTML = "";
@@ -1367,7 +1373,8 @@
                 document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - @ViewBag.pnlWindowWorks_Title";
 
                 // Get work details
-                document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/" + selectedLanguage + "/Work/GetWorkDetail/" + id));
+                document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/" + selectedLanguage + "/api/Work/GetWorkDetail/" + id));
+                //document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/api/Work/GetWorkDetail/" + id + "/" + selectedLanguage));
             }
 
             function btnWork_Click(id, workName){
@@ -1480,11 +1487,10 @@
                 // #endregion Event handler
 
                 // #region Worker
-                
+                InitializationPanelHeightAdjuster();
+                LanugageListWorker();
                 pnlPortfolioListDetailColumnHeightAdjuster();
                 pnlWindowFirstTimeSetupWorker();
-                LanugageListWorker();
-                InitializationPanelHeightAdjuster();
 
                 // Try loading wallpaper if fail, skip
                 try{
@@ -1503,7 +1509,6 @@
                 catch(exception){
                     console.log(exception)
                 }
-                
 
                 // #endregion Worker
 

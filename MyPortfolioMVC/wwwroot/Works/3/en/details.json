@@ -1,0 +1,25 @@
+{
+  "Header": "Personal Website",
+  "Data": [
+	"Custom|[div class=\"w3-block\"]\n",
+	"Custom|	[div class=\"w3-bar w3-border-bottom w3-border-dark-grey w3-block w3-theme-d1 w3-padding backdropBlur\" style=\"position:absolute; top:calc (0 + 32px);\"]\n",
+	"Custom|		[a href=\"#\" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Kunjungi website\"][i class=\"la la-external-link\" target=\"_blank\"][/i][/a]\n",
+	"Custom|		[a href=\"/Website.zip \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Download website\" style=\"margin-left:8px;\" target=\"_blank\"][i class=\"la la-file-code\"][/i][/a]\n",
+	"Custom|		[a href=\"/WebsiteSource.zip \" class=\"w3-bar-item w3-button w3-round w3-border-dark-grey w3-transparent w3-hover-dark-grey\" title=\"Download source\" style=\"margin-left:8px;\" target=\"_blank\"][i class=\"la la-code\"][/i][/a]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+	"Custom|[div class=\"w3-content w3-container\" style=\"max-width:700px; margin-top:53px;\"]\n",
+    "Header|Description",
+	"Paragraf|My personal website to showcase my work.",
+	"Paragraf|BTW, this website is capable of using languages other than Indonesian and English. So, if in the future I want to support another language, I would just create a new JSON file containing the new language and, bam! The website now supports it.",
+	"Custom|[div class=\"w3-panel w3-dark-grey w3-leftbar w3-padding-16 w3-border-blue\"]\n",
+	"Custom|	[header class=\"\"]\n",
+	"Custom|		[label][b]New technology?[/b][/label]\n",
+	"Custom|	[/header]\n",
+	"Custom|	[div class=\"\"]\n",
+	"Custom|		[p]Website migration to ASP.NET Core MVC is complete. How does it feel?[/p]",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+	"Custom|[/div]\n"
+  ]
+}

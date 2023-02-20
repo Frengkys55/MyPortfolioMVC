@@ -1,0 +1,20 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Install date: February 3rd, 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]What's new[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Website migration to ASP.NET MVC[/li]",
+    "Custom|    [li]The minimize feature was implemented[/li]",
+    "Custom|    [li]The maximize feature was implemented[/li]",
+    "Custom|    [li]The taskbar icon button was implemented[/li]",
+    "Custom|    [li]Language implementation for the welcome window[/li]",
+    "Custom|    [li]The changelog window has been redesigned[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Tanggal install: 03 Februari 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]Apa yang Baru[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Migrasi website ke ASP.NET MVC[/li]",
+    "Custom|    [li]Implementasi fitur minimize[/li]",
+    "Custom|    [li]Implementasi fitur maximize[/li]",
+    "Custom|    [li]Tombol ikon taskbar sekarang telah diimplementasi[/li]",
+    "Custom|    [li]Implementasi bahasa untuk jendela Selamat Datang[/li]",
+    "Custom|    [li]Desain ulang jendela Changelog[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

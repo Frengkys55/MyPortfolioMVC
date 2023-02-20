@@ -1,0 +1,17 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Install date: February, 06th 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]What's new[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Fixed the resume and changelog windows to be able to display content from the top list, which was previously only able to display empty content[/li]",
+    "Custom|    [li]Fixed the wallpaper information panel where the wallpaper information was empty when the website was first loaded[/li]",
+    "Custom|    [li]Fixed the work detail window where the window was displayed behind the work window[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

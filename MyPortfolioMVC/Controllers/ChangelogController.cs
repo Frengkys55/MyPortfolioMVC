@@ -6,7 +6,9 @@ using System.Collections.Generic;
 
 namespace MyPortfolioMVC.Controllers
 {
-    public class ChangelogController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ChangelogController : ControllerBase
     {
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
         public ChangelogController(IWebHostEnvironment environment)
@@ -14,17 +16,14 @@ namespace MyPortfolioMVC.Controllers
             this.environment = environment;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult LoadMenu()
+        [HttpGet(Name = "Load changelog menu")]
+        public IEnumerable<ChangelogProperties> LoadMenu()
         {
             string changelogPath = (environment.WebRootPath.EndsWith("\\") ? environment.WebRootPath + "Changelogs" : environment.WebRootPath + "\\Changelogs");
-            return Json(new Classes.ChangelogLoader(changelogPath).LoadChangelogList());
+            return new Classes.ChangelogLoader(changelogPath).LoadChangelogList().ToArray();
         }
 
+        [HttpGet("/api/[controller]/{id}/{language}")]
         public IActionResult LoadData(string language, int id)
         {
             string loadPath = (environment.WebRootPath.EndsWith("\\") ? environment.WebRootPath + "Changelogs": environment.WebRootPath + "\\Changelogs");
@@ -52,11 +51,17 @@ namespace MyPortfolioMVC.Controllers
             }
         }
 
-        public IActionResult LoadProperties(int id)
+        /// <summary>
+        /// Load properties of a version by id
+        /// </summary>
+        /// <param name="id">The ID of which folder of a wanted version is located</param>
+        /// <returns>Properties of a changelog</returns>
+        [HttpGet("/api/[controller]/{id}")]
+        public ChangelogProperties LoadProperties(int id)
         {
             string language = "id";
             string loadPath = (environment.WebRootPath.EndsWith("\\")) ? environment.WebRootPath + "Changelogs" : environment.WebRootPath + "\\Changelogs";
-            return Json(new ChangelogLoader(loadPath).LoadProperties(id.ToString(), language));
+            return new ChangelogLoader(loadPath).LoadProperties(id.ToString(), language);
         }
     }
 }

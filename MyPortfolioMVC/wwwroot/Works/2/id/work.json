@@ -1,6 +1,6 @@
 {
 	"Name": "MediaPlayer",
-	"TechnologiesUsed": ["ASP.NET WebForm", "C#", "SQL Server", "FFMPEG", "Windows Console Application", "JavaScript", "W3.CSS"],
+	"TechnologiesUsed": ["ASP.NET WebForm", "C#", ".NETFramework 4.0", "SQL Server", "FFMPEG", "NReco", "Windows Console Application", "JavaScript", "W3.CSS", "HTML"],
 	"Website": "#",
 	"Role": "Full-Stack Developer",
 	"ImageType": "Image",

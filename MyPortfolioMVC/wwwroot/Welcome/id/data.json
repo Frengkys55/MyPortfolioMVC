@@ -2,6 +2,8 @@
   "Data": [
     "Header|Hi!",
     "Paragraf|Perkenalkan, nama saya Frengky Sinaga dan saya merupakan back-end developer (sedikit frontend) yang menggunakan Visual Studio sebagai IDE dan menggunakan C# sebagai bahasa pemrograman untuk ASP.NET WebForm dan MVC.",
-    "Paragraf|Silakan menjelajahi \"desktop\" ini dan lihat-lihatlah keahlianku (setidaknya untuk front-end)"
+    "Paragraf|Silakan menjelajahi \"desktop\" ini dan lihat-lihatlah keahlianku (setidaknya untuk front-end)",
+    "Paragraf|Mengapa terlihat seperti Windows?",
+    "Paragraf|Diluar sana ada sangat banyak profil website dan semuanya terlihat sama. Saya tidak ingin websiteku terlihat sama dengan website lainnya yang sudah ada. Saya menggunakan Windows sebagai inspirasi desain karena Windows merupakan sistem operasi yang digunakan."
   ]
 }

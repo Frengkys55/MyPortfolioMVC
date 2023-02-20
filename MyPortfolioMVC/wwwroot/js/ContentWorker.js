@@ -5,23 +5,7 @@ function XHRDownloader(uri) {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open("GET", uri, true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            xhrResponse = xhr.response;
-        }
-    }
-
-    xhr.send(null);
-    return xhrResponse;
-}
-
-async function XHRDownloader2(uri) {
-    var xhrResponse = {};
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open("GET", uri, true);
+    xhr.open("GET", uri, false);
     xhr.onload = function () {
         if (xhr.status === 200) {
             xhrResponse = xhr.response;

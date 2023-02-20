@@ -1,6 +1,6 @@
 {
 	"Name": "this",
-	"TechnologiesUsed": ["ASP.NET MVC", "C#", ".NET Core 7", "JavaScript", "W3.CSS", "HTML"],
+	"TechnologiesUsed": ["ASP.NET WebForm", "C#", ".NET Framework 4.8", "W3.CSS"],
 	"Website": "#",
 	"Role": "Full-Stack Developer",
 	"ImageType": "Text",

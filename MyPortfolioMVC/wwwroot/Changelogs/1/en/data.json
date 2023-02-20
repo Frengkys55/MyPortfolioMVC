@@ -2,12 +2,12 @@
   "Data": [
   	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
 	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
-	"Custom|		Tanggal install: 05 Januari 2023[/div]\n",
+	"Custom|		Install date: 05 Januari 2023[/div]\n",
 	"Custom|	[/div]\n",
 	"Custom|[/div]\n",
     "Custom|[div style=\"max-width:600px\"]\n",
     "Header|Version 1.0",
-    "Paragraf|Rilis perdana",
+    "Paragraf|Initial release",
     "Custom|[/div]\n"
   ]
 }

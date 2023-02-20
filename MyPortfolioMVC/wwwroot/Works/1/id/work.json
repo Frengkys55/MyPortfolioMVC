@@ -1,6 +1,6 @@
 {
 	"Name": "Website GPI Narwastu Jayapura",
-	"TechnologiesUsed": ["ASP.NET WebForm", "C#", "SQL Server", "Windows Console Application", "JavaScript", "W3.CSS"],
+	"TechnologiesUsed": ["ASP.NET WebForm", "C#", ".NET Framework 4.5.1", "SQL Server", "Windows Console Application", "JavaScript", "W3.CSS"],
 	"Website": "https://gpinarwastujayapura.org",
 	"Role": "Full-Stack Developer",
 	"ImageType": "Image",
