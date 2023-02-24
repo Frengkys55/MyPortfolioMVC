@@ -38,7 +38,23 @@ namespace MyPortfolioMVC.Controllers
 
             string loadedLanguage = language;
 
-            return Json(new Classes.WorksLoader(webRootPath + "Works").LoadWorks(webRootPath + "Works",loadedLanguage));
+            List<Work> works = new Classes.WorksLoader(webRootPath + "Works").LoadWorks(webRootPath + "Works", loadedLanguage);
+
+            if (works.Count == 0)
+            {
+                Work noWork = new Work();
+                noWork.Name = "Works not found";
+                noWork.ImageType = "Image";
+                noWork.ImageData = "/Sources/Images/bocchi_down.jpg";
+                noWork.Role = "";
+                noWork.StartYear = 0;
+                noWork.TechnologiesUsed = new string[] {""};
+                noWork.Website = "";
+
+                works.Add(noWork);
+            }
+
+            return Json(works);
         }
 
         /// <summary>
@@ -71,7 +87,7 @@ namespace MyPortfolioMVC.Controllers
             }
             catch (Exception err)
             {
-                return Content(Classes.ErrorClass.standardError(err, "Error!"));
+                return Content(Classes.ErrorClass.standardError("Error!", "Something just happened hence this message...", "Welp! ¯\\ (ツ)/¯"));
             }
         }
     }

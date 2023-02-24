@@ -35,7 +35,33 @@ namespace MyPortfolioMVC.Controllers
         public JsonResult SideMenuLoader(string language)
         {
             PortfolioLoader portfolioLoader = new Classes.PortfolioLoader((this.environment.WebRootPath.EndsWith("//")) ? this.environment.WebRootPath + "Portfolio" : this.environment.WebRootPath + "\\Portfolio");
-            JsonResult result = new JsonResult(portfolioLoader.LoadPortfolioMenuList(language));
+
+            List<PortfolioMenuInformation> information = null;
+            try
+            {
+                information = portfolioLoader.LoadPortfolioMenuList(language);
+            }
+            catch (Exception err)
+            {
+                PortfolioMenuInformation info = new PortfolioMenuInformation()
+                {
+                    DisplayOrder = 0,
+                    Icon = new PortfolioIcon()
+                    {
+                        IconType = "glyph",
+                        IconName = "la-exclamation-triangle"
+                    },
+                    MenuName = "No Item"
+                };
+
+                if (information == null)
+                {
+                    information = new List<PortfolioMenuInformation>();
+                }
+                information.Add(info);
+            }
+
+            JsonResult result = new JsonResult(information);
 
             result.ContentType = "application/json";
             result.StatusCode = 200;
@@ -57,18 +83,27 @@ namespace MyPortfolioMVC.Controllers
 
             Classes.PortfolioLoader portfolioLoader = new PortfolioLoader(loadPath);
 
-            PortfolioSelectedItemData portfolioSelectedItemData = portfolioLoader.LoadSelectedData(id, loadedLanguage);
-
-            List<KeyValuePair<string, string>> listItemCollection = new List<KeyValuePair<string, string>>();
-
-            foreach (string detail in portfolioSelectedItemData.Data)
+            try
             {
-                string key = detail.Split('|')[0];
-                string value = detail.Replace(key + "|", "");
-                listItemCollection.Add(new KeyValuePair<string, string>(key, value));
+                PortfolioSelectedItemData portfolioSelectedItemData = portfolioLoader.LoadSelectedData(id, loadedLanguage);
+
+                List<KeyValuePair<string, string>> listItemCollection = new List<KeyValuePair<string, string>>();
+
+                foreach (string detail in portfolioSelectedItemData.Data)
+                {
+                    string key = detail.Split('|')[0];
+                    string value = detail.Replace(key + "|", "");
+                    listItemCollection.Add(new KeyValuePair<string, string>(key, value));
+                }
+
+                return Content(Classes.HTMLGenerator.BuatHTML(listItemCollection));
+            }
+            catch (Exception err)
+            {
+                return Content(ErrorClass.standardErrorWithImage("Error", "Something just happened hence this message", "/Sources/Images/bocchi_down.jpg", "Welp! ¯\\ (ツ)/¯"));
             }
 
-            return Content(Classes.HTMLGenerator.BuatHTML(listItemCollection));
+            
         }
     }
 }

@@ -148,7 +148,7 @@ namespace MyPortfolioMVC.Controllers
             ViewBag.pnlWindowAboutMe_Address_Value          = loadedList.pnlWindowAboutMe_Address_Value;
             ViewBag.pnlWindowAboutMe_Email_Value            = loadedList.pnlWindowAboutMe_Email_Value;
 
-            ViewBag.pnlWindowAboutMe_UsedTechnologies_Header = string.Empty;
+            ViewBag.pnlWindowAboutMe_UsedTechnologies_Header = loadedList.pnlWindowAboutMe_UsedTechnologies_Header;
             #endregion About Me
 
             #region Works

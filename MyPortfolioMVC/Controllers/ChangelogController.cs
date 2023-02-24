@@ -6,11 +6,19 @@ using System.Collections.Generic;
 
 namespace MyPortfolioMVC.Controllers
 {
+    /// <summary>
+    /// Controller for changelog window
+    /// </summary>
     [ApiController]
     [Route("/api/[controller]")]
     public class ChangelogController : ControllerBase
     {
         Microsoft.AspNetCore.Hosting.IWebHostEnvironment environment;
+
+        /// <summary>
+        /// Used to get environment variables from IWebHostEnvironment
+        /// </summary>
+        /// <param name="environment"></param>
         public ChangelogController(IWebHostEnvironment environment)
         {
             this.environment = environment;
@@ -57,7 +65,7 @@ namespace MyPortfolioMVC.Controllers
             }
             catch (System.Exception err)
             {
-                throw;
+                return new BadRequestResult();
             }
         }
 
