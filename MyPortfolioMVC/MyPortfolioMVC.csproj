@@ -120,6 +120,9 @@
     <Content Update="wwwroot\Sources\Background\JSON\Barbara.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Sources\Background\JSON\Collei.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Sources\Background\JSON\Pardofelis.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
