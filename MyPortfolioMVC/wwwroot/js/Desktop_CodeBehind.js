@@ -274,7 +274,12 @@ function AddToTaskbar(windowID, iconName, ignoreMinimize = false) {
  *  @param {string} windowID ID of the window to remove its icon from taskbar
  */
 function RemoveFromTaskbar(windowID) {
-    document.getElementById("btnTaskbar_" + windowID).remove();
+    try {
+        // Try remove the icon from taskbar
+        document.getElementById("btnTaskbar_" + windowID).remove();
+    } catch (e) {
+        console.warn("Can't delete icon. Icon not found");
+    }
 }
 
 /**
@@ -284,7 +289,6 @@ function RemoveFromTaskbar(windowID) {
  * */
 function TaskbarItem_CLick(windowID) {
     var window = document.getElementById(windowID);
-    console.log(windowID);
     if (window.style.display == "none") {
         OpenWindow(windowID);
     }
@@ -309,6 +313,7 @@ function btnExpandNotification_Click() {
 // #region Start Menu
 
 // #region Old function (the previous function uses delegation but it's not working properly, especially if the button contains a different elements)
+// (also, it's easier to just add event listener and assign it to the button rather than to search and match element)
 
 /**
  * Function to open selected window
@@ -342,7 +347,7 @@ function pnlMenuItem_Click(sender, windowID, iconName, preventMinize = false, fu
         StartMenuToggle();
         OpenWindow(windowID);
         AddToTaskbar(windowID, iconName, preventMinize);
-        GetWindowToFront();
+        GetWindowToFront(windowID);
         if (functionToExecute != null) {
             functionToExecute;
         }
@@ -351,10 +356,6 @@ function pnlMenuItem_Click(sender, windowID, iconName, preventMinize = false, fu
     }
 }
 
-function pnlUserInfoGroup_Click() {
-    StartMenuToggle();
-    pnlMenuItemAboutMeDisplayContainer_Click();
-}
 
 // #endregion Old function
 
@@ -362,15 +363,25 @@ function pnlUserInfoGroup_Click() {
 
 // #region Windows
 
+/**
+ * Manages what should it do when mouse is dragging a window
+ * */
 function DragWindow_Start(windowID) {
 
 }
 
+/**
+ * Manages what should happen when mouse is done dragging a window
+ * */
 function DragWindow_End(windowID) {
 
 }
 
 // #region First-Time Setup
+
+/**
+ * Function that handles things for the window "First Time Setup"
+ * */
 function pnlWindowFirstTimeSetupWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -380,16 +391,20 @@ function pnlWindowFirstTimeSetupWorker() {
 // #endregion First-Time Setup
 
 // #region Settings
+
+/** A part of "Settings" window that handles what happen when "Wallpaper" side menu is clicked */
 function btnSettingsItemWallpaper_Click() {
     document.getElementById("pnlSettingsWallpaperColumn").style.display = "block";
     document.getElementById("pnlSettingsAboutColumn").style.display = "none";
 }
 
+/** A part of "Settings" window that handles what happen when "About" side menu is clicked */
 function btnSettingsItemAbout_Click() {
     document.getElementById("pnlSettingsWallpaperColumn").style.display = "none";
     document.getElementById("pnlSettingsAboutColumn").style.display = "block";
 }
 
+/** A part of "Wallpaper" side menu of the "Settings" window that handles wallpaper loading */
 function SettingsWallpaperWorker() {
 
     // Get a list of wallpapers
@@ -418,11 +433,13 @@ function SettingsWallpaperWorker() {
     }
 }
 
+/** A part of "Wallpaper" side menu of the "Settings" window that preview the selected wallpaper*/
 function btnSetPreview_Click(wallpaper) {
     // Preview wallpaper
     document.getElementById("pnlSettingsWallpaperPreview").style.backgroundImage = "url('/Sources/Background/" + wallpaper + "')";
 }
 
+/** A part of "Wallpaper" side menu of the "Settings window that sets the current wallpaper to the selected wallpaper*/
 function btnApplySettingsWallpaper_Click() {
     // Apply desktop background from wallpaper preview
     document.getElementById("pnlDesktop").style.backgroundImage = document.getElementById("pnlSettingsWallpaperPreview").style.backgroundImage;
@@ -435,16 +452,20 @@ function btnApplySettingsWallpaper_Click() {
     SetWallpaperInformation(wallpaperName);
 }
 
+/**
+ * Gets the current information if the wallpaper sets
+ * 
+ * @param {string} wallpaper The name of the wallpaper (including the extension)
+ * */
 function SetWallpaperInformation(wallpaper) {
     var wallpaperInfo = ConvertJSON(XHRDownloader("/Settings/Wallpaper/LoadInfo/" + wallpaper));
-
-    console.log(wallpaperInfo);
 
     document.getElementById("lblWallpaperSeriesName").innerText = wallpaperInfo.series;
     document.getElementById("lnkWallpaperLink").innerText = wallpaperInfo.author;
     document.getElementById("lnkWallpaperLink").href = wallpaperInfo.imageURL;
 }
 
+/** Function that handles things for the "Settings" window */
 function SettingsWorker() {
     SettingsWallpaperWorker();
 }
@@ -453,6 +474,7 @@ function SettingsWorker() {
 
 // #region Resume
 
+/** Function that handles things for the "Resume" window */
 function pnlResumeMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -489,6 +511,11 @@ function pnlResumeMenuWorker() {
     }
 }
 
+/**
+ * A part of "Resume" window that handles what should happen when a side menu is clicked
+ * 
+ * @param {string} menuName Name of the side menu is clicked
+ */
 function pnlResumeContentWorker(menuName) {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -498,6 +525,7 @@ function pnlResumeContentWorker(menuName) {
     document.getElementById("pnlPortfolioListDetailColumn").innerHTML += XHRDownloader("/" + selectedLanguage + "/Portfolio/LoadResumeItem/" + menuName);
 }
 
+/** A part of "Resume" window that automatically adjust the content height of the "Resume" window */
 function pnlPortfolioListDetailColumnHeightAdjuster() {
     var windowHeight = parseInt(document.getElementById('pnlWindowPortfolio').style.height);
     // Set the pnlPortfolioListDetailColumn to be the height of the window - the height of the title bar
@@ -506,12 +534,17 @@ function pnlPortfolioListDetailColumnHeightAdjuster() {
     }
     else {
         var height = parseInt(document.documentElement.clientHeight);
-        console.log(height);
         var windowDetailHeight = (height - 34) - 34;
         document.getElementById("pnlPortfolioListDetailColumn").style.setProperty("height", windowDetailHeight + "px");
     }
 }
 
+/**
+ * A part of "Resume" window that handles what happen when an item from the "Resume" window
+ * (A delegate)
+ * 
+ * @param {MouseEvent} e A mouse event click
+ */
 function pnlPortfolioMenuItem_Click(e) {
     const target = e.target;
 
@@ -524,6 +557,8 @@ function pnlPortfolioMenuItem_Click(e) {
 // #region Works
 
 // Get list of works done
+
+/** A part of "Works" window that get and display a list of works that has been done */
 function pnlWorksMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -644,6 +679,12 @@ function pnlWorksMenuWorker() {
     }
 }
 
+/**
+ * A part of "Works" window that load the content of the selected menu item
+ * 
+ * @param {string}  id          ID of the selected works
+ * @param {string}  workName    Name of the work (for  work detail window)
+ * */
 function pnlWorkDetailWorker(id, workName = "") {
     // Set window title
     document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - @ViewBag.pnlWindowWorks_Title";
@@ -653,6 +694,12 @@ function pnlWorkDetailWorker(id, workName = "") {
     //document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/api/Work/GetWorkDetail/" + id + "/" + selectedLanguage));
 }
 
+/**
+ * A part of "Works" window that handles what happen if a work is clicked
+ * 
+ * @param {string}  id      ID of the work
+ * @param {string}  string  Name of the work
+ */
 function btnWork_Click(id, workName) {
     OpenWindow("pnlWindowWorkDetails");
     GetWindowToFront("pnlWindowWorkDetails");
@@ -665,6 +712,7 @@ function btnWork_Click(id, workName) {
 
 // #region Changelog
 
+/** A part of "Changelog" window that handles history of application development */
 function pnlChangelogMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -697,6 +745,11 @@ function pnlChangelogMenuWorker() {
     }
 }
 
+/**
+ * A part of "Changelog" that handles what happen if a changelog item is clicked
+ * 
+ * @param {string} id ID of the changelog item
+ * */
 function btnChangelog_Click(id) {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
@@ -706,6 +759,8 @@ function btnChangelog_Click(id) {
 // #endregion Changelog
 
 // #region Not Implemented Window
+
+/** Function for closing "Not implemented" window (shouldn't be accessible' */
 function btnNotYetImplementedWindowClose_Click() {
     document.getElementById("pnlNotYetImplementedWindow").style.display = "none";
 }
@@ -713,6 +768,8 @@ function btnNotYetImplementedWindowClose_Click() {
 
 // #region Notifications
 
+
+/** A part of "Notification" window that clear all notifications */
 function btnNotificationClearNotifications_Click() {
     // Clear notifications
     document.getElementById("pnlNotificationList").innerHTML = "";
@@ -725,7 +782,6 @@ function btnNotificationClearNotifications_Click() {
 
     // Close notifications panel
     HideWindow("pnlNotifications");
-
 }
 
 // #endregion Notifications
@@ -775,9 +831,6 @@ function Page_Load() {
         var start = wallpaperName.lastIndexOf("/") + 1;
         var end = wallpaperName.indexOf("\")");
         wallpaperName = wallpaperName.substring(start, end);
-        console.log(wallpaperName);
-        console.log(start);
-        console.log(end);
         SetWallpaperInformation(wallpaperName);
     }
     catch (exception) {
@@ -801,6 +854,3 @@ function Page_Load() {
         document.getElementById("btnInitializationNext").style.display = "block";
     }
 }
-
-// Page Lifecycle
-//Page_Load();

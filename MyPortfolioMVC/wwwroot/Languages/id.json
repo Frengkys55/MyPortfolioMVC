@@ -69,8 +69,8 @@
   "pnlSettingsAboutColumn_CssFramework": "Framework CSS",
 
   "pnlSettingsAboutColumn_DesignInspiration_Value": "Windows 11",
-  "pnlSettingsAboutColumn_Version_Value": "2.0",
-  "pnlSettingsAboutColumn_InstalledOn_Value": "01-01-2023",
+  "pnlSettingsAboutColumn_Version_Value": "2.1",
+  "pnlSettingsAboutColumn_InstalledOn_Value": "05-01-2023",
   "pnlSettingsAboutColumn_CreatedUsing_Value": "ASP.NET Core MVC",
   "pnlSettingsAboutColumn_DotNetFrameworkVersion_Value": ".NET Core 7",
   "pnlSettingsAboutColumn_DesignedOn_Value": "Lenovo IdeaPad D330",
