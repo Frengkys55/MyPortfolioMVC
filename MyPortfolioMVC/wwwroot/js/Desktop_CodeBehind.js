@@ -351,50 +351,6 @@ function pnlMenuItem_Click(sender, windowID, iconName, preventMinize = false, fu
     }
 }
 
-///**
-// * Function to handle start menu item click (About Me)
-// * */
-//function pnlMenuItemAboutMeDisplayContainer_Click() {
-//    StartMenuToggle();
-//    OpenWindow("pnlWindowAboutMe");
-//    AddToTaskbar("pnlWindowAboutMe", "la-user", true);
-//    GetWindowToFront("pnlWindowAboutMe");
-//}
-
-//function btnMenuItemMyWorkDisplayContainer_Click() {
-//    StartMenuToggle();
-//    OpenWindow("pnlWindowWorks");
-//    AddToTaskbar("pnlWindowWorks", "la-briefcase");
-//    pnlWorksMenuWorker();
-//    GetWindowToFront("pnlWindowWorks");
-//}
-
-function btnMenuItemMyPortfolio_Click() {
-    StartMenuToggle();
-    OpenWindow("pnlWindowPortfolio");
-    AddToTaskbar("pnlWindowPortfolio", "la-address-card");
-    // Load side menu
-    pnlResumeMenuWorker();
-
-    GetWindowToFront("pnlWindowPortfolio");
-}
-
-function pnleMenuItemSettingsDisplayContainer_Click() {
-    StartMenuToggle();
-    OpenWindow("pnlWindowSettings");
-    AddToTaskbar("pnlWindowSettings", "la-gear");
-    SettingsWorker();
-    GetWindowToFront("pnlWindowSettings");
-}
-
-function pnleMenuItemChangelogDisplayContainer_Click() {
-    StartMenuToggle();
-    OpenWindow("pnlWindowChangelog");
-    AddToTaskbar("pnlWindowChangelog", "la-file-alt");
-    pnlChangelogMenuWorker();
-    GetWindowToFront("pnlWindowChangelog");
-}
-
 function pnlUserInfoGroup_Click() {
     StartMenuToggle();
     pnlMenuItemAboutMeDisplayContainer_Click();
@@ -500,10 +456,6 @@ function SettingsWorker() {
 function pnlResumeMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
-    pnlPortfolioMenuItems.addEventListener("click", function (e) {
-        pnlPortfolioMenuItem_Click(e); // Pass the event;
-    });
-
     // Get menu list
     var menuJsonObject = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Portfolio/SideMenuLoader"));
 
@@ -525,6 +477,8 @@ function pnlResumeMenuWorker() {
         button.classList.add("w3-hover-dark-grey");
         button.classList.add("w3-ripple");
         button.setAttribute("data-menuname", menuJsonObject.value[i].menuName);
+        button.addEventListener("click", function (e) { pnlPortfolioMenuItem_Click(e); })
+
 
         document.getElementById("pnlPortfolioMenuItems").appendChild(button);
 
@@ -784,7 +738,6 @@ const pnlPortfolioMenuItems = document.getElementById("pnlPortfolioMenuItems");
  * Application's JavaScript main entry point
  * */
 function Page_Load() {
-    console.log("trigerred");
     // Add custom icon for the welcome window
     var welcomeButtonIcon = document.createElement("button");
     welcomeButtonIcon.type = "button";
@@ -802,8 +755,6 @@ function Page_Load() {
     document.getElementById("pnlTaskbarItemGroup").appendChild(welcomeButtonIcon);
 
     // # region Event handler
-
-    
 
     window.addEventListener("resize", InitializationPanelHeightAdjuster);
 

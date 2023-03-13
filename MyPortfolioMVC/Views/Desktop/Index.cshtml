@@ -199,13 +199,13 @@
                                     </button>
                                 </div>
                                 <div id="pnlMenuMyPortfolio" class="w3-col s3">
-                                <button id="btnMenuItemMyPortfolio" data-window="pnlWindowPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem_Click('', 'pnlWindowPortfolio', 'la-address-card', false, pnlResumeMenuWorker());">
+                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem_Click('', 'pnlWindowPortfolio', 'la-address-card', false, pnlResumeMenuWorker());">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">badge</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuMyPortfolio</p>
                                     </button>
                                 </div>
                                 <div id="pnlMenuSettings" class="w3-col s3">
-                                    <button id="pnleMenuItemSettingsDisplayContainer" data-window="pnlWindowSettings" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnleMenuItemSettingsDisplayContainer_Click()">
+                                    <button id="pnleMenuItemSettingsDisplayContainer" data-window="pnlWindowSettings" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnlMenuItem_Click('', 'pnlWindowSettings', 'la-gear', false, SettingsWorker())">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">settings</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuSettings</p>
                                     </button>
@@ -217,7 +217,7 @@
                                     </button>
                                 </div>*@
                                 <div id="pnlMenuChangelog" class="w3-col s3">
-                                    <button id="pnleMenuItemChangelogDisplayContainer" data-window="pnlWindowChangelog" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnleMenuItemChangelogDisplayContainer_Click()">
+                                    <button id="pnleMenuItemChangelogDisplayContainer" data-window="pnlWindowChangelog" class="w3-display-container w3-block w3-hover-dark-grey w3-round w3-button w3-ripple" style="height:100px" onclick="pnlMenuItem_Click('', 'pnlWindowChangelog', 'la-file-alt', false, pnlChangelogMenuWorker())">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">list_alt</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow w3-container">@ViewBag.pnlStartMenu_Item_pnlMenuChangelog</p>
                                     </button>
