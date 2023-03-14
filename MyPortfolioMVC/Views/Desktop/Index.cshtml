@@ -740,28 +740,21 @@
         </div>
 
         <script>
-            // Desktop manager script
             // Global variables
             var height;
             var desktopID = "pnlDesktop";
 
-            // #region Desktop background worker
-            function DesktopBackgroundWorker(){
-            }
-            // #endregion Desktop background worker
-
             // #region Screen height monitoring and adjuster
 
+            /** Desktop screen height adjuster */
             function ScreenHeightAdjuster(){
                 height = document.documentElement.clientHeight;
 
                 document.getElementById(desktopID).style.height = (height) + "px";
             }
 
-            // Adjust screen height 
+            // Adjust screen height (do first function call then add to window's event listener)
             ScreenHeightAdjuster();
-
-            // Add event listerer
             window.addEventListener("resize", ScreenHeightAdjuster);
 
             // #endregion Screen height monitoring and adjuster
@@ -771,10 +764,9 @@
             setInterval(localClockTimeAnimation, 1000);
 
             function localClockTimeAnimation() {
-                var hour = new Date().getHours();
-                var minutes = new Date().getMinutes();
-                hour = ((hour.toString().length < 2) ? "0" + hour.toString() : hour.toString());
-                minutes = ((minutes.toString().length < 2) ? "0" + minutes.toString() : minutes.toString());
+                var date = new Date();
+                var hour = ((date.getHours().toString().length < 2) ? "0" + date.getHours().toString() : date.getHours().toString());
+                var minutes = ((date.getMinutes().toString().length < 2) ? "0" + date.getMinutes().toString() : date.getMinutes().toString());
                 document.getElementById("lblClock").innerHTML = hour.toString() + ":" + minutes.toString();
             }
             // #endregion Clock worker
@@ -799,7 +791,6 @@
         <script>
             var selectedLanguage = "@ViewBag.selectedLanguage";
 
-            // CodeBehind event listener (still need to fix, for now just call the function)
             Page_Load();
         </script>
     </body>
