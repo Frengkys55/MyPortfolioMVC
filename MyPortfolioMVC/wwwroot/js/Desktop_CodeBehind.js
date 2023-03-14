@@ -760,7 +760,7 @@ function btnChangelog_Click(id) {
 
 // #region Not Implemented Window
 
-/** Function for closing "Not implemented" window (shouldn't be accessible' */
+/** Function for closing "Not implemented" window (shouldn't be accessible) */
 function btnNotYetImplementedWindowClose_Click() {
     document.getElementById("pnlNotYetImplementedWindow").style.display = "none";
 }
