@@ -89,8 +89,12 @@ function GetWindowToFront(windowID) {
     document.getElementById(windowID).style.zIndex = ++zIndex;
 }
 
-/** Function to get the highest z-index from the currently open windows */
+/**
+ * Function to get the highest z-index from the currently open windows
+ * @returns {number} Return highest found Z-Index
+ * */
 function GetHighestZIndex() {
+    /** @type {number} */
     var zIndex = 0;
     var activeWindows = GetActiveWindows();
 
@@ -289,8 +293,9 @@ function RemoveFromTaskbar(windowID) {
  * */
 function TaskbarItem_CLick(windowID) {
     var window = document.getElementById(windowID);
-    if (window.style.display == "none") {
+    if (window.style.display == "none" || window.style.zIndex < GetHighestZIndex()) {
         OpenWindow(windowID);
+        GetWindowToFront(windowID);
     }
     else {
         HideWindow(windowID);
