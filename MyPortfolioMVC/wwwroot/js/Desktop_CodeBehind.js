@@ -106,7 +106,7 @@ function GetHighestZIndex() {
 }
 
 /**
- * Function to get list of currently open windows
+ * Function to get ID list of the currently open windows
  * @returns {Array<string>}
  * */
 function GetActiveWindows() {
@@ -791,6 +791,24 @@ function btnNotificationClearNotifications_Click() {
 
 // #endregion Notifications
 
+function WindowWorker() {
+    if (document.documentElement.clientWidth < 600) {
+        // Get all windows
+        var windowIDs = getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
+        console.log(windowIDs);
+        // Find the highest Z-Index from active windows
+        var currentlyHighestZIndex = GetHighestZIndex();
+        var focusedWindow;
+
+        for (var i = 0; i < windowIDs.length; i++) {
+            var window = windowIDs[i];
+            if (document.getElementById(window.id).style.width != "100%") {
+                MaximizeWindow_Click(window.id);
+            }
+        }
+    }
+}
+
 // #endregion Windows
 
 const pnlPortfolioMenuItems = document.getElementById("pnlPortfolioMenuItems");
@@ -818,6 +836,7 @@ function Page_Load() {
     // # region Event handler
 
     window.addEventListener("resize", InitializationPanelHeightAdjuster);
+    window.addEventListener("resize", function () { WindowWorker(); });
 
     // #endregion Event handler
 
@@ -826,6 +845,7 @@ function Page_Load() {
     LanugageListWorker();
     pnlPortfolioListDetailColumnHeightAdjuster();
     pnlWindowFirstTimeSetupWorker();
+    WindowWorker();
 
     // Try loading wallpaper if fail, skip
     try {
