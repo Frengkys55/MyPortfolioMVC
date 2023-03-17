@@ -121,7 +121,6 @@ function GetActiveWindows() {
             activeWindowIDs.push(windowIDs[i].id);
         }
     }
-
     return activeWindowIDs;
 }
 
@@ -791,11 +790,30 @@ function btnNotificationClearNotifications_Click() {
 
 // #endregion Notifications
 
+/**
+ * Class object to contain window status (for switching from desktop to mobile/tablet mode)
+ * */
+class WindowStatus {
+    /** @type {string}*/
+    ID;
+    /** @type {number}*/
+    Height;
+    /** @type {number}*/
+    Width;
+    /** @type {string} */
+    CssClass;
+    /** @type {string} */
+    Style;
+}
+
+/** @type {Array<WindowStatus>}*/
+var WindowStatusGroup;
+
 function WindowWorker() {
     if (document.documentElement.clientWidth < 600) {
         // Get all windows
         var windowIDs = getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
-        console.log(windowIDs);
+
         // Find the highest Z-Index from active windows
         var currentlyHighestZIndex = GetHighestZIndex();
         var focusedWindow;
@@ -804,6 +822,10 @@ function WindowWorker() {
             var window = windowIDs[i];
             if (document.getElementById(window.id).style.width != "100%") {
                 MaximizeWindow_Click(window.id);
+                console.log(window.id + " z-index " + document.getElementById(window.id).style.zIndex < currentlyHighestZIndex);
+                if (document.getElementById(window.id).style.zIndex < currentlyHighestZIndex) {
+                    MinimizeWindow_Click(window.id);
+                }
             }
         }
     }
