@@ -200,7 +200,7 @@
                                     </button>
                                 </div>
                                 <div id="pnlMenuMyPortfolio" class="w3-col s3">
-                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem_Click('', 'pnlWindowPortfolio', 'la-address-card', false, pnlResumeMenuWorker());">
+                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowMyPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem_Click('', 'pnlWindowMyPortfolio', 'la-address-card', false, pnlResumeMenuWorker());">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">badge</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuMyPortfolio</p>
                                     </button>
@@ -228,7 +228,7 @@
                         <div>
                             <div id="pnlUserInfo" class="w3-display-bottomleft w3-block" style="border-radius:0px 0px 4px 4px;">
                                 <div class="w3-bar w3-theme-d5 w3-padding w3-container" style="border-radius:inherit;">
-                                <button id="pnlUserInfoGroup" data-window="pnlWindowAboutMe" class="w3-button w3-round w3-transparent w3-hover-dark-grey w3-ripple" onclick="pnlMenuItem_Click('', 'pnlWindowAboutMe', 'la-user', true, null)">
+                                    <button id="pnlUserInfoGroup" data-window="pnlWindowAboutMe" class="w3-button w3-round w3-transparent w3-hover-dark-grey w3-ripple" onclick="pnlMenuItem_Click('', 'pnlWindowAboutMe', 'la-user', true, null)">
                                         <div id="pnlUserPicture" class="w3-bar-item profilePicture profilePictureCover" style="border-radius: 50%; height:36px; width:36px;"></div>
                                         <span id="lblUserName" class="w3-bar-item">Frengky Sinaga</span>
                                     </button>
@@ -257,17 +257,17 @@
                         </div>
                     </div>
 
-                    <div id="pnlWindowPortfolio" class="w3-display-middle w3-round backdropBlur w3-theme-d5"  style="width:600px; height: 500px; display:none;">
+                    <div id="pnlWindowMyPortfolio" class="w3-display-middle w3-round backdropBlur w3-theme-d5"  style="width:600px; height: 500px; display:none;">
                         <header class="w3-bar w3-theme-d5 backdropBlur" style="border-radius: 4px 4px 0px 0px">
                             <label id="lblWindowMyPortfolioTitle" class="w3-bar-item blockTextSelection">@ViewBag.pnlWindowPortfolioTitle</label>
                             <div id="pnlControlGroupWindowMyPortfolio" class="w3-right">
-                                <button id="btnWindowMyPortfolioMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowPortfolio')">
+                                <button id="btnWindowMyPortfolioMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowMyPortfolio')">
                                     <span class="material-symbols-sharp w3-small">minimize</span>
                                 </button>
-                                <button id="btnWindowMyPortfolioMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowPortfolio')">
+                                <button id="btnWindowMyPortfolioMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowMyPortfolio')">
                                     <span class="material-symbols-sharp w3-small">expand_content</span>
                                 </button>
-                                <button id="btnWindowMyPortfolioClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowPortfolio')">
+                                <button id="btnWindowMyPortfolioClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowMyPortfolio')">
                                     <span class="material-symbols-sharp w3-small">close</span>
                                 </button>
                             </div>
@@ -533,9 +533,9 @@
                                 <button id="btnWindowWorksMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowWorks')">
                                     <span class="material-symbols-sharp w3-small">minimize</span>
                                 </button>
-                                <button id="btnWindowWorksMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowWorks')" style="display:none;">
+                                @*<button id="btnWindowWorksMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowWorks')" style="display:none;">
                                     <span class="material-symbols-sharp w3-small">expand_content</span>
-                                </button>
+                                </button>*@
                                 <button id="btnWindowWorksClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowWorks')">
                                     <span class="material-symbols-sharp w3-small">close</span>
                                 </button>

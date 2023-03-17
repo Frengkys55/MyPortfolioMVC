@@ -1,6 +1,9 @@
 ﻿// A code behind for this page
 // I wanted to separate this section into a separate file but damn it! import/export thing is anoying...
 
+var minimumWorkAreaWidth = 600;
+var minimumWorkAreaHeight = 800;
+var mobileMode = false;
 
 // #region For initialization panel
 
@@ -531,7 +534,7 @@ function pnlResumeContentWorker(menuName) {
 
 /** A part of "Resume" window that automatically adjust the content height of the "Resume" window */
 function pnlPortfolioListDetailColumnHeightAdjuster() {
-    var windowHeight = parseInt(document.getElementById('pnlWindowPortfolio').style.height);
+    var windowHeight = parseInt(document.getElementById('pnlWindowMyPortfolio').style.height);
     // Set the pnlPortfolioListDetailColumn to be the height of the window - the height of the title bar
     if (windowHeight == 500) {
         document.getElementById("pnlPortfolioListDetailColumn").style.height = (windowHeight - 34) + "px";
@@ -810,25 +813,92 @@ class WindowStatus {
 var WindowStatusGroup;
 
 function WindowWorker() {
-    if (document.documentElement.clientWidth < 600) {
+    if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language is not set
+
+    // Switch to mobile mode if screen width is smaller than the minimumWorkAreaWidth
+    if (document.documentElement.clientWidth < minimumWorkAreaWidth) {
+        mobileMode = true;
+
         // Get all windows
-        var windowIDs = getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
+        var windowIDs = GetAllWindows();
 
         // Find the highest Z-Index from active windows
         var currentlyHighestZIndex = GetHighestZIndex();
-        var focusedWindow;
 
+        // Maximize all windows
         for (var i = 0; i < windowIDs.length; i++) {
             var window = windowIDs[i];
+
+            // Skip About Me window
+            if (window.id.includes("AboutMe")) continue;
+
             if (document.getElementById(window.id).style.width != "100%") {
-                MaximizeWindow_Click(window.id);
-                console.log(window.id + " z-index " + document.getElementById(window.id).style.zIndex < currentlyHighestZIndex);
+                MaximizeWindow_Click(window.id); // Maximize window
                 if (document.getElementById(window.id).style.zIndex < currentlyHighestZIndex) {
-                    MinimizeWindow_Click(window.id);
+                    MinimizeWindow_Click(window.id); // Minimize other window
                 }
             }
         }
+
+        // Hide maximize buttons (workaround)
+        DisableMaximizeButtons();
+
     }
+    else {
+        RestoreMaximizeButtons();
+    }
+}
+
+/** Disable all maximize buttons */
+function DisableMaximizeButtons() {
+    // Get all windows
+    var availableWindows = GetAllWindows();
+
+    // Disable all maximize button IDs
+    for (var i = 0; i < availableWindows.length; i++) {
+        // Get window name by removing part of window id
+        var windowName = availableWindows[i].id.replace("pnlWindow", "");
+        var maximizeButtonId = "btnWindow" + windowName + "Maximize";
+        console.log(maximizeButtonId);
+
+        if (document.getElementById(maximizeButtonId) != null) {
+            document.getElementById(maximizeButtonId).style.display = "none";
+            document.getElementById(maximizeButtonId).classList.add("w3-disabled");
+        }
+    }
+}
+
+/** Enable all maximize buttons */
+function RestoreMaximizeButtons() {
+
+    // Get all available windows
+    var availableWindows = GetAllWindows();
+
+    for (var i = 0; i < availableWindows.length; i++) {
+        // Get window name by removing part of windod id
+        var windowName = availableWindows[i].id.replace("pnlWindow", "");
+        var maximizeButtonId = "btnWindow" + windowName + "Maximize";
+
+        if (document.getElementById(maximizeButtonId) != null) {
+            document.getElementById(maximizeButtonId).style.display = "block";
+            document.getElementById(maximizeButtonId).className = document.getElementById(maximizeButtonId).className.replace("w3-disabled", "");
+        }
+
+        // Restore window state (by triggering the maximize buttons...)
+        if (document.getElementById(availableWindows[i].id).style.width == "100%") {
+            MaximizeWindow_Click(availableWindows[i].id);
+        }
+    }
+}
+
+/**
+ * Function to get all windows
+ * 
+ * @returns {Array<Element>}
+ */
+function GetAllWindows() {
+    return getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
+
 }
 
 // #endregion Windows
