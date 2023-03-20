@@ -210,6 +210,22 @@ function MaximizeWindow_Click(windowID) {
 }
 
 /**
+ * 
+ * */
+function HideOtherWindow(activeWindow) {
+    var windows = GetActiveWindows();
+    for (var i = 0; i < windows.length; i++) {
+        if (activeWindow == windows[i]) {
+            // Don't hide this window
+            continue;
+        }
+        else {
+            MinimizeWindow_Click(windows[i]);
+        }
+    }
+}
+
+/**
  * Close the selected window
  * 
  * @param {string} windowID ID of the window to close
@@ -284,7 +300,7 @@ function RemoveFromTaskbar(windowID) {
         // Try remove the icon from taskbar
         document.getElementById("btnTaskbar_" + windowID).remove();
     } catch (e) {
-        console.warn("Can't delete icon. Icon not found");
+        console.warn("Can't delete icon. Icon not found. Maybe just there is no icon.");
     }
 }
 
@@ -298,6 +314,10 @@ function TaskbarItem_CLick(windowID) {
     if (window.style.display == "none" || window.style.zIndex < GetHighestZIndex()) {
         OpenWindow(windowID);
         GetWindowToFront(windowID);
+        if (mobileMode) {
+            // Hide all other window if it's in mobile mobile
+            HideOtherWindow(window.id);
+        }
     }
     else {
         HideWindow(windowID);
@@ -362,7 +382,6 @@ function pnlMenuItem_Click(sender, windowID, iconName, preventMinize = false, fu
         console.error(e);
     }
 }
-
 
 // #endregion Old function
 
@@ -793,22 +812,6 @@ function btnNotificationClearNotifications_Click() {
 
 // #endregion Notifications
 
-/**
- * Class object to contain window status (for switching from desktop to mobile/tablet mode)
- * */
-class WindowStatus {
-    /** @type {string}*/
-    ID;
-    /** @type {number}*/
-    Height;
-    /** @type {number}*/
-    Width;
-    /** @type {string} */
-    CssClass;
-    /** @type {string} */
-    Style;
-}
-
 /** @type {Array<WindowStatus>}*/
 var WindowStatusGroup;
 
@@ -842,7 +845,6 @@ function WindowWorker() {
 
         // Hide maximize buttons (workaround)
         DisableMaximizeButtons();
-
     }
     else {
         RestoreMaximizeButtons();
@@ -859,7 +861,6 @@ function DisableMaximizeButtons() {
         // Get window name by removing part of window id
         var windowName = availableWindows[i].id.replace("pnlWindow", "");
         var maximizeButtonId = "btnWindow" + windowName + "Maximize";
-        console.log(maximizeButtonId);
 
         if (document.getElementById(maximizeButtonId) != null) {
             document.getElementById(maximizeButtonId).style.display = "none";
@@ -900,6 +901,8 @@ function GetAllWindows() {
     return getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
 
 }
+
+
 
 // #endregion Windows
 
