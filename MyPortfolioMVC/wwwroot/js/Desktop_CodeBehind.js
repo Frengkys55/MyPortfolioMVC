@@ -713,7 +713,8 @@ function pnlWorksMenuWorker() {
  * */
 function pnlWorkDetailWorker(id, workName = "") {
     // Set window title
-    document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - @ViewBag.pnlWindowWorks_Title";
+    Get
+    document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - " + document.getElementById("lblWindowWorksTitle").innerHTML;
 
     // Get work details
     document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/" + selectedLanguage + "/api/Work/GetWorkDetail/" + id));
