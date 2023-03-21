@@ -713,7 +713,6 @@ function pnlWorksMenuWorker() {
  * */
 function pnlWorkDetailWorker(id, workName = "") {
     // Set window title
-    Get
     document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - " + document.getElementById("lblWindowWorksTitle").innerHTML;
 
     // Get work details
