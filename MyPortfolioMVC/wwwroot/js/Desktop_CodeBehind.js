@@ -230,9 +230,14 @@ function HideOtherWindow(activeWindow) {
  * 
  * @param {string} windowID ID of the window to close
  * */
-function CloseWindow_Click(windowID) {
-    document.getElementById(windowID).style.display = "none";
-    RemoveFromTaskbar(windowID);
+function CloseWindow_Click(windowID, isUsingNewEngine = false) {
+    if (!isUsingNewEngine) {
+        document.getElementById(windowID).style.display = "none";
+        RemoveFromTaskbar(windowID);
+    }
+    else {
+        document.getElementById(windowID).remove();
+    }
 }
 
 /**
@@ -249,7 +254,6 @@ function ClearInnerHTML(id) {
  */
 function ElementResize() {
     // Put function for elements that has to change its data here
-    pnlPortfolioListDetailColumnHeightAdjuster();
 }
 
 // #endregion Global functions (Reusable functions for desktop windows)
@@ -383,11 +387,347 @@ function pnlMenuItem_Click(sender, windowID, iconName, preventMinize = false, fu
     }
 }
 
+/**
+ * New function for handling start menu item click
+ * 
+ * @param {string}      sender              ID of panel that triggers this function
+ * @param {string}      windowID            ID of the target window to open
+ * @param {string}      iconName            Name of the icon to add to taskbar (using Line Awesome)
+ * @param {boolean}     preventMinize       Tell function if this window is minimizable or not
+ * @param {Function}    functionToExecute   Function to execute after click
+ * */
+function pnlMenuItem2_Click(sender, windowID, iconName, preventMinize = false, functionToExecute) {
+    try {
+        StartMenuToggle();
+        AddToTaskbar(windowID, iconName, preventMinize);
+        if (functionToExecute != null) {
+            functionToExecute;
+        }
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 // #endregion Old function
 
 // #endregion Start Menu
 
 // #region Windows
+
+// #region New Window functions (demo)
+
+/** Define a size of a window */
+class WindowSize {
+    /** @type {string} */
+    Width;
+
+    /** @type {string} */
+    Height;
+
+    constructor(width, height) {
+        this.Width = width;
+        this.Height = height;
+    }
+}
+
+/** Define the type of a window */
+class WindowType {
+    Type = {
+        Normal: 1,
+        MultiWindow: 2
+    }
+}
+
+/** Define minimize, maximize, and close control behaviour */
+class WindowControlsOption {
+    /** @type {boolean} */
+    EnableMinimize;
+
+    /** @type {boolean} */
+    EnableMaximize;
+
+    /** @type {boolean} */
+    EnableClose;
+}
+
+/** Define a property of a window*/
+class WindowProperties {
+    /** @type {string}*/
+    WindowID;
+
+    /** @type {string} */
+    WindowTitleName;
+
+    /** @type {WindowSize}*/
+    WindowSize;
+
+    /** @type {string} */
+    Styles;
+
+    /** @type {string} */
+    CssClass;
+
+    /** @type {WindowType} */
+    WindowType;
+
+    /** @type {WindowControlsOption} */
+    WindowControlsOption;
+}
+
+/** 
+ * Window object class (Named WindowClass because there is already an object also named Window)
+ * */
+class WindowClass extends WindowProperties {
+    constructor() {
+        super();
+
+    }
+
+    Render() {
+        var guid = crypto.randomUUID();
+        var styles = this.WindowStyles;
+        // #region Window container
+        var windowContainer = document.createElement("div");
+        windowContainer.id = this.WindowID;
+
+        // Define window styles
+        if (styles != null) {
+            // If a styles variable is not empty then apply them
+            windowContainer.setAttribute("style", styles.Styles);
+        }
+
+        // Define window height
+        if (this.WindowSize != null) {
+            windowContainer.style.height = this.WindowSize.Height;
+            windowContainer.style.width = this.WindowSize.Width;
+        }
+        else {
+            // Define new window height and width using the default value
+            windowContainer.style.height = "500px";
+            windowContainer.style.width = "500px";
+        }
+
+        // Define class attribute
+        if (this.CssClass != null) {
+            windowContainer.className = this.CssClass;
+        }
+        else {
+            windowContainer.classList.add("w3-display-middle");
+            windowContainer.classList.add("w3-round");
+            windowContainer.classList.add("backdropBlur");
+            windowContainer.classList.add("w3-theme-d5");
+            windowContainer.classList.add("w3-mobile");
+        }
+
+        windowContainer.setAttribute("data-guid", guid);
+
+        // # region Window container
+
+        
+        // #region Title bar
+
+        // #region Title bar container
+        var titleBar = document.createElement("header");
+        titleBar.id = "pnlTitleBarContainer_" + guid;
+        titleBar.classList.add("w3-bar");
+        titleBar.classList.add("w3-theme-d5");
+        titleBar.style.borderRadius = "4px 4px 0px 0px";
+        windowContainer.appendChild(titleBar);
+
+        // #endregion Title bar container
+
+        // #region Title bar content
+
+        // Sidemenu hamburger button
+        var windowID = this.WindowID;
+        var hamburger = document.createElement("button");
+        hamburger.id = "btnSidebarWindow_" + guid;
+        hamburger.type = "button";
+        hamburger.classList.add("w3-bar-item");
+        hamburger.classList.add("w3-left");
+        hamburger.classList.add("w3-button");
+        hamburger.classList.add("w3-transparent");
+        hamburger.classList.add("w3-hover-dark-grey");
+        hamburger.classList.add("w3-ripple");
+        hamburger.classList.add("w3-hide-large");
+        hamburger.innerHTML = "<span class=\"material-symbols-sharp w3-small\">menu</span>";
+        hamburger.addEventListener("click", function () { SidebarHamburgerMenu_Click(windowID); });
+        titleBar.appendChild(hamburger);
+
+
+        // Window title
+        var windowTitle = document.createElement("label");
+        windowTitle.id = "lblWindowTitle_" + guid;
+        windowTitle.classList.add("w3-bar-item");
+        windowTitle.classList.add("blockTextSelection");
+        windowTitle.innerHTML = this.WindowTitleName;
+        titleBar.appendChild(windowTitle);
+
+        // #region Window button controls
+
+        // Control container
+        var controlGroup = document.createElement("div");
+        controlGroup.id = "pnlControlGroup";
+        controlGroup.classList.add("w3-right");
+        titleBar.appendChild(controlGroup);
+
+        if (this.WindowControlsOption != null) {
+            if (this.WindowControlsOption.EnableMinimize) {
+                // Minimize button
+                var minimize = document.createElement("button");
+                minimize.id = "btnWindowMinimize_" + guid;
+                minimize.classList.add("w3-button");
+                minimize.classList.add("w3-bar-item");
+                minimize.classList.add("w3-transparent");
+                minimize.classList.add("w3-hover-dark-grey");
+                minimize.classList.add("w3-ripple");
+                minimize.innerHTML = "<span class=\"material-symbols-sharp w3-small\">minimize</span>";
+                minimize.addEventListener("click", function (event) { MinimizeWindow_Click(windowContainer.id); });
+                controlGroup.appendChild(minimize);
+            }
+
+            if (this.WindowControlsOption.EnableMaximize) {
+                // Maximize button
+                var maximize = document.createElement("button");
+                maximize.id = "btnWindowMaximize_" + guid;
+                maximize.classList.add("w3-button");
+                maximize.classList.add("w3-bar-item");
+                maximize.classList.add("w3-transparent");
+                maximize.classList.add("w3-hover-dark-grey");
+                maximize.classList.add("w3-ripple");
+                maximize.innerHTML = "<span class=\"material-symbols-sharp w3-small\">expand_content</span>";
+                maximize.addEventListener("click", function (event) { MaximizeWindow_Click(windowContainer.id); });
+                controlGroup.appendChild(maximize);
+            }
+
+            if (this.WindowControlsOption.EnableClose) {
+                // Close button
+                var close = document.createElement("button");
+                close.id = "btnWindowClose_" + guid;
+                close.classList.add("w3-button");
+                close.classList.add("w3-bar-item");
+                close.classList.add("w3-transparent");
+                close.classList.add("w3-hover-dark-grey");
+                close.innerHTML = "<span class=\"material-symbols-sharp w3-small\">close</span>";
+                close.classList.add("w3-ripple");
+                close.addEventListener("click", function (event) { CloseWindow_Click(windowContainer.id, true); });
+                controlGroup.appendChild(close);
+            }
+        }
+
+        // #endregion Window button controls
+
+        // #endregion Title bar content
+
+        // #endregion Title bar
+
+        // #region Content container
+
+        var contentContainer = document.createElement("div");
+        contentContainer.id = "pnlContentContainerWindow_" + guid;
+        contentContainer.style.width = "100%";
+        contentContainer.style.height = "calc( 100% - 34px )";
+        contentContainer.style.borderRadius = "0px 0px 4px 4px";
+        windowContainer.appendChild(contentContainer);
+
+
+        // Sidebar
+        var sidebarContainer = document.createElement("div");
+        sidebarContainer.id = "pnlSidebarContainerWindow_" + guid;
+        sidebarContainer.classList.add("w3-sidebar");
+        sidebarContainer.classList.add("w3-transparent");
+        sidebarContainer.classList.add("w3-collapse");
+        sidebarContainer.classList.add("backdropBlur");
+        sidebarContainer.classList.add("w3-animate-opacity");
+        sidebarContainer.style.width = "250px";
+        sidebarContainer.style.height = "calc( 100% - 34px)";
+        sidebarContainer.style.borderRadius = "0px 0px 0px 4px";
+
+        contentContainer.appendChild(sidebarContainer);
+
+        var sidebarContent = document.createElement("div");
+        sidebarContent.id = "pnlSidebarContentWindow_" + guid;
+        sidebarContent.classList.add("w3-bar-block");
+        sidebarContainer.appendChild(sidebarContent);
+
+        // Main content
+        var content = document.createElement("div");
+        content.id = "pnlContentWindow_" + guid;
+        content.classList.add("w3-main");
+        content.classList.add("w3-container");
+        content.style.marginLeft = "250px";
+        content.style.height = "100%";
+        content.style.overflowY = "scroll";
+
+        contentContainer.appendChild(content);
+
+        // #endregion Content container
+
+        return windowContainer;
+    }
+}
+
+/**
+ * Define a property of an application 
+ * */
+class Application extends WindowClass {
+    /** @type {String} */
+    ApplicationName;
+
+    /** @type {Array<string>} */
+    ChildWindowIDs;
+
+    /**
+     * Define a property of an application 
+     * 
+     * @param {WindowType} type         Type of the window
+     * @param {string} applicationName  ID of the created application
+     * @param {string} windowID         ID of the window for the created application
+     * */
+    constructor(type, applicationName, windowID) {
+        super();
+        this.ApplicationName = applicationName;
+        this.WindowType = type;
+        this.WindowID = windowID;
+        this.ChildWindowIDs = null;
+        this.WindowSize = null;
+        this.WindowStyle = null;
+        this.WindowTitleName = applicationName;
+
+        this.WindowControlsOption = new WindowControlsOption();
+        this.WindowControlsOption.EnableClose = true;
+        this.WindowControlsOption.EnableMaximize = true;
+        this.WindowControlsOption.EnableMinimize = true;
+    }
+}
+
+/**
+ * Open the sidebar of the requested window
+ * 
+ * @param {string} windowID ID of the window
+ * */
+function SidebarHamburgerMenu_Click(windowID) {
+    var windowGUID = GetGUID(windowID);
+    var sidebarId = "pnlSidebarContainerWindow_" + windowGUID;
+    var content = "pnlContentWindow_" + windowGUID;
+    if (document.getElementById(sidebarId).style.display == "block") {
+        document.getElementById(sidebarId).style.display = "none";
+    }
+    else {
+        document.getElementById(sidebarId).style.display = "block";
+    }
+}
+
+/**
+ * Get data-guid of the requested window 
+ * 
+ * @returns {string}
+ * */
+function GetGUID(windowID) {
+    return document.getElementById(windowID).dataset.guid;
+}
+
+// #endregion New Window functions (demo)
 
 /**
  * Manages what should it do when mouse is dragging a window
@@ -504,11 +844,21 @@ function SettingsWorker() {
 function pnlResumeMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
+    // Generate new application window
+    var application = new Application(new WindowType().Type.Normal, "Resume", "pnlWindowNewResume");
+    application.WindowSize = new WindowSize("800px", "600px");
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    // Get window to the front
+    GetWindowToFront("pnlWindowNewResume");
+
+    var guid = GetGUID("pnlWindowNewResume");
+
     // Get menu list
     var menuJsonObject = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/Portfolio/SideMenuLoader"));
 
     // Clear panel content
-    document.getElementById("pnlPortfolioMenuItems").innerHTML = "";
+    document.getElementById("pnlSidebarContentWindow_" + guid).innerHTML = "";
 
     // Generate button based on list received above
     for (let i = 0; i < menuJsonObject.value.length; i++) {
@@ -527,8 +877,7 @@ function pnlResumeMenuWorker() {
         button.setAttribute("data-menuname", menuJsonObject.value[i].menuName);
         button.addEventListener("click", function (e) { pnlPortfolioMenuItem_Click(e); })
 
-
-        document.getElementById("pnlPortfolioMenuItems").appendChild(button);
+        document.getElementById("pnlSidebarContentWindow_" + guid).appendChild(button);
 
         document.getElementById("btnResume" + i.toString()).innerHTML += (" " + menuJsonObject.value[i].menuName);
 
@@ -545,10 +894,13 @@ function pnlResumeMenuWorker() {
 function pnlResumeContentWorker(menuName) {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
-    document.getElementById("pnlPortfolioListDetailColumn").innerHTML = ""; // Clear panel
+    var windowID = "pnlWindowNewResume";
+    var guid = GetGUID(windowID);
+
+    ClearInnerHTML("pnlContentWindow_" + guid); // Clear panel
 
     // Download content
-    document.getElementById("pnlPortfolioListDetailColumn").innerHTML += XHRDownloader("/" + selectedLanguage + "/Portfolio/LoadResumeItem/" + menuName);
+    document.getElementById("pnlContentWindow_" + guid).innerHTML += XHRDownloader("/" + selectedLanguage + "/Portfolio/LoadResumeItem/" + menuName);
 }
 
 /** A part of "Resume" window that automatically adjust the content height of the "Resume" window */
@@ -899,7 +1251,6 @@ function RestoreMaximizeButtons() {
  */
 function GetAllWindows() {
     return getElementsByIdStartsWith("pnlDesktopWorkArea", "div", "pnlWindow");
-
 }
 
 
@@ -938,7 +1289,7 @@ function Page_Load() {
     // #region Worker
     InitializationPanelHeightAdjuster();
     LanugageListWorker();
-    pnlPortfolioListDetailColumnHeightAdjuster();
+    //pnlPortfolioListDetailColumnHeightAdjuster();
     pnlWindowFirstTimeSetupWorker();
     WindowWorker();
 

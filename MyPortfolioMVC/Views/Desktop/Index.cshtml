@@ -200,7 +200,7 @@
                                     </button>
                                 </div>
                                 <div id="pnlMenuMyPortfolio" class="w3-col s3">
-                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowMyPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem_Click('', 'pnlWindowMyPortfolio', 'la-address-card', false, pnlResumeMenuWorker());">
+                                    <button id="btnMenuItemMyPortfolio" data-window="pnlWindowMyPortfolio" class="w3-display-container w3-block w3-button w3-transparent w3-hover-dark-grey w3-round w3-ripple" style="height:100px;" title="Portfolio" onclick="pnlMenuItem2_Click('', '', 'la-address-card', false, pnlResumeMenuWorker());">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">badge</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuMyPortfolio</p>
                                     </button>
@@ -257,36 +257,6 @@
                         </div>
                     </div>
 
-                    <div id="pnlWindowMyPortfolio" class="w3-display-middle w3-round backdropBlur w3-theme-d5"  style="width:600px; height: 500px; display:none;">
-                        <header class="w3-bar w3-theme-d5 backdropBlur" style="border-radius: 4px 4px 0px 0px">
-                            <label id="lblWindowMyPortfolioTitle" class="w3-bar-item blockTextSelection">@ViewBag.pnlWindowPortfolioTitle</label>
-                            <div id="pnlControlGroupWindowMyPortfolio" class="w3-right">
-                                <button id="btnWindowMyPortfolioMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowMyPortfolio')">
-                                    <span class="material-symbols-sharp w3-small">minimize</span>
-                                </button>
-                                <button id="btnWindowMyPortfolioMaximize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MaximizeWindow_Click('pnlWindowMyPortfolio')">
-                                    <span class="material-symbols-sharp w3-small">expand_content</span>
-                                </button>
-                                <button id="btnWindowMyPortfolioClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowMyPortfolio')">
-                                    <span class="material-symbols-sharp w3-small">close</span>
-                                </button>
-                            </div>
-                        </header>
-                        <div id="pnlPortfolioWindow" class="w3-block" style="border-radius: 0px 0px 4px 4px">
-                            <div id="pnlPortfolioRow" class="w3-row" style="height:100%">
-                                <div id="pnlPortfolioListColumn" class="w3-col s4 w3-left" style="max-width:250px">
-                                    <div id="pnlPortfolioMenuItems" class="w3-bar-block">
-                                        @*Placeholder for portfolio menu items*@
-
-                                    </div>
-                                </div>
-                                <div id="pnlPortfolioListDetailColumn"class="w3-rest w3-container" style="overflow-y:scroll; display:block;">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div id="pnlWindowSettings" class="w3-display-middle w3-round backdropBlur w3-theme-d5" style="display:none; width:600px; height:500px;">
                         <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
                             <label id="lblWindowSettingsTitle" class="w3-bar-item blockTextSelection" Text="Settings">@ViewBag.lblWindowSettingsTitle</label>
@@ -333,44 +303,7 @@
                                         </button>
                                     </footer>
                                 </div>
-                                @*<div id="pnlSettingsResolutionColumn" class="w3-col s8 w3-container" style="display:none;">
-                                    <header>
-                                        <h3>@ViewBag.pnlSettigs_SettingsRow_Resolution_Header</h3>
-                                    </header>
-                                    <div class="">
-                                        <p>@ViewBag.pnlSettigs_SettingsRow_Resolution_DisplayResolution</p>
-                                        <asp:DropDownList id="lstAvailableResolution"
-                                                      
-                                                          class="w3-theme-d5 w3-border w3-input w3-round w3-transparent">
-                                            <asp:ListItem Text="1920x1080" Value="1920x1080"></asp:ListItem>
-                                            <asp:ListItem Text="1366x768" Value="1366x768"></asp:ListItem>
-                                            <asp:ListItem Text="800x600" Value="800x600"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        <button id="btnDetectResolution"
-                                            
-                                                class="w3-button w3-transparent w3-hover-dark-grey w3-round w3-margin-top w3-border">
-                                            <i class="la la-search"></i>Detect
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <p>@ViewBag.pnlSettigs_SettingsRow_Resolution_Scaling</p>
-                                        <asp:DropDownList id="lstAvalableScaling"
-                                                      
-                                                          class="w3-theme-d5 w3-border w3-input w3-round w3-transparent">
-                                            <asp:ListItem Text="120%" Value="1.2"></asp:ListItem>
-                                            <asp:ListItem Text="100%" Value="1.0" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Text="50%" Value="0.5"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <footer class="w3-bar" style="position: absolute; bottom: 0px; margin-bottom: 8px;">
-                                        <button id="btnApplyResolution"
-                                            
-                                                class="w3-bar-item w3-button w3-hover-dark-grey w3-round"
-                                                onclick="btnApplyResolution_ServerClick">
-                                            <i class="la la-save"></i>@ViewBag.pnlSettigs_SettingsRow_Resolution_Apply
-                                        </button>
-                                    </footer>
-                                </div>*@
+                                
                                 <div id="pnlSettingsAboutColumn" class="w3-col s8 w3-container" style="display:none;">
                                     <header>
                                         <h3>@ViewBag.btnSettingsItemAbout</h3>
