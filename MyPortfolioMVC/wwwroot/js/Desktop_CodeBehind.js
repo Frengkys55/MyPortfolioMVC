@@ -237,6 +237,7 @@ function CloseWindow_Click(windowID, isUsingNewEngine = false) {
     }
     else {
         document.getElementById(windowID).remove();
+        RemoveFromTaskbar(windowID);
     }
 }
 
