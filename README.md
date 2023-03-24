@@ -1,3 +1,5 @@
+![Screenshot](https://mvc.frengkysinaga.com/Sources/Images/github.png)
+
 # MyPortfolioMVC
 A simple website portfolio (well, it's a desktop).
 
