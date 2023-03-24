@@ -431,11 +431,18 @@ class WindowSize {
     }
 }
 
-/** Define the type of a window */
+/**
+ * Define the type of a window
+ * 
+ * Normal = Window with sidebar and main content
+ * MultiWindow = Not used
+ * Single = Window without the sidebar
+ * */
 class WindowType {
     Type = {
         Normal: 1,
-        MultiWindow: 2
+        MultiWindow: 2,
+        Single: 3
     }
 }
 
@@ -481,10 +488,11 @@ class WindowProperties {
 class WindowClass extends WindowProperties {
     constructor() {
         super();
-
     }
 
-    Render() {
+    /** Method to render the window container without the content
+     * (call this method if you need an empty window) */
+    RenderWindowContainer() {
         var guid = crypto.randomUUID();
         var styles = this.WindowStyles;
         // #region Window container
@@ -509,16 +517,11 @@ class WindowClass extends WindowProperties {
         }
 
         // Define class attribute
-        if (this.CssClass != null) {
-            windowContainer.className = this.CssClass;
-        }
-        else {
-            windowContainer.classList.add("w3-display-middle");
-            windowContainer.classList.add("w3-round");
-            windowContainer.classList.add("backdropBlur");
-            windowContainer.classList.add("w3-theme-d5");
-            windowContainer.classList.add("w3-mobile");
-        }
+        windowContainer.classList.add("w3-display-middle");
+        windowContainer.classList.add("w3-round");
+        windowContainer.classList.add("backdropBlur");
+        windowContainer.classList.add("w3-theme-d5");
+        windowContainer.classList.add("w3-mobile");
 
         windowContainer.setAttribute("data-guid", guid);
 
@@ -539,22 +542,23 @@ class WindowClass extends WindowProperties {
 
         // #region Title bar content
 
-        // Sidemenu hamburger button
-        var windowID = this.WindowID;
-        var hamburger = document.createElement("button");
-        hamburger.id = "btnSidebarWindow_" + guid;
-        hamburger.type = "button";
-        hamburger.classList.add("w3-bar-item");
-        hamburger.classList.add("w3-left");
-        hamburger.classList.add("w3-button");
-        hamburger.classList.add("w3-transparent");
-        hamburger.classList.add("w3-hover-dark-grey");
-        hamburger.classList.add("w3-ripple");
-        hamburger.classList.add("w3-hide-large");
-        hamburger.innerHTML = "<span class=\"material-symbols-sharp w3-small\">menu</span>";
-        hamburger.addEventListener("click", function () { SidebarHamburgerMenu_Click(windowID); });
-        titleBar.appendChild(hamburger);
-
+        if (this.WindowType == new WindowType().Type.Normal) {
+            // Sidemenu hamburger button
+            var windowID = this.WindowID;
+            var hamburger = document.createElement("button");
+            hamburger.id = "btnSidebarWindow_" + guid;
+            hamburger.type = "button";
+            hamburger.classList.add("w3-bar-item");
+            hamburger.classList.add("w3-left");
+            hamburger.classList.add("w3-button");
+            hamburger.classList.add("w3-transparent");
+            hamburger.classList.add("w3-hover-dark-grey");
+            hamburger.classList.add("w3-ripple");
+            hamburger.classList.add("w3-hide-large");
+            hamburger.innerHTML = "<span class=\"material-symbols-sharp w3-small\">menu</span>";
+            hamburger.addEventListener("click", function () { SidebarHamburgerMenu_Click(windowID); });
+            titleBar.appendChild(hamburger);
+        }
 
         // Window title
         var windowTitle = document.createElement("label");
@@ -631,6 +635,18 @@ class WindowClass extends WindowProperties {
         contentContainer.style.borderRadius = "0px 0px 4px 4px";
         windowContainer.appendChild(contentContainer);
 
+        
+
+        // #endregion Content container
+
+        return windowContainer;
+    }
+
+    /** Render the window with the content (including sidebar) */
+    Render() {
+        var windowContainer = this.RenderWindowContainer();
+
+        var guid = windowContainer.dataset.guid;
 
         // Sidebar
         var sidebarContainer = document.createElement("div");
@@ -644,7 +660,7 @@ class WindowClass extends WindowProperties {
         sidebarContainer.style.height = "calc( 100% - 34px)";
         sidebarContainer.style.borderRadius = "0px 0px 0px 4px";
 
-        contentContainer.appendChild(sidebarContainer);
+        windowContainer.lastElementChild.appendChild(sidebarContainer);
 
         var sidebarContent = document.createElement("div");
         sidebarContent.id = "pnlSidebarContentWindow_" + guid;
@@ -660,23 +676,64 @@ class WindowClass extends WindowProperties {
         content.style.height = "100%";
         content.style.overflowY = "scroll";
 
-        contentContainer.appendChild(content);
+        if (this.CssClass != null) {
+            content.className = this.CssClass;
+        }
 
-        // #endregion Content container
+        windowContainer.lastElementChild.appendChild(content);
+        return windowContainer;
+        
+    }
+}
 
+class WindowNormal extends WindowClass {
+    // Inherit everything from WindowClass and change nothing (the default behaviour was build for this class)
+    constructor() {
+        super();
+        this.WindowType = new WindowType().Type.Normal;
+    }
+}
+
+class WindowSingle extends WindowClass {
+    constructor() {
+        super();
+        this.WindowType = new WindowType().Type.Single;
+    }
+
+    /** Render the window with the content (without sidebar) */
+    Render() {
+        var windowContainer = this.RenderWindowContainer();
+        var guid = windowContainer.dataset.guid;
+
+        // Main content
+        var content = document.createElement("div");
+        content.id = "pnlContentWindow_" + guid;
+        content.classList.add("w3-container");
+        content.style.height = "100%";
+        content.style.overflowY = "scroll";
+
+        if (this.CssClass != null || this.CssClass != undefined) {
+            content.className = this.CssClass;
+        }
+
+        windowContainer.lastElementChild.appendChild(content);
         return windowContainer;
     }
 }
 
+
 /**
  * Define a property of an application 
  * */
-class Application extends WindowClass {
+class Application{
     /** @type {String} */
     ApplicationName;
 
     /** @type {Array<string>} */
     ChildWindowIDs;
+
+    /** @type {WindowProperties} */
+    WindowProperties;
 
     /**
      * Define a property of an application 
@@ -686,19 +743,49 @@ class Application extends WindowClass {
      * @param {string} windowID         ID of the window for the created application
      * */
     constructor(type, applicationName, windowID) {
-        super();
         this.ApplicationName = applicationName;
-        this.WindowType = type;
-        this.WindowID = windowID;
+        this.WindowProperties = new WindowProperties();
+        this.WindowProperties.WindowType = type;
+        this.WindowProperties.WindowID = windowID;
         this.ChildWindowIDs = null;
-        this.WindowSize = null;
-        this.WindowStyle = null;
-        this.WindowTitleName = applicationName;
+        this.WindowProperties.WindowSize = null;
+        this.WindowProperties.Styles = null;
+        this.WindowProperties.WindowTitleName = applicationName;
 
-        this.WindowControlsOption = new WindowControlsOption();
-        this.WindowControlsOption.EnableClose = true;
-        this.WindowControlsOption.EnableMaximize = true;
-        this.WindowControlsOption.EnableMinimize = true;
+        this.WindowProperties.WindowControlsOption = new WindowControlsOption();
+        this.WindowProperties.WindowControlsOption.EnableClose = true;
+        this.WindowProperties.WindowControlsOption.EnableMaximize = true;
+        this.WindowProperties.WindowControlsOption.EnableMinimize = true;
+    }
+
+    /**
+     * Render the window
+     * @returns {HTMLDivElement}
+     * */
+    Render() {
+        var windowType = this.WindowProperties.WindowType;
+
+        /** @type {WindowClass} */
+        var window = null;
+
+        // Declare new window object
+        if (windowType == new WindowType().Type.Normal) {
+            window = new WindowNormal();
+            
+        }
+        else if (windowType == new WindowType().Type.Single) {
+            var window = new WindowSingle();
+        }
+
+        window.WindowID = this.WindowProperties.WindowID;
+        window.WindowSize = this.WindowProperties.WindowSize;
+        window.CssClass = this.WindowProperties.CssClass;
+        window.Styles = this.WindowProperties.Styles;
+        window.WindowControlsOption = this.WindowProperties.WindowControlsOption;
+        window.WindowSize = this.WindowProperties.WindowSize;
+        window.WindowTitleName = this.WindowProperties.WindowTitleName;
+
+        return window.Render();
     }
 }
 
@@ -847,7 +934,7 @@ function pnlResumeMenuWorker() {
 
     // Generate new application window
     var application = new Application(new WindowType().Type.Normal, "Resume", "pnlWindowNewResume");
-    application.WindowSize = new WindowSize("800px", "600px");
+    application.WindowProperties.WindowSize = new WindowSize("800px", "600px");
     document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
 
     // Get window to the front
@@ -940,12 +1027,22 @@ function pnlPortfolioMenuItem_Click(e) {
 /** A part of "Works" window that get and display a list of works that has been done */
 function pnlWorksMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
+    var windowID = "pnlWindowNewWorks";
+    var application = new Application(new WindowType().Type.Single, "Works", windowID);
+    application.WindowProperties.WindowSize = new WindowSize("500px", "400px");
+    application.WindowProperties.WindowControlsOption.EnableMaximize = false;
+    application.WindowProperties.CssClass = "w3-bar-block";
+
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    var guid = GetGUID(windowID);
+    var contentPanel = "pnlContentWindow_" + guid;
 
     // Get the work list
     var works = ConvertJSON(XHRDownloader("/" + selectedLanguage + "/api/Work/GetWorks"));
 
     // Clear old list
-    document.getElementById("pnlWorkItemGroup").innerHTML = "";
+    //document.getElementById("pnlWorkItemGroup").innerHTML = "";
 
     // Make the list
     for (var i = 0; i < works.length; i++) {
@@ -963,6 +1060,7 @@ function pnlWorksMenuWorker() {
         button.classList.add("w3-transparent");
         button.classList.add("w3-button");
         button.classList.add("w3-ripple");
+
         button.setAttribute("onclick", ("btnWork_Click(" + (i + 1).toString() + ", '" + name + "')"));
 
         // Panel work row
@@ -1054,8 +1152,16 @@ function pnlWorksMenuWorker() {
         }
 
         // Append button
-        document.getElementById("pnlWorkItemGroup").appendChild(button);
+        document.getElementById(contentPanel).appendChild(button);
     }
+    // Add more work content
+    var moreWorkIcon = "<p>(๑˃ᴗ˂)ﻭ</p>";
+    var moreWorkText = "<p>And more works is comming</p>";
+    var moreWork = document.createElement("div");
+    moreWork.className = "w3-container blockTextSelection w3-center";
+
+    moreWork.innerHTML = moreWorkIcon + moreWorkText;
+    document.getElementById(contentPanel).appendChild(moreWork);
 }
 
 /**
@@ -1065,11 +1171,26 @@ function pnlWorksMenuWorker() {
  * @param {string}  workName    Name of the work (for  work detail window)
  * */
 function pnlWorkDetailWorker(id, workName = "") {
+
+    var windowID = "pnlWindowNewWorks";
+    var windowDetailID = "pnlWorkDetail";
+    var workGUID = GetGUID(windowID);
+    var workDetailTitle = workName + " - " + document.getElementById("lblWindowTitle_" + workGUID).innerHTML;
+
+    var application = new Application(new WindowType().Type.Single, workDetailTitle, windowDetailID);
+    application.WindowProperties.WindowSize = new WindowSize("700px", "500px");
+    application.WindowProperties.WindowControlsOption.EnableMinimize = false;
+    application.WindowProperties.CssClass = "w3-block";
+
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    var guid = GetGUID(windowDetailID);
+
     // Set window title
-    document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - " + document.getElementById("lblWindowWorksTitle").innerHTML;
+    //document.getElementById("lblWindowWorkDetailTitle").innerText = workName + " - " + document.getElementById("lblWindowWorksTitle").innerHTML;
 
     // Get work details
-    document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/" + selectedLanguage + "/api/Work/GetWorkDetail/" + id));
+    document.getElementById("pnlContentWindow_" + guid).innerHTML = XHRDownloader(("/" + selectedLanguage + "/api/Work/GetWorkDetail/" + id));
     //document.getElementById("pnlWorkDetailWindow").innerHTML = XHRDownloader(("/api/Work/GetWorkDetail/" + id + "/" + selectedLanguage));
 }
 
@@ -1080,8 +1201,7 @@ function pnlWorkDetailWorker(id, workName = "") {
  * @param {string}  string  Name of the work
  */
 function btnWork_Click(id, workName) {
-    OpenWindow("pnlWindowWorkDetails");
-    GetWindowToFront("pnlWindowWorkDetails");
+    //GetWindowToFront("pnlWindowWorkDetails");
 
     // Get details
     pnlWorkDetailWorker(id, workName);
@@ -1095,11 +1215,19 @@ function btnWork_Click(id, workName) {
 function pnlChangelogMenuWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
+    var application = new Application(new WindowType().Type.Normal, "Changelog", "pnlWindowNewChangelog");
+    application.WindowProperties.WindowSize = new WindowSize("600px", "400px");
+    application.WindowTitleName = "Changelog";
+
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    var guid = GetGUID("pnlWindowNewChangelog");
+
+
     // Get list
     var changelogList = ConvertJSON(XHRDownloader("/api/Changelog/LoadMenu/"));
 
     // Clear old list
-    ClearInnerHTML("pnlChangelogListColumn");
 
     // Create new list (Invert the order of display)
     for (var i = changelogList.length - 1; i >= 0; i--) {
@@ -1120,7 +1248,7 @@ function pnlChangelogMenuWorker() {
         button.innerText = "Version " + changelogList[i].version;
         button.setAttribute("onclick", ("btnChangelog_Click('" + changelogList[i].id + "')"));
 
-        document.getElementById("pnlChangelogListColumn").appendChild(button);
+        document.getElementById("pnlSidebarContentWindow_" + guid).appendChild(button);
     }
 }
 
@@ -1132,7 +1260,9 @@ function pnlChangelogMenuWorker() {
 function btnChangelog_Click(id) {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
-    document.getElementById("pnlChangelogDetails").innerHTML = XHRDownloader("/" + selectedLanguage + "/api/Changelog/LoadData/" + id);
+    var guid = GetGUID("pnlWindowNewChangelog");
+
+    document.getElementById("pnlContentWindow_" + guid).innerHTML = XHRDownloader("/" + selectedLanguage + "/api/Changelog/LoadData/" + id);
 }
 
 // #endregion Changelog
