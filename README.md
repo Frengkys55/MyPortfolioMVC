@@ -48,4 +48,7 @@ application.WindowProperties.WindowControlsOption.EnableMinimize = false; // Dis
 
 ```
 
+### Something you need to know
+This application uses `crypto.randomUUID()` function to generate a unique GUID for each created window. And from what I read on MDN, this function can only be used in a secure environment (HTTPS) or on localhost, so...
+
 That's what I can think right now...
