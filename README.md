@@ -54,5 +54,8 @@ application.WindowProperties.WindowControlsOption.EnableMinimize = false; // Dis
 2. ~~The are some limitations about this project. For now, the new windows (and the older windows) cannot be dragged. I still need to find a solution to safely implement this feature.~~
 
 3. Also for now, all the windows can only be maximized (or restored) and are not resizeable. This is a limitation on my end.
+
+4. I found a bug where the window might not be positioned properly if you have a display that is scalled...
+
 ---
 That's what I can think right now...
