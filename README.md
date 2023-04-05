@@ -1,7 +1,7 @@
 ![Screenshot](https://mvc.frengkysinaga.com/Sources/Images/github.png)
 
 # MyPortfolioMVC
-A simple website portfolio (well, it's a desktop).
+A simple website portfolio (well, it's a desktop) based on Windows (technically Windows 11, but somehow it's looking more like Windows 10).
 
 ## Used Technologies
 1. ASP.NET Core MVC
@@ -51,7 +51,7 @@ application.WindowProperties.WindowControlsOption.EnableMinimize = false; // Dis
 ### Something you need to know
 1. This application uses `crypto.randomUUID()` function to generate a unique GUID for each created window. And from what I read on MDN, this function can only be used in a secure environment (HTTPS) or on localhost, so...
 
-2. The are some limitations about this project. For now, the new windows (and the older windows) cannot be dragged. I still need to find a solution to safely implement this feature.
+~~2. The are some limitations about this project. For now, the new windows (and the older windows) cannot be dragged. I still need to find a solution to safely implement this feature.~~
 
 3. Also for now, all the windows can only be maximized (or restored) and are not resizeable. This is a limitation on my end.
 ---
