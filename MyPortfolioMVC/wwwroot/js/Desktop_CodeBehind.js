@@ -171,7 +171,9 @@ function MaximizeWindow_Click(windowID) {
         // Get the necessary data
         var width = document.getElementById(windowID).style.width;
         var height = document.getElementById(windowID).style.height;
-        var originalClass = "w3-display-middle";
+        var originalClass = document.getElementById(windowID).className;
+        var originalPositionLeft = document.getElementById(windowID).style.left;
+        var originalPositionTop = document.getElementById(windowID).style.top;
 
         if (!document.getElementById(windowID).classList.contains("w3-display-topleft")) {
             // Replace w3-display-middle to w3-display-topleft
@@ -182,10 +184,18 @@ function MaximizeWindow_Click(windowID) {
         document.getElementById(windowID).setAttribute("data-originalheight", height);
         document.getElementById(windowID).setAttribute("data-originalwidth", width);
         document.getElementById(windowID).setAttribute("data-originalclass", originalClass);
-
+        document.getElementById(windowID).setAttribute("data-originalpositionleft", originalPositionLeft);
+        document.getElementById(windowID).setAttribute("data-originalpositiontop", originalPositionTop);
+        
         // Change window width and height
         document.getElementById(windowID).style.width = "100%";
         document.getElementById(windowID).style.height = "100%";
+
+        // Check for a new window type by checking if GetGUID will return null or not
+        if (GetGUID(windowID) != null) {
+            document.getElementById(windowID).style.top = "0px";
+            document.getElementById(windowID).style.left = "0px";
+        }
     }
     else {
 
@@ -193,9 +203,13 @@ function MaximizeWindow_Click(windowID) {
         var width = document.getElementById(windowID).dataset.originalwidth;
         var height = document.getElementById(windowID).dataset.originalheight;
         var originalClass = document.getElementById(windowID).dataset.originalclass;
+        var originalPositionLeft = document.getElementById(windowID).dataset.originalpositionleft;
+        var originalPositionTop = document.getElementById(windowID).dataset.originalpositiontop;
 
         // Restore data
-        document.getElementById(windowID).classList.replace("w3-display-topleft", originalClass);
+        document.getElementById(windowID).className = originalClass;
+        document.getElementById(windowID).style.top = originalPositionTop;
+        document.getElementById(windowID).style.left = originalPositionLeft;
         document.getElementById(windowID).style.width = width;
         document.getElementById(windowID).style.height = height;
 
@@ -203,6 +217,8 @@ function MaximizeWindow_Click(windowID) {
         delete document.getElementById(windowID).dataset.originalwidth;
         delete document.getElementById(windowID).dataset.originalheight;
         delete document.getElementById(windowID).dataset.originalclass;
+        delete document.getElementById(windowID).dataset.originalpositionleft;
+        delete document.getElementById(windowID).dataset.originalpositiontop;
     }
 
     // Adjust window content height
@@ -517,7 +533,7 @@ class WindowClass extends WindowProperties {
         }
 
         // Define class attribute
-        windowContainer.classList.add("w3-display-middle");
+        //windowContainer.classList.add("w3-display-middle");
         windowContainer.classList.add("w3-round");
         windowContainer.classList.add("backdropBlur");
         windowContainer.classList.add("w3-theme-d5");
@@ -525,9 +541,13 @@ class WindowClass extends WindowProperties {
 
         windowContainer.setAttribute("data-guid", guid);
 
+        // Define window position attribute
+        windowContainer.style.position = "absolute";
+        windowContainer.style.left = ((document.documentElement.clientWidth * 0.5) - Number(windowContainer.style.width.replace("px", "")) * 0.5) + "px";
+        windowContainer.style.top = ((document.documentElement.clientHeight * 0.5) - Number(windowContainer.style.width.replace("px", "")) * 0.5) + "px";
+
         // # region Window container
 
-        
         // #region Title bar
 
         // #region Title bar container
@@ -621,6 +641,13 @@ class WindowClass extends WindowProperties {
         }
 
         // #endregion Window button controls
+
+        // Taskbar eventlistener
+        titleBar.addEventListener("mousedown", function (event) {
+            DragWindow(event, windowContainer.id);
+        });
+
+        
 
         // #endregion Title bar content
 
@@ -819,16 +846,106 @@ function GetGUID(windowID) {
 
 /**
  * Manages what should it do when mouse is dragging a window
+ * 
+ * @param {MouseEvent}  e        Mouse event
+ * @param {string}      windowID ID of the window to be dragged
  * */
-function DragWindow_Start(windowID) {
+function DragWindow(e, windowID) {
 
+    // Get window to the front
+    GetWindowToFront(windowID);
+
+    // Get cursor's initial position
+    var initialMouseXPos = e.clientX;
+    var initialMouseYPos = e.clientY;
+
+    var mouseOffsetX = initialMouseXPos - Number(document.getElementById(windowID).style.left.replace("px", ""));
+    var mouseOffsetY = initialMouseYPos - Number(document.getElementById(windowID).style.top.replace("px", ""));
+
+    // Find the offset between the center of the window and the current cursor position
+    // when user presses the mouse
+
+
+    // For some reason I couldn't remove the event listener for "mousemove" if dragWindw_drag is taking more than one parameter
+    /**
+     * The mouse drag main function
+     * 
+     * @param {MouseEvent} event
+     * @param {string}     window_ID
+     * */
+    var dragWindow_mainFunction = function (event, window_ID) {
+        event.preventDefault();
+
+        // Get guid
+        var guid = GetGUID(window_ID);
+
+        // Get cursor position
+        var x = event.clientX;
+        var y = event.clientY;
+
+
+        //document.getElementById(window_ID).style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
+
+        var window = document.getElementById(window_ID);
+        if (x > 0) {
+            window.style.left = (x - mouseOffsetX) + "px";
+        }
+
+        if (y > 0) {
+            window.style.top = (y - mouseOffsetY) + "px";
+        }
+
+        // Update initial cursof position
+        initialMouseXPos = x;
+        initialMouseYPos = y;
+    }
+
+    var dragWindow_drag = function (event) {
+        dragWindow_mainFunction(event, windowID);
+    }
+
+    document.addEventListener("mouseup", function () {
+        document.removeEventListener("mousemove", dragWindow_drag);
+    });
+
+    document.addEventListener("mousemove", dragWindow_drag);
+}
+
+
+/**
+ * Manages what should it do when mouse is dragging a window
+ * 
+ * @param {MouseEvent}  e        Mouse event
+ * @param {string}      windowID ID of the window to be dragged
+ * */
+function DragWindow_Start(e, windowID) {
+
+    var dragWindow_drag = function (e, windowID) {
+        console.log("Cursor position: " + e.clientX + ", " + e.clientY);
+    }
+
+    addEventListener("mousemove", function (event) {
+        dragWindow_drag(event, windowID);
+    });
 }
 
 /**
  * Manages what should happen when mouse is done dragging a window
+ * @param {MouseEvent}  e        Mouse event
+ * @param {string}      windowID ID of the window to be dragged
  * */
-function DragWindow_End(windowID) {
+function DragWindow_End(e, windowID) {
+    console.log("DragWindow_End: " + windowID);
+    removeEventListener()
+}
 
+/**
+ * Manages what should happen when the window is being dragged
+ * @param {MouseEvent}  e        Mouse move event
+ * @param {string}      windowID ID of the window to be dragged
+ * */
+function DragWindow_Drag(e, windowID) {
+    console.log("Cursor position: " + e.clientX + ", " + e.clientY);
 }
 
 // #region First-Time Setup
