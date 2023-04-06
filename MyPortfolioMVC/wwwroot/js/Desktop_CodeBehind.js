@@ -854,19 +854,21 @@ function DragWindow(e, windowID) {
 
     // Get window to the front
     GetWindowToFront(windowID);
+    if (document.getElementById(windowID).style.width == "100%" || document.getElementById(windowID).style.height == "100%")
+    {
+        console.log("Window is maximized");
+        MaximizeWindow_Click(windowID);
+    }
 
     // Get cursor's initial position
     var initialMouseXPos = e.clientX;
     var initialMouseYPos = e.clientY;
 
+    // Find the offset between the center of the window and the current cursor position
+    // when user presses the mouse
     var mouseOffsetX = initialMouseXPos - Number(document.getElementById(windowID).style.left.replace("px", ""));
     var mouseOffsetY = initialMouseYPos - Number(document.getElementById(windowID).style.top.replace("px", ""));
 
-    // Find the offset between the center of the window and the current cursor position
-    // when user presses the mouse
-
-
-    // For some reason I couldn't remove the event listener for "mousemove" if dragWindw_drag is taking more than one parameter
     /**
      * The mouse drag main function
      * 
@@ -883,9 +885,6 @@ function DragWindow(e, windowID) {
         var x = event.clientX;
         var y = event.clientY;
 
-
-        //document.getElementById(window_ID).style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
-
         var window = document.getElementById(window_ID);
         if (x > 0) {
             window.style.left = (x - mouseOffsetX) + "px";
@@ -894,10 +893,6 @@ function DragWindow(e, windowID) {
         if (y > 0) {
             window.style.top = (y - mouseOffsetY) + "px";
         }
-
-        // Update initial cursof position
-        initialMouseXPos = x;
-        initialMouseYPos = y;
     }
 
     var dragWindow_drag = function (event) {
@@ -909,24 +904,6 @@ function DragWindow(e, windowID) {
     });
 
     document.addEventListener("mousemove", dragWindow_drag);
-}
-
-
-/**
- * Manages what should it do when mouse is dragging a window
- * 
- * @param {MouseEvent}  e        Mouse event
- * @param {string}      windowID ID of the window to be dragged
- * */
-function DragWindow_Start(e, windowID) {
-
-    var dragWindow_drag = function (e, windowID) {
-        console.log("Cursor position: " + e.clientX + ", " + e.clientY);
-    }
-
-    addEventListener("mousemove", function (event) {
-        dragWindow_drag(event, windowID);
-    });
 }
 
 /**
