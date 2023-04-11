@@ -18,21 +18,46 @@ A simple website portfolio (well, it's a desktop) based on Windows (technically 
 
 ## How to Use The `Application` Class to create a new window
 
-1. Define a new `Application` object like this
+Here is an example of how to create a new window using the new class
 
 ```JavaScript
-var application = new Application(new WindowType().Type.Normal, "Your window name", "yourWindowId");
+var application = new Application(new WindowType().Type.Normal, "Changelog", "pnlWindowNewChangelog");
+application.WindowProperties.WindowSize = new WindowSize("600px", "400px");
+document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
 ```
-if you want to create a new window with sidebar. If you want to create a new window without the sidebar, replace `Normal` with `Single`.
 
-2. Adjust the window resolution. By default, when you create a new `Application` object, it will set the resolution to `500x500`. To change the resolution, do it like this
+### What happened there?
+
 ```JavaScript
-application.WindowProperties.WindowSize = new WindowSize("800px", "600px");
+var application = new Application(new WindowType().Type.Normal, "Changelog", "pnlWindowNewChangelog");
 ```
-3. You are now ready. To use the new window, just call the `application.Render()`
+What this line do is to define a new `Application` object for you to use. Now what each parameter does?
+1. `new WindowType().Type.Normal`
+   
+   This define what type of window you want to create. If you want to create a window without sidebar, replace `.Normal` with `.Single`.
 
-### Use the newly created window
-1. When you create a new window, it will generate a ranrom GUID. You need to need to read the GUID
+2. `Changelog`
+
+   This part, is for the title of your window. Replace it with your own name.
+   
+3. `pnlWindowNewChangelog`
+
+   This will be your created window ID. Make sure the ID is unique or it might not work properly.
+
+Next is about this line
+```JavaScript
+application.WindowProperties.WindowSize = new WindowSize("600px", "400px");
+```
+What this line do is set the width and height of your window (it takes two parameters and both of them are string objects). If you decide to not use this line, your window will use `500px by 500px` by default.
+
+Now, the last line
+```JavaScript
+document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+```
+What this does is first call the `application.Render()` method. This method will return `HTMLDivElement`, which you then append to an element that has the ID of `pnlDesktopWorkArea`.
+
+### Access your newly created window
+1. When you create a new window, it will generate a ranrom GUID. If you want to use your newly created window, you have to read the GUID of your window.
 ```JavaScript
 var guid = GetGUID(yourWindowId);
 ```
