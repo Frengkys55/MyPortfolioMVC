@@ -647,7 +647,9 @@ class WindowClass extends WindowProperties {
             DragWindow(event, windowContainer.id);
         });
 
-        
+        titleBar.addEventListener("touchstart", function (event) {
+            TouchDragWindow(event, windowContainer.id);
+        });
 
         // #endregion Title bar content
 
@@ -661,8 +663,6 @@ class WindowClass extends WindowProperties {
         contentContainer.style.height = "calc( 100% - 34px )";
         contentContainer.style.borderRadius = "0px 0px 4px 4px";
         windowContainer.appendChild(contentContainer);
-
-        
 
         // #endregion Content container
 
@@ -854,7 +854,6 @@ function DragWindow(e, windowID) {
 
     // Get window to the front
     GetWindowToFront(windowID);
-    
 
     // Get cursor's initial position
     var initialMouseXPos = e.clientX;
@@ -906,6 +905,64 @@ function DragWindow(e, windowID) {
 
     document.addEventListener("mousemove", dragWindow_drag);
 }
+
+/**
+ * Manages what should it do when a touch is dragging a window (an exact replica from DragWindow for mouse touch event)
+ * 
+ * @param {TouchEvent}  e           Touch event
+ * @param {string}      windowID    ID of the window to be dragged
+ * */
+function TouchDragWindow(e, windowID) {
+
+    GetWindowToFront(windowID);
+
+    // Get "first" touch position
+    var initialTouchXPos = e.touches[0].clientX;
+    var initialTouchYPos = e.touches[0].clientY;
+
+    // Get touch offset from current window position
+    var touchOffsetX = initialTouchXPos - Number(document.getElementById(windowID).style.left.replace("px", ""));
+    var touchOffsetY = initialTouchYPos - Number(document.getElementById(windowID).style.top.replace("px", ""));
+
+    /**
+     * The mouse drag main function
+     * 
+     * @param {TouchEvent} event        Pass the mouse event to this function
+     * @param {string}     window_ID    ID of the window to apply the mouse event to
+     * */
+    var touchDragWindow_mainFunction = function (event, window_ID) {
+        event.preventDefault();
+
+        if (document.getElementById(windowID).style.width == "100%" || document.getElementById(windowID).style.height == "100%") {
+            MaximizeWindow_Click(windowID);
+        }
+
+        // Get cursor position
+        var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+
+        var window = document.getElementById(window_ID);
+        if (x > 0) {
+            window.style.left = (x - touchOffsetX) + "px";
+        }
+
+        if (y > 0) {
+            window.style.top = (y - touchOffsetY) + "px";
+        }
+    }
+
+    var touchDragWindow_drag = function (event) {
+        touchDragWindow_mainFunction(event, windowID);
+    }
+
+    document.addEventListener("touchend", function () {
+        document.removeEventListener("touchmove", touchDragWindow_drag);
+    });
+
+    document.addEventListener("touchmove", touchDragWindow_drag);
+}
+
+
 
 // #region First-Time Setup
 
