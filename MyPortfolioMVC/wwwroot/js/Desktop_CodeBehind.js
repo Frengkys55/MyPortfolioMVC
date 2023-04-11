@@ -854,11 +854,7 @@ function DragWindow(e, windowID) {
 
     // Get window to the front
     GetWindowToFront(windowID);
-    if (document.getElementById(windowID).style.width == "100%" || document.getElementById(windowID).style.height == "100%")
-    {
-        console.log("Window is maximized");
-        MaximizeWindow_Click(windowID);
-    }
+    
 
     // Get cursor's initial position
     var initialMouseXPos = e.clientX;
@@ -872,11 +868,16 @@ function DragWindow(e, windowID) {
     /**
      * The mouse drag main function
      * 
-     * @param {MouseEvent} event
-     * @param {string}     window_ID
+     * @param {MouseEvent} event        Pass the mouse event to this function
+     * @param {string}     window_ID    ID of the window to apply the mouse event to
      * */
     var dragWindow_mainFunction = function (event, window_ID) {
         event.preventDefault();
+
+        if (document.getElementById(windowID).style.width == "100%" || document.getElementById(windowID).style.height == "100%") {
+            console.log("Window is maximized");
+            MaximizeWindow_Click(windowID);
+        }
 
         // Get guid
         var guid = GetGUID(window_ID);
@@ -906,25 +907,6 @@ function DragWindow(e, windowID) {
     document.addEventListener("mousemove", dragWindow_drag);
 }
 
-/**
- * Manages what should happen when mouse is done dragging a window
- * @param {MouseEvent}  e        Mouse event
- * @param {string}      windowID ID of the window to be dragged
- * */
-function DragWindow_End(e, windowID) {
-    console.log("DragWindow_End: " + windowID);
-    removeEventListener()
-}
-
-/**
- * Manages what should happen when the window is being dragged
- * @param {MouseEvent}  e        Mouse move event
- * @param {string}      windowID ID of the window to be dragged
- * */
-function DragWindow_Drag(e, windowID) {
-    console.log("Cursor position: " + e.clientX + ", " + e.clientY);
-}
-
 // #region First-Time Setup
 
 /**
@@ -933,8 +915,15 @@ function DragWindow_Drag(e, windowID) {
 function pnlWindowFirstTimeSetupWorker() {
     if (selectedLanguage == "" || selectedLanguage == null) return; // Prevent execution if selected language not set
 
+    var application = new Application(new WindowType().Type.Single, "Welcome", "pnlWindowNewFirstTimeSetup");
+    application.WindowProperties.WindowSize = new WindowSize("400px", "300px");
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    // Get guid of the newly created window
+    var guid = GetGUID("pnlWindowNewFirstTimeSetup");
+
     // Clear panel
-    document.getElementById("pnlIntroduction").innerHTML = XHRDownloader("/" + selectedLanguage + "/Welcome/LoadData");
+    document.getElementById("pnlContentWindow_" + guid).innerHTML = XHRDownloader("/" + selectedLanguage + "/Welcome/LoadData");
 }
 // #endregion First-Time Setup
 
@@ -1311,7 +1300,6 @@ function pnlChangelogMenuWorker() {
 
     var application = new Application(new WindowType().Type.Normal, "Changelog", "pnlWindowNewChangelog");
     application.WindowProperties.WindowSize = new WindowSize("600px", "400px");
-    application.WindowTitleName = "Changelog";
 
     document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
 
