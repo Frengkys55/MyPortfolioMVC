@@ -1536,7 +1536,7 @@ function Page_Load() {
     // Add custom icon for the welcome window
     var welcomeButtonIcon = document.createElement("button");
     welcomeButtonIcon.type = "button";
-    welcomeButtonIcon.id = "btnTaskbar_pnlWindowFirstTimeSetup";
+    welcomeButtonIcon.id = "btnTaskbar_pnlWindowNewFirstTimeSetup";
     welcomeButtonIcon.classList.add("w3-bar-item");
     welcomeButtonIcon.classList.add("w3-button");
     welcomeButtonIcon.classList.add("w3-transparent");
@@ -1545,7 +1545,7 @@ function Page_Load() {
     welcomeButtonIcon.classList.add("profilePictureCover");
     welcomeButtonIcon.classList.add("w3-ripple");
     welcomeButtonIcon.style.height = "34px";
-    welcomeButtonIcon.setAttribute("onclick", ("TaskbarItem_CLick('pnlWindowFirstTimeSetup')"));
+    welcomeButtonIcon.setAttribute("onclick", ("TaskbarItem_CLick('pnlWindowNewFirstTimeSetup')"));
 
     document.getElementById("pnlTaskbarItemGroup").appendChild(welcomeButtonIcon);
 
