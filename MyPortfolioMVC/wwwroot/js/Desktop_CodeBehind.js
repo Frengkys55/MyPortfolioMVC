@@ -962,7 +962,129 @@ function TouchDragWindow(e, windowID) {
     document.addEventListener("touchmove", touchDragWindow_drag);
 }
 
+// #region About Me
 
+function pnlAboutMeWorker() {
+
+    // Download window information
+    var windowData = ConvertJSON(XHRDownloader("/api/AboutMe/GetContent/" + selectedLanguage));
+
+    console.log(windowData);
+
+    // Create window
+    var application = new Application(new WindowType().Type.Single, windowData["windowTitle"], "pnlWindowNewAboutMe");
+    application.WindowProperties.WindowControlsOption.EnableMaximize = false;
+    application.WindowProperties.WindowControlsOption.EnableMinimize = false;
+    application.WindowProperties.WindowSize = new WindowSize("500px", "434px");
+
+    document.getElementById("pnlDesktopWorkArea").appendChild(application.Render());
+
+    var guid = GetGUID("pnlWindowNewAboutMe");
+
+    // Build window content
+
+    // Header container
+    var headerContainer = document.createElement("header");
+    headerContainer.classList.add("w3-bar");
+    headerContainer.classList.add("w3-block");
+    headerContainer.classList.add("w3-container");
+    headerContainer.classList.add("w3-margin-top");
+    headerContainer.style.padding = "0px 0px 0px 0px";
+
+    // Header icon
+    var headerIcon = document.createElement("div");
+    headerIcon.id = "pnlAboutMePicture";
+    headerIcon.classList.add("w3-bar-item");
+    headerIcon.classList.add("w3-center");
+    headerIcon.classList.add("desktopBackgroundImage");
+    headerIcon.classList.add("w3-hide-small");
+    headerIcon.style.width = "80px";
+    headerIcon.style.height = "80px";
+    headerIcon.style.backgroundImage = "url('" + windowData["headerIcon"] + "')";
+
+    headerContainer.appendChild(headerIcon);
+
+    // Header text
+    var headerTitle = document.createElement("span");
+    headerTitle.classList.add("w3-bar-item");
+    headerTitle.innerText = windowData["headerTitle"];
+    headerTitle.style.fontSize = "40px";
+
+    headerContainer.appendChild(headerTitle);
+
+    document.getElementById("pnlContentWindow_" + guid).appendChild(headerContainer);
+
+    // Information detail container
+    var detailContainer = document.createElement("div");
+    detailContainer.classList.add("w3-margin-top");
+
+    document.getElementById("pnlContentWindow_" + guid).appendChild(detailContainer);
+
+    // Occupation
+    var detailOccpation = document.createElement("div");
+    detailOccpation.innerHTML = "<i class=\"la la-briefcase\"></i> " + windowData["occupationValue"];
+    detailContainer.appendChild(detailOccpation);
+
+    // Address
+    var detailAddress = document.createElement("div");
+    detailAddress.innerHTML = "<i class=\"la la-home\"></i> " + windowData["addressValue"];
+    detailContainer.appendChild(detailAddress);
+
+    // Email
+    var detailEmail = document.createElement("div");
+    detailEmail.innerHTML = "<i class=\"la la-envelope\"></i> " + windowData["emailValue"];
+    detailContainer.appendChild(detailEmail);
+
+    // Load skills
+    var skills = ConvertJSON(XHRDownloader("/api/AboutMe/GetSkills"));
+    console.log(skills);
+
+    // Skill header title container
+    var skillHeaderTitleContainer = document.createElement("div");
+    skillHeaderTitleContainer.innerHTML = "<p>" + windowData["skillTitle"] + "</p>";
+
+    detailContainer.appendChild(skillHeaderTitleContainer);
+
+    // Skills container
+    var skillContainer = document.createElement("div");
+    skillContainer.classList.add("w3-row");
+    skillContainer.style.overflowY = "scroll";
+    skillContainer.style.height = "175px";
+
+    document.getElementById("pnlContentWindow_" + guid).appendChild(skillContainer);
+
+    // Create skill items
+    for (var i = 0; i < skills.length; i++) {
+        // Skill item container
+        var skillItemContainer = document.createElement("div");
+        skillItemContainer.classList.add("w3-third");
+        skillItemContainer.classList.add("w3-padding-small");
+
+        // Skill display container
+        var skillDisplayContainer = document.createElement("div");
+        skillDisplayContainer.classList.add("w3-display-container");
+        skillDisplayContainer.classList.add("w3-block");
+        skillDisplayContainer.classList.add("w3-round");
+        skillDisplayContainer.classList.add("w3-border");
+        skillDisplayContainer.style.height = "70px";
+
+        skillItemContainer.appendChild(skillDisplayContainer);
+
+        // Skill item
+        var skillItem = document.createElement("span");
+        skillItem.classList.add("w3-display-middle");
+        skillItem.classList.add("w3-center");
+        skillItem.innerText = skills[i].name;
+        skillDisplayContainer.appendChild(skillItem);
+
+        skillContainer.appendChild(skillItemContainer);
+    }
+
+    // Hide window scroll element
+    document.getElementById("pnlContentWindow_" + guid).style.overflowY = "hidden";
+} 
+
+// #endregion About Me
 
 // #region First-Time Setup
 

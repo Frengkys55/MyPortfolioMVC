@@ -2,8 +2,10 @@
   "LanguageName": "Bahasa Indonesia",
   "LanguageID": "ID",
   "WindowTitle": "Tentang Saya",
-  "HeaderName": "Frengky Sinaga",
+  "HeaderTitle": "Frengky Sinaga",
+  "HeaderIcon": "/Sources/Images/Logo.jpg",
   "OccupationValue": "Backend Developer (sedikit Frontend)",
   "AddressValue": "Jayapura, Papua",
-  "EmailValue": "frengkys5@gmail.com"
+  "EmailValue": "frengkys5@gmail.com",
+  "SkillTitle": "Teknologi Digunakan"
 }

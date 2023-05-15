@@ -188,7 +188,7 @@
                                     <p>@ViewBag.pnlStartMenu_Item_Header_P</p>
                                 </header>
                                 <div id="pnlMenuAboutMe" class="w3-col s3">
-                                    <button id="pnlMenuItemAboutMeDisplayContainer" data-window="pnlWindowAboutMe" class="w3-display-container w3-button w3-transparent w3-block w3-hover-dark-grey w3-round w3-ripple" style="height:100px" onclick="pnlMenuItem_Click('', 'pnlWindowAboutMe', 'la-user', true, null)">
+                                    <button id="pnlMenuItemAboutMeDisplayContainer" data-window="pnlWindowAboutMe" class="w3-display-container w3-button w3-transparent w3-block w3-hover-dark-grey w3-round w3-ripple" style="height:100px" onclick="pnlMenuItem2_Click('', 'pnlWindowNewAboutMe', 'la-user', true, pnlAboutMeWorker())">
                                         <span class="material-symbols-sharp w3-xxxlarge" style="margin-bottom:16px">person</span>
                                         <p class="w3-display-bottomleft w3-block textOverflow">@ViewBag.pnlStartMenu_Item_pnlMenuAboutMe</p>
                                     </button>
@@ -362,94 +362,6 @@
                                                 <div class="w3-row">
                                                 <div class="w3-col s5">@ViewBag.pnlSettingsAboutColumn_BrowserType</div>
                                                     <div class="w3-rest w3-text-grey">@ViewBag.browserType</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="pnlWindowAboutMe" class="w3-display-topleft backdropBlur w3-theme-d5 w3-round" style="z-index: 0; /*width:500px; */display:none;">
-                        <header class="w3-bar w3-theme-d5" style="border-radius: 4px 4px 0px 0px">
-                            <label id="lblWindowAboutMeTitle" class="w3-bar-item blockTextSelection" Text="About Me">@ViewBag.pnlWindowAboutMe_Title</label>
-                            <div id="pnlControlGroupWindowAboutMe" class="w3-right">
-                                <button id="btnWindowAboutMeMinimize" class="w3-bar-item w3-button w3-transparent w3-hover-dark-grey w3-ripple" onclick="MinimizeWindow_Click('pnlWindowAboutMe')" style="display:none;">
-                                    <span class="material-symbols-sharp w3-small">minimize</span>
-                                </button>
-                                <button id="btnWindowAboutMeClose" class="w3-bar-item w3-button w3-transparent w3-hover-red w3-ripple" onclick="CloseWindow_Click('pnlWindowAboutMe')">
-                                    <span class="material-symbols-sharp w3-small">close</span>
-                                </button>
-                            </div>
-                        </header>
-                        <div id="pnlAboutMeWindow" class="w3-margin-top" style="border-radius: 0px 0px 4px 4px; /*width:500px;*/">
-                            <div class="w3-bar w3-block w3-container" style="padding: 0px 0px 16px 0px">
-                                <div class="w3-container">
-                                    <div id="pnlAboutMePicture" class="w3-bar-item w3-center profilePicture desktopBackgroundImage w3-hide-small" style="width:80px; height:80px;"></div>
-                                    <label id="lblAboutMeName" class="w3-bar-item" style="font-size:40px;">Frengky Sinaga</label>
-                                </div>
-                            </div>
-                            <div class="w3-container">
-                                <div><i class="la la-briefcase"></i> @ViewBag.pnlWindowAboutMe_JobQualification_Value</div>
-                                <div><i class="la la-home"></i> @ViewBag.pnlWindowAboutMe_Address_Value</div>
-                                <div><i class="la la-envelope"></i> @ViewBag.pnlWindowAboutMe_Email_Value</div>
-                            </div>
-                            <div id="pnlAboutMe_UsedTechnologies_Container" class="">
-                                <header class="w3-container">
-                                    <p>@ViewBag.pnlWindowAboutMe_UsedTechnologies_Header</p>
-                                </header>
-                                <div class="w3-row w3-margin-bottom">
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    ASP.NET WebForm
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    ASP.NET MVC
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    C#
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    W3.CSS
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    JavaScript
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <div class="w3-padding">
-                                            <div class="w3-display-container w3-block  w3-round w3-border " style="height: 70px;">
-                                                <div class="w3-display-middle w3-center">
-                                                    HTML
                                                 </div>
                                             </div>
                                         </div>

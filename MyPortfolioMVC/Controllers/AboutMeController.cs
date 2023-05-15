@@ -72,7 +72,7 @@ namespace MyPortfolioMVC.Controllers
                 AboutMeContentModel noContent = new AboutMeContentModel
                 {
                     WindowTitle = "No contents was found",
-                    HeaderName = "No contents was found"
+                    HeaderTitle = "No contents was found"
                 };
                 return noContent;
             }
