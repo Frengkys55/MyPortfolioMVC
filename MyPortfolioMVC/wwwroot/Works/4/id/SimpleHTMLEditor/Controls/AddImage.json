@@ -1,0 +1,17 @@
+{
+  "Name": "Insert Image",
+  "IconType": "Glyph",
+  "IconData": "la la-image",
+  "Description": "Add image to content",
+  "Fields": [
+    "URL",
+    "Description",
+    "Position (Left/Right)"
+  ],
+  "Attribute": [
+
+  ],
+  "HTML": [
+    "<img src=\"{arg0}\" class=\"w3-image w3-margin-top\" style=\"width: {arg2}; height: {arg3}; float:{arg2}; width:300px;\" alt=\"{arg1}\" />"
+  ]
+}

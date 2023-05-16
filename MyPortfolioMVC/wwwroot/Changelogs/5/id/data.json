@@ -1,0 +1,17 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Tanggal install: 15 Maret 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]Apa yang Baru[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Pemindahan [code class=\"w3-tag w3-round w3-dark-grey\"]script[/code] desktop ke file tersendiri[/li]",
+    "Custom|    [li]Penyederhanaan kode untuk menu item start dari yang sebelumnya satu fungsi untuk setiap tombol menjadi satu fungsi universal[/li]",
+    "Custom|    [li]Membuat dokumentasi untuk kode JavaScript terkait apa yang dilakukan setiap fungsi[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

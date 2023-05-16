@@ -68,9 +68,9 @@
   "pnlSettingsAboutColumn_DesignedOn": "Didesain Pada",
   "pnlSettingsAboutColumn_CssFramework": "Framework CSS",
 
-  "pnlSettingsAboutColumn_DesignInspiration_Value": "Windows 11",
-  "pnlSettingsAboutColumn_Version_Value": "2.1",
-  "pnlSettingsAboutColumn_InstalledOn_Value": "05-01-2023",
+  "pnlSettingsAboutColumn_DesignInspiration_Value": "Windows",
+  "pnlSettingsAboutColumn_Version_Value": "2.4",
+  "pnlSettingsAboutColumn_InstalledOn_Value": "22 Maret 2023",
   "pnlSettingsAboutColumn_CreatedUsing_Value": "ASP.NET Core MVC",
   "pnlSettingsAboutColumn_DotNetFrameworkVersion_Value": ".NET Core 7",
   "pnlSettingsAboutColumn_DesignedOn_Value": "Lenovo IdeaPad D330",

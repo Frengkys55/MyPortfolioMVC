@@ -1,0 +1,18 @@
+{
+  "Header": "Educations",
+  "Data": [
+	"Custom|[div style=\"max-width:600px\"]\n",
+    "Header|Resume > Educations",
+	"Custom|[ul class=\"w3-ul\"]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large\"][b]Information Technology - S1[/b][/div]\n",
+	"Custom|		[div]University of Sicence and Technology Jayapura[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large\"][b]Computer and Network Engineering[/b][/div]\n",
+	"Custom|		[div]SMK N 3 Jayapura[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|[/ul]\n",
+	"Custom|[/div]\n"
+  ]
+}

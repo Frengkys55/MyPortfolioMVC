@@ -1,0 +1,23 @@
+{
+  "Name": "Insert Code",
+  "IconType": "Glyph",
+  "IconData": "la la-list",
+  "Description": "Add new code",
+  "Fields": [
+    "Code Title",
+    "Code"
+  ],
+  "Attribute": [
+
+  ],
+  "HTML": [
+    "<div class=\"w3-card w3-margin-top w3-leftbar w3-border-grey w3-padding w3-round\">",
+    "    <header contenteditable=\"true\">",
+    "        <i>{arg0}</i>",
+    "    </header>",
+    "    <pre contenteditable=\"true\">",
+    "        {arg1}",
+    "    </pre>",
+    "</div>"
+  ]
+}

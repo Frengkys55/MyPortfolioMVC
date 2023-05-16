@@ -1,0 +1,32 @@
+{
+  "Header": "Personal Project",
+  "Data": [
+    "Custom|[div style=\"max-width:700px\"]\n",
+    "Header|Resume > Personal Projects",
+	"Custom|[ul class=\"w3-ul\"]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large\"][b]Media Player[/b][/div]\n",
+	"Custom|		[div][a href=\"https://mediaplayer.frengkysinaga.com/ \" target=\"_blank\" style=\"text-decoration:none;\" title=\"Click to visit\"]https://mediaplayer.frengkysinaga.com/ [i class=\"la la-external-link-alt\"][/i][/a][/div]\n",
+	"Custom|		[div style=\"margin-top:8px;\"]",
+	"Custom|			[div class=\"w3-container w3-dark-grey w3-cell w3-cell-middle\"]2019[/div]",
+	"Custom|			[div class=\"w3-container w3-cell\"][span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]ASP.NET WebForm[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]C#[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]Windows Console Application[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]SQL Server[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]FFMPEG[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]NReco[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]JavaScript[/span]&nbsp[span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]W3.CSS[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]HTML[/span][/div]",
+	"Custom|		[/div]",
+	"Custom|		[div style=\"margin-top:8px;\"]\n",
+	"Custom|			[div]Web application that can play many video formats, such as MP4 that can be played by browsers and MKV that can't.[/div]\n",
+	"Custom|		[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|	[li]\n",
+	"Custom|		[div class=\"w3-large w3-text-blue\"][b]this[/b][/div]\n",
+	"Custom|		[div][a href=\"#\" target=\"_blank\" style=\"text-decoration:none;\" title=\"It's this website...\"]https://frengkysinaga.com/ [i class=\"la la-external-link-alt\"][/i][/a][/div]\n",
+	"Custom|		[div style=\"margin-top:8px;\"]",
+	"Custom|			[div class=\"w3-container w3-dark-grey w3-cell w3-cell-middle\"]2022[/div]",
+	"Custom|			[div class=\"w3-container w3-cell\"][span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]ASP.NET MVC[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]C#[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"].NET Core 7[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]JavaScript[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]W3.CSS[/span] [span class=\"w3-tiny w3-round w3-dark-grey w3-tag\" style=\"padding:0px 8px 0px 8px\"]HTML[/span][/div]",
+	"Custom|		[/div]",
+	"Custom|		[div style=\"margin-top:8px;\"]\n",
+	"Custom|			[div]A web application that was built to display my works and my capabilities[/div]\n",
+	"Custom|		[/div]\n",
+	"Custom|	[/li]\n",
+	"Custom|[/ul]\n",
+	"Custom|[/div]\n"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Update date: March 22nd, 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]What's new[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Added mobile support to the website[/li]",
+    "Custom|    [li]Implemented a new window engine (for now, only the Resume window uses this feature)[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

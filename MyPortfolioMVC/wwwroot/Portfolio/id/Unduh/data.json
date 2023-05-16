@@ -4,7 +4,7 @@
 	"Custom|[div style=\"max-width:600px\"]\n",
     "Header|Resume > Unduh",
 	"Paragraf|Unduh versi yang dapat dicetak",
-	"Custom|[a href=\"/Portfolio/id/Unduh/Resume.pdf\" class=\"w3-button w3-padding w3-transparent w3-hover-daryk-grey w3-round w3-border w3-border-white\"][i class=\"la la-download\"][/i] Unduh[/a]",
+	"Custom|[a href=\"/Portfolio/id/Unduh/ResumeID.pdf\" class=\"w3-button w3-padding w3-transparent w3-hover-daryk-grey w3-round w3-border w3-border-white\" target=\"_blank\"][i class=\"la la-download\"][/i] Unduh[/a]",
 	"Custom|[/div]"
   ]
 }

@@ -8,6 +8,8 @@
 	"Paragraf|Daftar ini dibuat dengan membaca folder didalam folder yang ditentukan. Contoh, jika dalam folder yang ditentukan ada ditemukan folder dengan nama \"Skill\", maka aplikasi akan menambahkan nama folder tersebut kedalam list daftar menu samping.",
 	"Header|Isi Konten",
 	"Paragraf|Daftar ini juga dibuat secara dinamis dengan cara membaca file berekstensi \"json\" yang terdapat didalam folder dari daftar menu samping yang dipilih. Contoh, jika pengguna menekan tombol \"Skill\", maka aplikasi akan membaca file \"json\" didalam folder dengan nama dipilih dan menampilkan isi konten yang dibaca.",
+	"Paragraf|Sederhananya seperti ini...",
+	"Gambar|/Portfolio/id/Tentang/1.png|Struktur folder untuk jendela",
 	"Custom|[/div]"
   ]
 }

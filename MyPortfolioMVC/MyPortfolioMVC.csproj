@@ -242,4 +242,15 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\Works\" />
+    <Folder Include="Classes\Welcome\" />
+    <Folder Include="Classes\Settings\" />
+    <Folder Include="Classes\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Portfolio\id\Unduh\Resume.pdf" />
+  </ItemGroup>
+
 </Project>
