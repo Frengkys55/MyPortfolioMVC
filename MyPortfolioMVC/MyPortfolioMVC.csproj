@@ -242,11 +242,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\Works\" />
-    <Folder Include="Classes\Welcome\" />
-    <Folder Include="Classes\Settings\" />
-    <Folder Include="Classes\Services\" />
-  </ItemGroup>
-
 </Project>
