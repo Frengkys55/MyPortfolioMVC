@@ -538,6 +538,7 @@ class WindowClass extends WindowProperties {
         windowContainer.classList.add("backdropBlur");
         windowContainer.classList.add("w3-theme-d5");
         windowContainer.classList.add("w3-mobile");
+        windowContainer.classList.add("w3-card");
 
         windowContainer.setAttribute("data-guid", guid);
 
@@ -632,7 +633,7 @@ class WindowClass extends WindowProperties {
                 close.classList.add("w3-button");
                 close.classList.add("w3-bar-item");
                 close.classList.add("w3-transparent");
-                close.classList.add("w3-hover-dark-grey");
+                close.classList.add("w3-hover-red");
                 close.innerHTML = "<span class=\"material-symbols-sharp w3-small\">close</span>";
                 close.classList.add("w3-ripple");
                 close.addEventListener("click", function (event) { CloseWindow_Click(windowContainer.id, true); });
@@ -1082,6 +1083,8 @@ function pnlAboutMeWorker() {
 
     // Hide window scroll element
     document.getElementById("pnlContentWindow_" + guid).style.overflowY = "hidden";
+    document.getElementById("pnlWindowNewAboutMe").style.left = "0px";
+    document.getElementById("pnlWindowNewAboutMe").style.top = "0px";
 } 
 
 // #endregion About Me
@@ -1183,6 +1186,17 @@ function SetWallpaperInformation(wallpaper) {
 
 /** Function that handles things for the "Settings" window */
 function SettingsWorker() {
+
+    if (document.getElementById("pnlWindowSettings").dataset.guid == null) {
+        // Addapt the window to mimic the new window
+        document.getElementById("pnlWindowSettings").setAttribute("data-guid", crypto.randomUUID());
+        document.getElementById("pnlTitleBarContainer_SettingsHeader").id = "pnlTitleBarContainer_" + GetGUID("pnlWindowSettings");
+
+        document.getElementById("pnlTitleBarContainer_" + GetGUID("pnlWindowSettings")).addEventListener("mousedown", function (event) {
+            DragWindow(event, "pnlWindowSettings");
+        });
+    }
+
     SettingsWallpaperWorker();
 }
 

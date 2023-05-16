@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using MyPortfolioMVC.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 
@@ -42,8 +43,16 @@ namespace MyPortfolioMVC.Classes
             {
                 throw;
             }
+
+            // Reorder skills
+            SkillSetModel[] orderedSkills = new SkillSetModel[skillSets.Count];
+            for (int i = 0; i < skillSets.Count; i++)
+            {
+                orderedSkills[skillSets[i].DisplayOrder] = skillSets[i];
+                orderedSkills[skillSets[i].DisplayOrder].DisplayOrder = 0;
+            }
             
-            return skillSets;
+            return new Collection<SkillSetModel>(orderedSkills);
         }
 
         /// <summary>
