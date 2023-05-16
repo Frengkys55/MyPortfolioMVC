@@ -1,0 +1,16 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Tanggal install: 02 Maret 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]Apa yang Baru[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Perbaikan panel Karya untuk dapat menampilkan konten dari bahasa dipilih dari sebelumnya hanya dapat menampilkan bahasa Indonesia[/li]",
+    "Custom|    [li]Melengkapi dokumentasi untuk [code class=\"w3-tag w3-dark-grey w3-round\"]API Controller[/code][/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

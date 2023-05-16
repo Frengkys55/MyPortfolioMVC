@@ -1,0 +1,17 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Tanggal install: 05 April 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]Apa yang Baru[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Implementasi ulang jendela Tentang Saya untuk menggunakan jenis jendela baru.[/li]",
+    "Custom|    [li]Mengadaptasi jendela Pengaturan untuk meniru jendela yang dibuat menggunakan jenis jendela baru.[/li]",
+    "Custom|    [li]Memindahkan beberapa model dan class pemuat kedalam folder tersendiri.[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

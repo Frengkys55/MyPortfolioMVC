@@ -1,0 +1,15 @@
+{
+  "Header": "About",
+  "Data": [
+    "Custom|[div style=\"max-width:600px\"]\n",
+    "Header|About",
+	"Paragraf|All the content for this window is created dynamically.",
+	"Header|Menu List",
+	"Paragraf|This menu list is created by reading folder names from a directory. For example, if inside the directory there is a folder named \"Skill\", then the application will add that folder name as a menu item for the window.",
+	"Header|Menu Content",
+	"Paragraf|This list is also created automatically by reading a JSON file inside the selected menu and displaying it as HTML content.",
+	"Paragraf|Basically like this...",
+	"Gambar|/Portfolio/en/About/1.png|Folder stucture for the window",
+	"Custom|[/div]"
+  ]
+}

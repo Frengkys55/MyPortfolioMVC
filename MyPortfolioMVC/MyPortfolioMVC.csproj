@@ -249,4 +249,8 @@
     <Folder Include="Classes\Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Portfolio\id\Unduh\Resume.pdf" />
+  </ItemGroup>
+
 </Project>

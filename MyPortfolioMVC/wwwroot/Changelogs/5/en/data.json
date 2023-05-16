@@ -1,0 +1,17 @@
+{
+  "Data": [
+	"Custom|[div class=\"w3-bottom w3-margin-bottom\"]\n",
+	"Custom|	[div class=\"w3-row w3-container w3-padding w3-leftbar w3-border-white\"]\n",
+	"Custom|		Install date: March, 14th 2023[/div]\n",
+	"Custom|	[/div]\n",
+	"Custom|[/div]\n",
+    "Custom|[div style=\"max-width:600px\"]\n",
+	"Custom|[h3 class=\"w3-wide\"]What's new[/h3]",
+	"Custom|[ul class=\"w3-ul\"]",
+    "Custom|    [li]Move desktop's [code class=\"w3-tag w3-round w3-dark-grey\"]script[/code] to a separate file[/li]",
+    "Custom|    [li]Simplifying the code for the start menu item from having an individual function for each button to only having one universal function.[/li]",
+    "Custom|    [li]Writing a documentation comment for each JavaScript function about what each function is doing[/li]",
+	"Custom|[/ul]",
+    "Custom|[/div]\n"
+  ]
+}

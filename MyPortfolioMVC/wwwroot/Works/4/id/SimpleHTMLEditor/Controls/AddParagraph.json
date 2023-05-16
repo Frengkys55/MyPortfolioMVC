@@ -1,0 +1,15 @@
+{
+  "Name": "Add Paragraph",
+  "IconType": "Glyph",
+  "IconData": "la la-file-alt",
+  "Description": "Add new paragraph",
+  "Fields": [
+    "Text"
+  ],
+  "Attribute": [
+
+  ],
+  "HTML": [
+    "<p contenteditable=\"true\">{arg0}</p>"
+  ]
+}

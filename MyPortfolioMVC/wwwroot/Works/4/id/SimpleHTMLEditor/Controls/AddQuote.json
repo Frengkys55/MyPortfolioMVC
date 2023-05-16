@@ -1,0 +1,23 @@
+{
+  "Name": "Add Quote",
+  "IconType": "Glyph",
+  "IconData": "la la-quote-left",
+  "Description": "Add qutote to content",
+  "Fields": [
+    "Quote",
+    "From"
+  ],
+  "Attribute": [
+
+  ],
+  "HTML": [
+    "<div class=\"w3-card w3-leftbar w3-border-green w3-margin-top\" style=\"padding-top:16px; padding-bottom:16px;\" />",
+    "    <div class=\"w3-container\" contenteditable=\"true\">",
+    "        {arg0}",
+    "    </div>",
+    "    <footer class=\"w3-container\" contenteditable=\"true\">",
+    "        <b><i>{arg1}</i></b>",
+    "    </footer>",
+    "</div>"
+  ]
+}

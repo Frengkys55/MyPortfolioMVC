@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://mvc.frengkysinaga.com/css/w3.css" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    <title></title>
+    <style>
+        body{
+			background-color:transparent;
+		}
+    </style>
+</head>
+<body>
+    <div>
+        <div id="pnlEditor" class="" style="height:500px">
+
+        </div>
+
+    </div>
+
+    <script type="module" crossorigin="anonymous">
+        import { SimpleHTMLEditor } from "./SimpleHTMLEditor/Application.js";
+        import { SimpleHTMLEditorConfig } from "./SimpleHTMLEditor/Config.js";
+
+        var config = new SimpleHTMLEditorConfig();
+        config.CheckAddress = "./SimpleHTMLEditor/Controls/ControlList.json";
+        config.WorkPanel = "pnlEditor";
+        config.ControlLocation = "./SimpleHTMLEditor/Controls/";
+
+        // Instansiate editor object
+        var editor = new SimpleHTMLEditor(config).Run();
+    </script>
+</body>
+</html>
