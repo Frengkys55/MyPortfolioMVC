@@ -1552,7 +1552,6 @@ function btnNotYetImplementedWindowClose_Click() {
 
 // #region Notifications
 
-
 /** A part of "Notification" window that clear all notifications */
 function btnNotificationClearNotifications_Click() {
     // Clear notifications
@@ -1566,6 +1565,29 @@ function btnNotificationClearNotifications_Click() {
 
     // Close notifications panel
     HideWindow("pnlNotifications");
+}
+
+function addNotification(err, url, line) {
+    var notification = document.createElement("div");
+    var guid = crypto.randomUUID();
+    notification.id = "pnlNotification_" + guid;
+    notification.classList.add("w3-bar-item");
+    notification.classList.add("w3-border-bottom");
+
+    var notificationHeader = document.createElement("header");
+
+    var notificationTitle = document.createElement("div");
+    notificationTitle.innerHTML = "<i class=\"la la-bug\"></i> Exception";
+    notificationHeader.appendChild(notificationTitle);
+
+    notification.appendChild(notificationHeader);
+
+    var notificationBody = document.createElement("div");
+    notificationBody.innerHTML(err);
+
+    notification.appendChild(notificationBody);
+
+    document.getElementById("pnlNotificationList").appendChild(notification);
 }
 
 // #endregion Notifications
@@ -1689,6 +1711,11 @@ function Page_Load() {
 
     window.addEventListener("resize", InitializationPanelHeightAdjuster);
     window.addEventListener("resize", function () { WindowWorker(); });
+    window.onerror = function errorHandler(err, url, linenumber) {
+        addNotification(err, url, linenumber);
+
+        console.log("triggered");
+    }
 
     // #endregion Event handler
 
